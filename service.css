@@ -1,0 +1,370 @@
+/* ===== GLOBAL STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bs-theme-color: #2f0036; /* Deep Violet/Aubergine */
+  --bs-accent-color: #45073c; /* Pink Accent */
+}
+
+body {
+  font-family: "Josefin Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  overflow-x: hidden;
+  padding-top: 70px;
+  /* text-align: center; */
+
+  /* The animated gradient is now applied to the body for full visibility */
+  background: linear-gradient(
+    -45deg,
+    var(--bs-theme-color),
+    #400050,
+    #1c0021,
+    var(--bs-theme-color)
+  );
+  background-size: 400% 400%;
+  animation: gradient-animation 15s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px;
+}
+
+/* ===== MODERN NAVBAR STYLES ===== */
+.modern-navbar {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: none;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  min-height: 70px;
+  padding: 10px 0;
+}
+
+.modern-navbar .navbar-brand {
+  padding: 15px;
+  transition: transform 0.3s ease;
+}
+
+.modern-navbar .navbar-brand:hover {
+  transform: scale(1.05);
+}
+
+.modern-navbar .navbar-brand img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Navigation Links */
+.modern-navbar .navbar-nav > li > a {
+  color: #333 !important;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600;
+  padding: 12px 20px !important;
+  margin: 8px 5px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.modern-navbar .navbar-nav > li > a:hover,
+.modern-navbar .navbar-nav > li.active > a {
+  background-color: transparent !important;
+  color: #86047d !important;
+  transform: translateY(-2px);
+}
+
+.modern-navbar .navbar-nav > li > a::after {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #86047d, #b02ca5);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.modern-navbar .navbar-nav > li > a:hover::after,
+.modern-navbar .navbar-nav > li.active > a::after {
+  width: 70%;
+}
+
+/* Contact Button */
+.modern-navbar .navbar-nav > li.cta-item > a.btn-contact {
+  background: linear-gradient(135deg, #86047d, #1e0036);
+  color: white !important;
+  padding: 12px 30px !important;
+  border-radius: 25px;
+  box-shadow: 0 4px 15px rgba(13, 110, 253, 0.2);
+  font-weight: 600;
+}
+
+.modern-navbar .navbar-nav > li.cta-item > a.btn-contact::after {
+  display: none;
+}
+
+.modern-navbar .navbar-nav > li.cta-item > a.btn-contact:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(13, 110, 253, 0.3);
+  background: linear-gradient(135deg, #0b5ed7, #0bb5d4);
+}
+
+/* Mobile Toggle Button */
+.modern-navbar .navbar-toggle {
+  border: none;
+  background: transparent !important;
+  padding: 15px;
+  margin-top: 18px;
+}
+
+.modern-navbar .navbar-toggle:hover,
+.modern-navbar .navbar-toggle:focus {
+  background: transparent !important;
+}
+
+.modern-navbar .navbar-toggle .icon-bar {
+  background-color: #333;
+  height: 3px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Mobile Menu Styling */
+@media (max-width: 767px) {
+  .modern-navbar .navbar-collapse {
+    background: white;
+    border-radius: 12px;
+    margin-top: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: none;
+  }
+
+  .modern-navbar .navbar-nav {
+    margin: 10px 0;
+  }
+
+  .modern-navbar .navbar-nav > li > a {
+    text-align: center;
+    margin: 5px 15px;
+  }
+
+  .modern-navbar .navbar-nav > li.cta-item > a.btn-contact {
+    margin: 10px 15px;
+  }
+}
+
+/* Service Page */
+/* === Card and Content Styling === */
+.service-header {
+  padding: 3.4rem;
+}
+.service-header h1 {
+  font-family: "Young Serif", serif;
+  font-weight: 400;
+  color: aliceblue;
+}
+.service-header p {
+  font-family: "Questrial", sans-serif;
+  font-weight: 400;
+}
+.service-card {
+  background: rgba(255, 255, 255);
+  /* backdrop-filter: blur(5px); */
+  border: 2px solid transparent; /* Use a gradient border for accent */
+  border-radius: 1rem;
+  padding: 2.5rem; /* Equivalent to p-10 */
+  margin: 20px;
+  transition: all 0.5s ease;
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); */
+}
+
+.service-card:hover {
+  background: rgba(255, 255, 255,0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+}
+
+.service-card h2 {
+  font-family: "Questrial", sans-serif;
+  color: var(--bs-accent-color);
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  font-size: 3.9rem;
+}
+
+.service-card p {
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 1.9rem;
+  color: #000000;
+  text-align: justify;
+}
+
+.service-img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.service-img {
+  max-width: 50%;
+  height: auto;
+  border-radius: 0.75rem;
+  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); */
+  transition: transform 0.4s ease;
+}
+
+.service-img:hover {
+  transform: scale(1.03);
+}
+
+/* Responsive spacing for mobile */
+@media (max-width: 767.98px) {
+  .service-card {
+    padding: 1.5rem;
+  }
+}
+
+/* === Scroll Animation CSS (Re-implemented fade-in) === */
+.service-item-animated {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.service-item-animated.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Footer */
+/* Footer */
+
+.footer-main {
+  background: radial-gradient(ellipse at bottom, #1e0036, #2f0036);
+  padding-top: 20px;
+  color: #fff;
+  position: relative;
+  overflow: visible; /* ✅ fix */
+  isolation: isolate; /* ✅ ensure blur stays contained */
+}
+
+.footer-blur-background {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(15px);
+  background: rgba(186, 186, 186, 0.05);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.footer-main .container {
+  position: relative;
+  z-index: 2; /* ensures links stay on top */
+}
+
+/* Ensure all clickable elements are accessible */
+.footer-link,
+.social-icon {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.footer-main h5 {
+  font-size: 1.9rem;
+  /* margin-bottom: 1rem; */
+}
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.856);
+  text-decoration: none;
+  display: inline-block;
+  padding: 6px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.footer-link:hover {
+  color: #fff;
+  text-decoration: none;
+  transform: scale(1.3);
+}
+
+.social-icon {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #fff;
+  background: linear-gradient(135deg, #6f42c1, #8a63d2);
+  transform: scale(1.15);
+  box-shadow: 0 0 15px rgba(111, 66, 193, 0.6);
+}
+
+.company-description {
+  font-size: 1.4rem;
+  text-align: justify;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .footer-main {
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .footer-main .row {
+    text-align: center;
+  }
+  .middle,
+  .right {
+    margin: 40px 0;
+  }
+
+  /* Ensure footer links are clickable on mobile */
+  .footer-main ul {
+    position: relative;
+    z-index: 10;
+  }
+
+  .footer-link,
+  .social-icon {
+    display: inline-block;
+    min-height: 44px;
+    line-height: 44px;
+    pointer-events: auto !important;
+  }
+}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>3D Animated Loader</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* --- Core Page Styles & 3D Setup --- */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-color: #ecf0f1; /* Light background for contrast */
+
+        /* Crucial for 3D effect: sets the depth perspective */
+        perspective: 1200px;
+      }
+
+      /* Loader Wrapper: full screen, centered */
+      #loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #2c3e50;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        color: white;
+        /* We'll use JS to set final opacity for a smooth fade */
+      }
+
+      /* Loader Spin: Simple CSS animation */
+      .loader {
+        /* ... (Same CSS loader from previous response) ... */
+        border: 5px solid rgba(255, 255, 255, 0.3);
+        border-top: 5px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* --- Main Content Initial State --- */
+      .content-panel {
+        /* Center the content */
+        margin: 100px auto;
+        padding: 40px;
+        width: 80%;
+        max-width: 900px;
+        background: white;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        text-align: center;
+
+        /* GSAP will control the starting visibility and transform */
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loader-wrapper">
+      <div class="loader"></div>
+      <p>Initializing...</p>
+    </div>
+
+    <div id="main-content" class="content-panel">
+      <h1>Welcome to the Corporate Dashboard</h1>
+      <p>This is the content that appears with a 3D flip effect.</p>
+      <button>Start Exploring</button>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const loaderWrapper = document.getElementById("loader-wrapper");
+        const mainContent = document.getElementById("main-content");
+
+        // --- Configuration ---
+        const MIN_LOAD_TIME = 2000; // Minimum time the loader is displayed (2 seconds)
+        const startTime = new Date().getTime();
+
+        // The Reveal Function: Uses GSAP Timeline for the 3D effect
+        function showContent() {
+          // Create a new GSAP Timeline
+          const tl = gsap.timeline();
+
+          // 1. Hide the loader
+          tl.to(loaderWrapper, {
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.in",
+            onComplete: () => {
+              // Remove the loader from the layout after it fades out
+              loaderWrapper.style.display = "none";
+            },
+          })
+
+            // 2. Animate the main content in 3D
+            .fromTo(
+              mainContent,
+              // FROM state: Start hidden, slightly scaled, rotated back in 3D space
+              {
+                opacity: 0,
+                scale: 0.8,
+                rotateX: 90,
+                y: -50,
+              },
+              // TO state: End fully visible, unscaled, and flat
+              {
+                opacity: 1,
+                scale: 1,
+                rotateX: 0,
+                y: 0,
+                duration: 1.2,
+                ease: "back.out(1.7)", // A springy, dramatic reveal
+              },
+              "-=0.2" // Position Parameter: Start this tween 0.2 seconds BEFORE the loader fade-out ends
+            );
+        }
+
+        // --- Timing Logic ---
+
+        // This waits for the HTML structure to be ready and all assets to be loaded
+        window.onload = function () {
+          const endTime = new Date().getTime();
+          const actualLoadTime = endTime - startTime;
+
+          // Calculate remaining time needed to hit the MIN_LOAD_TIME
+          const timeToWait =
+            actualLoadTime < MIN_LOAD_TIME ? MIN_LOAD_TIME - actualLoadTime : 0;
+
+          setTimeout(showContent, timeToWait);
+        };
+
+        // Safety Fallback (optional, but good practice)
+        setTimeout(() => {
+          if (loaderWrapper.style.opacity > 0) {
+            console.warn(
+              "Forcing content display due to potential long load time."
+            );
+            showContent();
+          }
+        }, MIN_LOAD_TIME + 2000); // 4 seconds total, just in case
+      });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

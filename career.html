@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Urpan Technologies</title>
+    <link rel="icon" href="logo/logo.png" type="image/png" />
+
+    <!-- Bootstrap 5 CSS (UPGRADED) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Dancing+Script:wght@400..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Questrial&family=Young+Serif&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <!-- Bootstrap Icons (ADDED) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="career.css" />
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Bootstrap 5 Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top modern-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="./index.html">
+          <img src="./logo/logo-black.png" alt="Logo" class="logo" id="logo" height="40" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html" data-aos="fade-up">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./about.html" data-aos="fade-up">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./service.html" data-aos="fade-up">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="./career.html" data-aos="fade-up">Career</a>
+            </li>
+            <li class="nav-item cta-item">
+              <a href="./contact.html" data-aos="fade-up" class="btn-contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div style="padding-top: 70px"></div>
+
+    <!-- Career Content -->
+    <div class="animated-gradient-bg" aria-hidden="true">
+      <div class="gradient-blob blob-1"></div>
+      <div class="gradient-blob blob-2"></div>
+      <div class="gradient-blob blob-3"></div>
+    </div>
+
+    <header class="career-hero">
+      <h2 id="careerHeading">Global Opportunities Board</h2>
+    </header>
+
+    <section class="career-section">
+      <main class="container career">
+        <div class="row gx-4 gy-4 align-items-start">
+          <aside class="col-lg-4 col-md-5">
+            <div class="glass-card h-100 d-flex flex-column">
+              <h3 class="mb-2 jobList">Current Listings</h3>
+              <div id="jobList" class="list-group flex-grow-1" role="listbox" aria-label="Job listings"></div>
+            </div>
+          </aside>
+
+          <section class="col-lg-8 col-md-7">
+            <div class="glass-card h-100" id="jobInfo" aria-live="polite">
+              <div class="job-details-header">
+                <h3 class="mb-0">Job Details</h3>
+              </div>
+
+              <h4>JOB: <span id="jobTitle">Application Security Engineer</span></h4>
+
+              <div class="meta-row mb-3">
+                <div class="meta-item">
+                  <span class="label-strong">Posted Date</span>
+                  <div id="postedDate">09/03/2024</div>
+                </div>
+                <div class="meta-item">
+                  <span class="label-strong">Salary</span>
+                  <div id="salary">$184,579.00 per year</div>
+                </div>
+                <div class="meta-item">
+                  <span class="label-strong">Openings</span>
+                  <div id="openings">5</div>
+                </div>
+              </div>
+
+              <p>
+                <span class="label-strong">Working Hours</span>
+                <div id="workingHours" style="display:inline-block; margin-left:6px;">Fulltime, 40 hrs/week</div>
+              </p>
+
+              <p>
+                <span class="label-strong">Experience</span>
+                <div id="experience">
+                  Experience of Six (6) Months should include working with Security Testing/Analysis of Cloud Based Networks/Applications (Azure/AWS/GCP). Travel and/or relocation to unanticipated client sites within USA may be required.
+                </div>
+              </p>
+
+              <p>
+                <span class="label-strong">Qualifications</span>
+                <div id="education">
+                  Master's degree in Computer Science or related field preferred; Bachelor's plus five years of progressive experience accepted.
+                </div>
+              </p>
+
+              <p>
+                <span class="label-strong">Job Duties</span>
+                <div id="jobDuties">
+                  Plan, implement, upgrade or monitor security measures for protection of computer networks and cloud applications; interact with developers to mitigate vulnerabilities; perform risk analyses.
+                </div>
+              </p>
+
+              <div class="d-flex justify-content-end mt-4">
+                <button class="apply-now-btn" id="openApply" data-bs-toggle="modal" data-bs-target="#applicationModal">Apply Now</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </section>
+
+    <!-- Application Modal -->
+    <div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="applicationModalLabel">Apply for Job</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <form id="applicationForm" action="https://formspree.io/f/xvgqagpy" method="POST" enctype="multipart/form-data" class="row g-3">
+              <div class="col-md-6">
+                <label for="applicantName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="applicantName" name="name" required />
+              </div>
+              <div class="col-md-6">
+                <label for="applicantEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="applicantEmail" name="email" required />
+              </div>
+              <div class="col-md-6">
+                <label for="applicantPhone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="applicantPhone" name="phone" required />
+              </div>
+
+              <div class="col-md-6">
+                <label for="jobTitleDisplay" class="form-label">Applying for</label>
+                <input type="text" readonly class="form-control" id="jobTitleDisplay" name="job_applied_for_display" aria-readonly="true" />
+                <input type="hidden" id="jobTitleHidden" name="job_applied_for" />
+              </div>
+
+              <div class="col-12">
+                <label for="resumeFile" class="form-label">Upload Resume (PDF, DOC, DOCX)</label>
+                <input class="form-control" type="file" id="resumeFile" name="resume" accept=".pdf,.doc,.docx" required />
+              </div>
+
+              <div class="col-12 d-flex justify-content-end gap-2 modal-footer border-0 pt-4">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" style="background:var(--accent); border:none;">Submit Application</button>
+              </div>
+            </form>
+
+            <div id="thankYouMessage" class="thank-you-container d-none mt-3 text-center">
+              <div class="checkmark-circle mb-3" style="font-size: 3rem; color: var(--accent);"><i class="bi bi-check-circle-fill"></i></div>
+              <h5>Thank You for Your Application!</h5>
+              <p>We have received your submission and will review it shortly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-main py-5 position-relative overflow-hidden">
+      <div class="footer-blur-background"></div>
+
+      <div class="container position-relative z-1">
+        <div class="row align-items-start text-center text-md-start">
+          <div class="col-md-4 mb-4">
+            <img src="logo/logo-black.png" alt="Logo" class="mb-3 img-fluid" style="max-height: 50px" />
+            <p class="text-white-50 company-description mb-4">
+              UrpanTech has been providing staffing and recruitment services to businesses in the IT industry since 2000. We aim to be your trusted talent partner focused on long-term success.
+            </p>
+            <div class="social-links d-flex gap-3">
+              <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-xs-12 mb-4 middle">
+            <h5 class="text-white fw-bold mb-3">Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="/index.html" class="footer-link">Home</a></li>
+              <li><a href="/about.html" class="footer-link">About Us</a></li>
+              <li><a href="/service.html" class="footer-link">Services</a></li>
+              <li><a href="/career.html" class="footer-link">Career</a></li>
+              <li><a href="/contact.html" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="col-md-4 mb-4 right">
+            <h5 class="text-white fw-bold mb-3">Contact Us</h5>
+            <ul class="list-unstyled text-white-50">
+              <li class="d-flex align-items-start mb-3">
+                <i class="fas fa-map-marker-alt me-2 mt-1"></i>
+                39355 California Street, #303, Fremont, CA 94538
+              </li>
+              <li class="mb-3">
+                <i class="fas fa-envelope me-2"></i>
+                <a href="mailto:info@urpantech.com" class="footer-link">info@urpantech.com</a>
+              </li>
+              <li><i class="fas fa-phone-alt me-2"></i> +1 408-744-6750</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="text-center border-top border-secondary border-opacity-50 mt-5 pt-3">
+          <p class="mb-0 text-white-50">&copy; 2025 UrpanTech. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle (UPGRADED) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- Career Logic -->
+    <script>
+      const jobs = [
+        {
+          id: 'job-1',
+          title: "Application Security Engineer",
+          postedDate: "09/03/2024",
+          salary: "$184,579 / year",
+          workingHours: "Fulltime, 40 hours/week",
+          openings: 5,
+          experience: "6 months with security testing/analysis of cloud-based networks/applications (Azure/AWS/GCP). Travel and/or relocation to unanticipated client sites within USA may be required.",
+          education: "Master's in Computer Science or related field preferred; Bachelor's + 5 years accepted.",
+          jobDuties: "Plan and monitor security controls for cloud applications; interact with developers to mitigate vulnerabilities; perform risk analysis; travel as required."
+        },
+        {
+          id: 'job-2',
+          title: "Frontend Developer (React)",
+          postedDate: "10/01/2024",
+          salary: "$95,000 / year",
+          workingHours: "Fulltime, 40 hours/week",
+          openings: 3,
+          experience: "2+ years building responsive UIs with React and modern CSS. Experience with design systems is a plus.",
+          education: "Bachelor's in Computer Science or equivalent experience in front-end development.",
+          jobDuties: "Build and maintain reusable UI components; optimize application performance; collaborate with UX/UI designers; ensure cross-browser compatibility."
+        },
+        {
+          id: 'job-3',
+          title: "Data Analyst & Visualization",
+          postedDate: "10/05/2024",
+          salary: "$78,000 / year",
+          workingHours: "Fulltime, 40 hours/week",
+          openings: 2,
+          experience: "1+ year with SQL, Python, ETL processes, and familiarity with BI tools (Tableau/PowerBI).",
+          education: "Bachelor's in Statistics, Math, Computer Science, or related analytical field.",
+          jobDuties: "Analyze large datasets to identify trends; create clear dashboards and reports; present actionable insights to internal stakeholders."
+        },
+        {
+          id: 'job-4',
+          title: "Senior Product Manager",
+          postedDate: "10/11/2024",
+          salary: "$130,000 / year",
+          workingHours: "Fulltime, 40 hours/week",
+          openings: 1,
+          experience: "5+ years managing product roadmaps for B2B SaaS applications and deep understanding of agile methodologies.",
+          education: "Bachelor's or equivalent experience. MBA or relevant certification highly valued.",
+          jobDuties: "Define product vision and strategy; prioritize roadmap based on customer feedback and business goals; coordinate cross-functional delivery with engineering and marketing teams."
+        }
+      ];
+
+      const jobListEl = document.getElementById('jobList');
+      const jobTitleEl = document.getElementById('jobTitle');
+      const postedDateEl = document.getElementById('postedDate');
+      const salaryEl = document.getElementById('salary');
+      const workingHoursEl = document.getElementById('workingHours');
+      const openingsEl = document.getElementById('openings');
+      const experienceEl = document.getElementById('experience');
+      const educationEl = document.getElementById('education');
+      const jobDutiesEl = document.getElementById('jobDuties');
+      const jobTitleDisplay = document.getElementById('jobTitleDisplay');
+      const jobTitleHidden = document.getElementById('jobTitleHidden');
+      const applicationForm = document.getElementById('applicationForm');
+      const thankYouMessage = document.getElementById('thankYouMessage');
+      const jobInfoPanel = document.getElementById('jobInfo');
+
+      function renderJobList(selectedId = null) {
+        jobListEl.innerHTML = '';
+        jobs.forEach((job, idx) => {
+          const btn = document.createElement('button');
+          btn.setAttribute('type', 'button');
+          btn.className = 'job-item';
+          btn.dataset.id = job.id;
+          btn.innerHTML = `
+            <div>
+              <div class="title">${job.title}</div>
+              <div style="font-size:0.82rem;color:var(--muted)">${job.salary}</div>
+            </div>
+            <div class="meta">
+              <div>${job.postedDate}</div>
+              <div style="font-weight:700;color:var(--accent);">${job.openings} open</div>
+            </div>
+          `;
+          btn.addEventListener('click', () => selectJob(job.id));
+          jobListEl.appendChild(btn);
+          if (idx === 0 && !selectedId) selectJob(job.id);
+        });
+        if (selectedId) selectJob(selectedId);
+      }
+
+      function selectJob(id) {
+        const job = jobs.find(j => j.id === id);
+        if (!job) return;
+
+        jobInfoPanel.style.transition = 'opacity 0.2s ease-out';
+        jobInfoPanel.style.opacity = '0';
+
+        setTimeout(() => {
+          jobTitleEl.textContent = job.title;
+          postedDateEl.textContent = job.postedDate;
+          salaryEl.textContent = job.salary;
+          workingHoursEl.textContent = job.workingHours;
+          openingsEl.textContent = job.openings;
+          experienceEl.textContent = job.experience;
+          educationEl.textContent = job.education;
+          jobDutiesEl.textContent = job.jobDuties;
+          jobTitleDisplay.value = job.title;
+          jobTitleHidden.value = job.title;
+
+          Array.from(jobListEl.children).forEach(el => {
+            el.classList.toggle('active', el.dataset.id === id);
+          });
+
+          jobInfoPanel.style.opacity = '1';
+
+          if (window.innerWidth < 992) {
+            jobInfoPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 200);
+      }
+
+      // FIXED: Form submission with actual POST to Formspree
+      applicationForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitBtn = applicationForm.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+
+        try {
+          const formData = new FormData(applicationForm);
+          const response = await fetch(applicationForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            applicationForm.classList.add('d-none');
+            thankYouMessage.classList.remove('d-none');
+            
+            // Reset form after 3 seconds and close modal
+            setTimeout(() => {
+              const modal = bootstrap.Modal.getInstance(document.getElementById('applicationModal'));
+              modal.hide();
+              setTimeout(() => {
+                applicationForm.reset();
+                applicationForm.classList.remove('d-none');
+                thankYouMessage.classList.add('d-none');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Application';
+              }, 500);
+            }, 3000);
+          } else {
+            throw new Error('Submission failed');
+          }
+        } catch (error) {
+          alert('There was an error submitting your application. Please try again.');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Application';
+        }
+      });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        renderJobList();
+        AOS.init({
+          duration: 1000,
+          once: true,
+        });
+      });
+    </script>
+  </body>
+</html>

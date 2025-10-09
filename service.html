@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Urpan Technologies</title>
+    <link rel="icon" href="logo/logo.png" type="image/png" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Dancing+Script:wght@400..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Krona+One&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Questrial&family=Young+Serif&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="service.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome (for social icons) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <!-- <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" /> -->
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top modern-navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html">
+            <img
+              src="./logo/logo-black.png"
+              alt="Logo"
+              class="logo"
+              id="logo"
+              height="40"
+            />
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="./index.html" data-aos="fade-up">Home</a>
+            </li>
+            <li>
+              <a href="./about.html" data-aos="fade-up">About Us</a>
+            </li>
+            <li class="active">
+              <a href="./service.html" data-aos="fade-up">Services</a>
+            </li>
+            <li>
+              <a href="./career.html" data-aos="fade-up">Career</a>
+            </li>
+            <li class="cta-item">
+              <a href="./contact.html" class="btn-contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- service header -->
+    <section id="service" class="py-5 py-lg-7">
+      <div class="container py-5 py-lg-7">
+        <!-- Section Title -->
+        <div class="text-center mb-5 mb-lg-7 service-header">
+          <h1 class="display-2 fw-bolder text-white mb-3">
+            Our <span>Services</span>
+          </h1>
+          <p class="lead mx-auto text-center" style="color: beige">
+            Enabling success through specialized staffing and consulting
+            solutions.
+          </p>
+        </div>
+
+        <div class="d-grid gap-5 gap-lg-6">
+          <!-- Service 1: Executive Search -->
+          <div
+            class="row align-items-center service-card service-item-animated g-5"
+          >
+            <!-- Image Column (Order: Default) -->
+            <div
+              class="col-md-6 order-md-1 d-flex justify-content-center align-items-center"
+            >
+              <div class="service-img-wrapper">
+                <!-- Placeholder Image -->
+                <img
+                  src="./images/Executive Search.png"
+                  alt="Executive Search"
+                  class="service-img img-fluid"
+                />
+              </div>
+            </div>
+            <!-- Content Column (Order: Default) -->
+            <div
+              class="col-md-6 order-md-2 d-flex flex-column justify-content-center h-100 text-center text-md-start"
+            >
+              <h2>Executive Search</h2>
+              <p>
+                Right leadership is of paramount importance to drive business
+                towards its vision. At UrpanTech, we partner in your growth by
+                enabling you with right resources to fill key executive
+                positions. Our executive search teams enable businesses to spot
+                their next leader.
+              </p>
+            </div>
+          </div>
+
+          <!-- Service 2: Direct Hire Services (Reversed Layout) -->
+          <div
+            class="row align-items-center service-card service-item-animated g-5"
+          >
+            <!-- Content Column (Order: Left on desktop) -->
+            <div
+              class="col-md-6 order-md-1 d-flex flex-column justify-content-center h-100 text-center text-md-start"
+            >
+              <h2>Direct Hire Services</h2>
+              <p>
+                Key resources are crucial for the smooth running of the
+                business. Sourcing the right talent is both time consuming and
+                resource intensive too. We enable organizations to identify,
+                recruit and hire the right candidates for various positions in
+                sync with their hiring strategy.
+              </p>
+            </div>
+            <!-- Image Column (Order: Right on desktop) -->
+            <div
+              class="col-md-6 order-md-2 d-flex justify-content-center align-items-center"
+            >
+              <div class="service-img-wrapper">
+                <!-- Placeholder Image -->
+                <img
+                  src="./images/Direct Hire Services.png"
+                  alt="Direct Hire Services"
+                  class="service-img img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Service 3: IT Staffing -->
+          <div
+            class="row align-items-center service-card service-item-animated g-5"
+          >
+            <!-- Image Column (Order: Default) -->
+            <div
+              class="col-md-6 order-md-1 d-flex justify-content-center align-items-center"
+            >
+              <div class="service-img-wrapper">
+                <!-- Placeholder Image -->
+                <img
+                  src="./images/IT Staffing.png"
+                  alt="IT Staffing"
+                  class="service-img img-fluid"
+                />
+              </div>
+            </div>
+            <!-- Content Column (Order: Default) -->
+            <div
+              class="col-md-6 order-md-2 d-flex flex-column justify-content-center h-100 text-center text-md-start"
+            >
+              <h2>IT Staffing</h2>
+              <p>
+                The market for talented resources is highly competitive. The
+                growth of cutting-edge technologies and the changing business
+                scenario calls for IT talent with niche skills and domain
+                knowledge. UrpanTech makes it possible to harness the right
+                talent from the talent market.
+              </p>
+            </div>
+          </div>
+
+          <!-- Service 4: Temporary Staffing (Reversed Layout) -->
+          <div
+            class="row align-items-center service-card service-item-animated g-5"
+          >
+            <!-- Content Column (Order: Left on desktop) -->
+            <div
+              class="col-md-6 order-md-1 d-flex flex-column justify-content-center h-100 text-center text-md-start"
+            >
+              <h2>Temporary Staffing</h2>
+              <p>
+                Resource needs of business may be planned, project or
+                time-based. Identifying these requirements, our temporary
+                staffing solutions enable you to scale-up or down your resource
+                needs accordingly; we build your resource capacity easing you of
+                the cost and management challenges.
+              </p>
+            </div>
+            <!-- Image Column (Order: Right on desktop) -->
+            <div
+              class="col-md-6 order-md-2 d-flex justify-content-center align-items-center"
+            >
+              <div class="service-img-wrapper">
+                <!-- Placeholder Image -->
+                <img
+                  src="./images//Temporary Staffing.png"
+                  alt="Temporary Staffing"
+                  class="service-img img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Service 5: HR Consulting -->
+          <div
+            class="row align-items-center service-card service-item-animated g-5"
+          >
+            <!-- Image Column (Order: Default) -->
+            <div
+              class="col-md-6 order-md-1 d-flex justify-content-center align-items-center"
+            >
+              <div class="service-img-wrapper">
+                <!-- Placeholder Image -->
+                <img
+                  src="./images/HR Consulting.png"
+                  alt="HR Consulting"
+                  class="service-img img-fluid"
+                />
+              </div>
+            </div>
+            <!-- Content Column (Order: Default) -->
+            <div
+              class="col-md-6 order-md-2 d-flex flex-column justify-content-center h-100 text-center text-md-start"
+            >
+              <h2>HR Consulting</h2>
+              <p>
+                Leveraging talent resources is primal for enhancing business
+                performance and growth. Through our HR consulting services, we
+                enable businesses to optimize their HR operations with improved
+                and innovative HR policies and practices with focus on the
+                dynamic needs of the IT industry.
+              </p>
+            </div>
+          </div>
+
+          <!-- Service 6: Skill Enhancement Program (Reversed Layout) -->
+          <div
+            class="row align-items-center service-card service-item-animated g-5"
+          >
+            <!-- Content Column (Order: Left on desktop) -->
+            <div
+              class="col-md-6 order-md-1 d-flex flex-column justify-content-center h-100 text-center text-md-start"
+            >
+              <h2>Skill Enhancement Program</h2>
+              <p>
+                Training and development of emerging technologies are decisive
+                and give businesses an edge over the competition. UrpanTech
+                partners with businesses and provides skill enhancement programs
+                to empower their resources for optimal performance and to be
+                future-ready.
+              </p>
+            </div>
+            <!-- Image Column (Order: Right on desktop) -->
+            <div
+              class="col-md-6 order-md-2 d-flex justify-content-center align-items-center"
+            >
+              <div class="service-img-wrapper">
+                <!-- Placeholder Image -->
+                <img
+                  src="./images/Skill Enhancement Program.png"
+                  alt="Skill Enhancement Program"
+                  class="service-img img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer-main py-5 position-relative overflow-hidden">
+      <div class="footer-blur-background"></div>
+
+      <div class="container position-relative z-1">
+        <div class="row align-items-start text-center text-md-start">
+          <!-- Left: Logo & About -->
+          <div class="col-md-4 mb-4">
+            <img
+              src="logo/logo-black.png"
+              alt="Logo"
+              class="mb-3logo img-fluid"
+              style="max-height: 50px"
+            />
+            <p class="text-white-50 company-description mb-4">
+              UrpanTech has been providing staffing and recruitment services to
+              businesses in the IT industry since 2000. We aim to be your
+              trusted talent partner focused on long-term success.
+            </p>
+            <div class="social-links d-flex gap-3">
+              <a href="#" class="social-icon"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+              <a href="#" class="social-icon"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-icon"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Middle: Quick Links -->
+          <div class="col-md-4 col-xs-12 mb-4 middle">
+            <h5 class="text-white fw-bold mb-3">Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="/index.html" class="footer-link">Home</a></li>
+              <li><a href="/about.html" class="footer-link">About Us</a></li>
+              <li><a href="/service.html" class="footer-link">Services</a></li>
+              <li><a href="/career.html" class="footer-link">Career</a></li>
+              <li><a href="/contact.html" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Right: Contact -->
+          <div class="col-md-4 mb-4 right">
+            <h5 class="text-white fw-bold mb-3">Contact Us</h5>
+            <ul class="list-unstyled text-white-50">
+              <li class="d-flex align-items-start mb-3">
+                <i class="fas fa-map-marker-alt me-2 mt-1"></i>
+                39355 California Street, #303, Fremont, CA 94538
+              </li>
+              <li class="mb-3">
+                <i class="fas fa-envelope me-2"></i>
+                <a href="mailto:info@urpantech.com" class="footer-link"
+                  >info@urpantech.com</a
+                >
+              </li>
+              <li><i class="fas fa-phone-alt me-2"></i> +1 408-744-6750</li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="text-center border-top border-secondary border-opacity-50 mt-5 pt-3"
+        >
+          <p class="mb-0 text-white-50">
+            &copy; 2025 UrpanTech. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
+
+    <!-- Custom jQuery Script -->
+    <script>
+      // Add active class to current page
+      $(document).ready(function () {
+        var currentPage = window.location.pathname.split("/").pop();
+        $(".navbar-nav li").removeClass("active");
+        $(".navbar-nav li a").each(function () {
+          var href = $(this).attr("href").replace("./", "");
+          if (
+            href === currentPage ||
+            (currentPage === "" && href === "index.html")
+          ) {
+            $(this).parent().addClass("active");
+          }
+        });
+      });
+    </script>
+    <script>
+      // === Intersection Observer for Scroll Animation (Fade-in-on-scroll) ===
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements = document.querySelectorAll(
+          ".service-item-animated"
+        );
+
+        if (animatedElements.length > 0) {
+          // Options for the observer
+          const observerOptions = {
+            root: null, // relative to the viewport
+            rootMargin: "0px",
+            threshold: 0.1, // 10% of the element must be visible
+          };
+
+          // The callback function executed when an element's visibility changes
+          const observerCallback = (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // Element is in view, add the visibility class
+                entry.target.classList.add("is-visible");
+                // Stop observing the element once it has been animated
+                observer.unobserve(entry.target);
+              }
+            });
+          };
+
+          // Create the observer
+          const observer = new IntersectionObserver(
+            observerCallback,
+            observerOptions
+          );
+
+          // Start observing each animated element
+          animatedElements.forEach((element) => {
+            observer.observe(element);
+          });
+        }
+      });
+    </script>
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+      AOS.init({
+        duration: 3000, // animation duration (default: 400)
+        once: true, // whether animation should happen only once
+      });
+    </script>
+    <!-- <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1200,
+    once: true
+  });
+</script> -->
+  </body>
+</html>
