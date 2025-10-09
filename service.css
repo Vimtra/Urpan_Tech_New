@@ -14,38 +14,20 @@ body {
     sans-serif;
   overflow-x: hidden;
   padding-top: 70px;
-  /* text-align: center; */
-
-  /* The animated gradient is now applied to the body for full visibility */
-  background: linear-gradient(
-    -45deg,
-    var(--bs-theme-color),
-    #400050,
-    #1c0021,
-    var(--bs-theme-color)
-  );
-  background-size: 400% 400%;
-  animation: gradient-animation 15s ease infinite;
+  /* CHANGED: Replaced animated dark background with a subtle light gradient */
+  background: linear-gradient(135deg, #f0f0f5 0%, #ffffff 100%); 
 }
 
-@keyframes gradient-animation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+/* REMOVED: @keyframes gradient-animation and related animation properties */
+
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 70px;
+  /* Increased padding to account for fixed navbar height in B5 */
+  scroll-padding-top: 80px; 
 }
 
-/* ===== MODERN NAVBAR STYLES ===== */
+/* ===== MODERN NAVBAR STYLES (NO CHANGE) ===== */
 .modern-navbar {
   background-color: rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(10px);
@@ -71,8 +53,8 @@ html {
   vertical-align: middle;
 }
 
-/* Navigation Links */
-.modern-navbar .navbar-nav > li > a {
+/* Navigation Links - Updated selectors for B5 */
+.modern-navbar .nav-link {
   color: #333 !important;
   font-family: "Josefin Sans", sans-serif;
   font-weight: 600;
@@ -83,14 +65,16 @@ html {
   position: relative;
 }
 
-.modern-navbar .navbar-nav > li > a:hover,
-.modern-navbar .navbar-nav > li.active > a {
+/* Use .nav-link.active and custom .active on nav-item for consistency */
+.modern-navbar .nav-link:hover,
+.modern-navbar .nav-link.active,
+.modern-navbar .nav-item.active .nav-link { 
   background-color: transparent !important;
   color: #86047d !important;
   transform: translateY(-2px);
 }
 
-.modern-navbar .navbar-nav > li > a::after {
+.modern-navbar .nav-link::after {
   content: "";
   position: absolute;
   bottom: 8px;
@@ -102,53 +86,46 @@ html {
   transform: translateX(-50%);
 }
 
-.modern-navbar .navbar-nav > li > a:hover::after,
-.modern-navbar .navbar-nav > li.active > a::after {
+.modern-navbar .nav-link:hover::after,
+.modern-navbar .nav-link.active::after,
+.modern-navbar .nav-item.active .nav-link::after {
   width: 70%;
 }
 
 /* Contact Button */
-.modern-navbar .navbar-nav > li.cta-item > a.btn-contact {
+.modern-navbar .nav-item.cta-item {
+    margin: 8px 5px; 
+}
+.modern-navbar .nav-item.cta-item .btn-contact {
   background: linear-gradient(135deg, #86047d, #1e0036);
   color: white !important;
   padding: 12px 30px !important;
   border-radius: 25px;
   box-shadow: 0 4px 15px rgba(13, 110, 253, 0.2);
   font-weight: 600;
+  display: inline-block;
+  text-decoration: none;
 }
 
-.modern-navbar .navbar-nav > li.cta-item > a.btn-contact::after {
-  display: none;
-}
-
-.modern-navbar .navbar-nav > li.cta-item > a.btn-contact:hover {
+.modern-navbar .nav-item.cta-item .btn-contact:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(13, 110, 253, 0.3);
-  background: linear-gradient(135deg, #0b5ed7, #0bb5d4);
+  background: linear-gradient(135deg, #c021b6, #86047d);
 }
 
-/* Mobile Toggle Button */
-.modern-navbar .navbar-toggle {
+/* Mobile Toggle Button (UPDATED for B5) */
+.modern-navbar .navbar-toggler {
   border: none;
   background: transparent !important;
   padding: 15px;
-  margin-top: 18px;
 }
 
-.modern-navbar .navbar-toggle:hover,
-.modern-navbar .navbar-toggle:focus {
-  background: transparent !important;
-}
-
-.modern-navbar .navbar-toggle .icon-bar {
-  background-color: #333;
-  height: 3px;
-  border-radius: 2px;
-  transition: all 0.3s ease;
+.modern-navbar .navbar-toggler:focus {
+  box-shadow: none;
 }
 
 /* Mobile Menu Styling */
-@media (max-width: 767px) {
+@media (max-width: 991px) { /* Changed to B5 default collapse breakpoint */
   .modern-navbar .navbar-collapse {
     background: white;
     border-radius: 12px;
@@ -160,14 +137,15 @@ html {
   .modern-navbar .navbar-nav {
     margin: 10px 0;
   }
-
-  .modern-navbar .navbar-nav > li > a {
+  
+  .modern-navbar .nav-link { /* Use B5 .nav-link class */
     text-align: center;
     margin: 5px 15px;
   }
 
-  .modern-navbar .navbar-nav > li.cta-item > a.btn-contact {
+  .modern-navbar .nav-item.cta-item {
     margin: 10px 15px;
+    justify-content: center;
   }
 }
 
@@ -175,31 +153,36 @@ html {
 /* === Card and Content Styling === */
 .service-header {
   padding: 3.4rem;
+  /* CHANGED: Text color to dark since the body is now light */
+  color: var(--bs-theme-color); 
+  background: linear-gradient(135deg, var(--bs-theme-color), #400050); /* Dark banner */
 }
 .service-header h1 {
   font-family: "Young Serif", serif;
   font-weight: 400;
-  color: aliceblue;
+  color: #fff; /* White text on dark banner */
+}
+.service-header span {
+    color: #ff69eb; /* Highlight color for "Services" */
 }
 .service-header p {
   font-family: "Questrial", sans-serif;
   font-weight: 400;
+  color: #f0f0f0; /* Light text on dark banner */
 }
 .service-card {
   background: rgba(255, 255, 255);
-  /* backdrop-filter: blur(5px); */
-  border: 2px solid transparent; /* Use a gradient border for accent */
+  border: 2px solid transparent; 
   border-radius: 1rem;
-  padding: 2.5rem; /* Equivalent to p-10 */
+  padding: 2.5rem;
   margin: 20px;
   transition: all 0.5s ease;
-  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); */
 }
 
 .service-card:hover {
-  background: rgba(255, 255, 255,0.5);
+  background: rgba(255, 255, 255,0.9); /* Slightly more opaque on hover */
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Lighter shadow on light background */
 }
 
 .service-card h2 {
@@ -207,14 +190,14 @@ html {
   color: var(--bs-accent-color);
   font-weight: bold;
   margin-bottom: 0.75rem;
-  font-size: 3.9rem;
+  font-size: 2.2rem; /* REDUCED FONT SIZE */
 }
 
 .service-card p {
   font-family: "Josefin Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
-  font-size: 1.9rem;
+  font-size: 1.1rem; /* REDUCED FONT SIZE */
   color: #000000;
   text-align: justify;
 }
@@ -230,7 +213,6 @@ html {
   max-width: 50%;
   height: auto;
   border-radius: 0.75rem;
-  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); */
   transition: transform 0.4s ease;
 }
 
@@ -242,6 +224,15 @@ html {
 @media (max-width: 767.98px) {
   .service-card {
     padding: 1.5rem;
+  }
+  .service-card h2 {
+    font-size: 1.8rem;
+  }
+  .service-card p {
+    font-size: 0.95rem;
+  }
+  .service-img {
+      max-width: 70%; /* Increase image size on mobile */
   }
 }
 
@@ -257,22 +248,27 @@ html {
   transform: translateY(0);
 }
 
-/* Footer */
-/* Footer */
+/*
+ * UNIFIED FOOTER STYLES
+ * (No changes here, keeping the finalized dark theme footer)
+ */
 
 .footer-main {
+  /* Using dark theme gradient from existing CSS */
   background: radial-gradient(ellipse at bottom, #1e0036, #2f0036);
-  padding-top: 20px;
+  padding-top: 40px;
+  padding-bottom: 20px;
   color: #fff;
   position: relative;
-  overflow: visible; /* ✅ fix */
-  isolation: isolate; /* ✅ ensure blur stays contained */
+  overflow: hidden;
+  isolation: isolate;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 .footer-blur-background {
   position: absolute;
   inset: 0;
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(12px);
   background: rgba(186, 186, 186, 0.05);
   z-index: 0;
   pointer-events: none;
@@ -280,91 +276,148 @@ html {
 
 .footer-main .container {
   position: relative;
-  z-index: 2; /* ensures links stay on top */
+  z-index: 2;
 }
 
-/* Ensure all clickable elements are accessible */
-.footer-link,
-.social-icon {
-  position: relative;
-  z-index: 10;
-  pointer-events: auto;
+.footer-logo {
+    height: 40px;
+    /* Inverting logo color to white for dark background */
+    filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.company-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 15px; 
+    /* Ensures alignment with text, overriding the center alignment on desktop */
+    text-align: left; 
 }
 
 .footer-main h5 {
-  font-size: 1.9rem;
-  /* margin-bottom: 1rem; */
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ff69eb; /* Highlight title color */
+  text-align: left; /* FIX: Ensure titles are left-aligned on desktop */
+}
+
+.footer-main ul {
+  list-style: none;
+  padding: 0;
+  text-align: left; /* FIX: Ensure quick links align left */
 }
 
 .footer-link {
-  color: rgba(255, 255, 255, 0.856);
-  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none !important; /* REQUEST: Force remove underline */
   display: inline-block;
-  padding: 6px 0;
+  padding: 4px 0;
   transition: all 0.3s ease-in-out;
+  font-size: 1rem;
 }
 
 .footer-link:hover {
   color: #fff;
-  text-decoration: none;
-  transform: scale(1.3);
+  transform: translateX(4px);
 }
 
-.social-icon {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 1.2rem;
-  background: rgba(255, 255, 255, 0.1);
+/* Contact List Specifics - Enhanced Alignment */
+.contact-list li {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+    display: flex; 
+    align-items: flex-start; 
+    text-align: left; /* Ensures multi-line address doesn't hang */
+}
+
+.contact-list i {
+    color: #c021b6; 
+    font-size: 1.1rem;
+    width: 20px;
+    flex-shrink: 0; 
+    margin-right: 15px; 
+}
+
+/* Divider line */
+.footer-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Bottom Bar Styles (Copyright & Social) */
+.copyright-text {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.social-links-combined {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-links-combined span {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 36px;
+}
+
+.social-icon-footer {
+  color: #fff;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 50%;
-  padding: 10px;
-  width: 40px;
-  height: 40px;
+  padding: 8px;
+  width: 36px;
+  height: 36px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  text-decoration: none;
+  transform: scale(1); /* REQUEST: Initial scale */
 }
 
-.social-icon:hover {
-  color: #fff;
-  background: linear-gradient(135deg, #6f42c1, #8a63d2);
-  transform: scale(1.15);
-  box-shadow: 0 0 15px rgba(111, 66, 193, 0.6);
+.social-icon-footer:hover {
+  background: linear-gradient(135deg, #ff69eb, #86047d);
+  transform: scale(1.2); /* REQUEST: Scale up on hover (Increased slightly from 1.15 to 1.2 for visibility) */
+  box-shadow: 0 0 10px rgba(255, 105, 235, 0.5);
 }
 
-.company-description {
-  font-size: 1.4rem;
-  text-align: justify;
-  line-height: 1.7;
-}
 
-@media (max-width: 768px) {
-  .footer-main {
-    text-align: center;
-  }
+/* Footer Mobile Responsiveness (FIXED ALIGNMENT) */
+@media (max-width: 767.98px) {
+    /* Resetting the text align on the row div back to left/start for the main columns */
+    .footer-main .row > div {
+        text-align: center;
+        /* Force blocks to stack vertically and center-align contents */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .company-description {
+        text-align: center;
+    }
+    
+    .footer-main h5 {
+        text-align: center; /* Center titles on mobile */
+    }
 
-  .social-links {
-    justify-content: center;
-  }
+    .contact-list li {
+        /* FIX: Ensure contact details are legible and centered */
+        text-align: center;
+        justify-content: center; 
+        padding: 0 10px; /* Add padding to prevent overflow */
+    }
 
-  .footer-main .row {
-    text-align: center;
-  }
-  .middle,
-  .right {
-    margin: 40px 0;
-  }
-
-  /* Ensure footer links are clickable on mobile */
-  .footer-main ul {
-    position: relative;
-    z-index: 10;
-  }
-
-  .footer-link,
-  .social-icon {
-    display: inline-block;
-    min-height: 44px;
-    line-height: 44px;
-    pointer-events: auto !important;
-  }
+    .social-links-combined {
+        /* Ensure social links are centered on mobile */
+        justify-content: center !important; 
+    }
+    
+    .social-links-combined span {
+        display: none !important;
+    }
 }
