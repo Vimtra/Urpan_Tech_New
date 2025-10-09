@@ -6,22 +6,21 @@
     <title>Urpan Technologies</title>
     <link rel="icon" href="logo/logo.png" type="image/png" />
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap 5 CSS -->
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=Cinzel:wght@400..900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Dancing+Script:wght@400..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Krona+One&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Questrial&family=Young+Serif&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=Cinzel:wght@400..900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Dancing+Script:wght@400..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Krona+One&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Questrial&family=Young+Serif&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Dancing+Script:wght@400..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Questrial&family=Young+Serif&display=swap"
-      rel="stylesheet"
     />
     <!-- Font Awesome (for social icons) -->
     <link
@@ -37,465 +36,374 @@
   </head>
 
   <body>
-        <!-- <div id="loader-wrapper">
-      <div class="loader"></div>
-      <p>Loading...</p>
-    </div> -->
-        <div id="main-content" class="content-panel">
-    <nav class="navbar navbar-default navbar-fixed-top modern-navbar">
+    <!-- Bootstrap 5 Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top modern-navbar">
       <div class="container">
-        <div class="navbar-header">
-          <button
-            type="button"
-            class="navbar-toggle collapsed"
-            data-toggle="collapse"
-            data-target="#navbarNav"
-            aria-expanded="false"
-          >
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="./index.html">
-            <img
-              src="./logo/logo-black.png"
-              alt="Logo"
-              class="logo"
-              id="logo"
-              height="40"
-            />
-          </a>
-        </div>
+        <a class="navbar-brand" href="./index.html">
+          <img src="./logo/logo-black.png" alt="Logo" class="logo" id="logo" height="40" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active">
-              <a href="./index.html" data-aos="fade-up">Home</a>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="./index.html" data-aos="fade-up">Home</a>
             </li>
-            <li>
-              <a href="./about.html" data-aos="fade-up">About Us</a>
+            <li class="nav-item">
+              <a class="nav-link" href="./about.html" data-aos="fade-up">About Us</a>
             </li>
-            <li>
-              <a href="./service.html" data-aos="fade-up">Services</a>
+            <li class="nav-item">
+              <a class="nav-link" href="./service.html" data-aos="fade-up">Services</a>
             </li>
-            <li>
-              <a href="./career.html" data-aos="fade-up">Career</a>
+            <li class="nav-item">
+              <a class="nav-link" href="./career.html" data-aos="fade-up">Career</a>
             </li>
-            <li class="cta-item">
-              <a href="./contact.html" class="btn-contact" data-aos="fade-up"
-                >Contact</a
-              >
+            <li class="nav-item cta-item">
+              <a href="./contact.html" data-aos="fade-up" class="btn-contact">Contact</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <!-- Add padding to body for fixed navbar -->
-    <div style="padding-top: 10px">
-      <!-- Your page content goes here -->
-    </div>
-    <section class="hero-section">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row align-items-center">
-          <!-- Left Column: Headline and Call to Action -->
-          <div class="col-lg-6 text-white fade-in-up">
-            <h1 class="hero-heading">
-              Empowering Your Business with Top <br />
-              <span class="highlight">IT Talent</span>
-            </h1>
-            <div class="hero-subheading text-left">
-              <p>Your Skills to Success Journey Begins Here.</p>
-              <p>Your Step towards a great Career is just a Click Away..</p>
-            </div>
-            <div class="cta-buttons">
-              <a href="/career.html" class="btn btn-primary" id="primaryBtn">
-                <span>Get Started</span>
-              </a>
-              <a href="/about.html" class="btn btn-outline" id="outlineBtn">
-                <span>Learn More</span>
-              </a>
+
+    <div style="padding-top: 70px"></div>
+    <div id="main-content" class="content-panel">
+      <section class="hero-section">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row align-items-center">
+            <!-- Left Column: Headline and Call to Action -->
+            <div class="col-lg-6 text-white fade-in-up">
+              <h1 class="hero-heading">
+                Empowering Your Business with Top <br />
+                <span class="highlight">IT Talent</span>
+              </h1>
+              <div class="hero-subheading text-left">
+                <p>Your Skills to Success Journey Begins Here.</p>
+                <p>Your Step towards a great Career is just a Click Away..</p>
+              </div>
+              <div class="cta-buttons">
+                <a href="/career.html" class="btn btn-primary" id="primaryBtn">
+                  <span>Get Started</span>
+                </a>
+                <a href="/about.html" class="btn btn-outline" id="outlineBtn">
+                  <span>Learn More</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section id="services" class="services-section">
-      <div class="container text-center">
-        <!-- Top Center - Our Services Title -->
-        <div class="services-title fade-in-up">
-          <h1>
-            <span class="highlight">Our</span>
-            <span class="ser">Services</span>
-          </h1>
-          <p class="services-subheading">
-            Discover how we empower businesses with cutting-edge talent
-            solutions.
-          </p>
+      </section>
+
+      <section id="services" class="services-section">
+        <div class="container text-center">
+          <!-- Top Center - Our Services Title -->
+          <div class="services-title fade-in-up">
+            <h1>
+              <span class="highlight">Our</span>
+              <span class="ser">Services</span>
+            </h1>
+            <p class="services-subheading">
+              Discover how we empower businesses with cutting-edge talent
+              solutions.
+            </p>
+          </div>
+
+          <!-- Bottom - Service Cards -->
+          <div class="services-cards mt-5">
+            <div class="row">
+              <div class="col-md-4 mb-4" data-aos="slide-right">
+                <div class="card modern-card">
+                  <div class="card-icon">
+                    <i class="fa-brands fa-searchengin" style="color: #9d50bb"></i>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Executive Search</h5>
+                    <p class="card-text">
+                      Right leadership is of paramount importance for success.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4" data-aos="zoom-in">
+                <div class="card modern-card">
+                  <div class="card-icon">🔑</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Direct Hire Services</h5>
+                    <p class="card-text">
+                      Finding the right key resources for sustainable growth.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4" data-aos="slide-left">
+                <div class="card modern-card">
+                  <div class="card-icon">
+                    <i class="fa-solid fa-laptop" style="color: #9d50bb"></i>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">IT Staffing</h5>
+                    <p class="card-text">
+                      Top IT talent to drive digital innovation and success.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4" data-aos="slide-right">
+                <div class="card modern-card">
+                  <div class="card-icon">
+                    <i class="fa-solid fa-clock" style="color: #9d50bb"></i>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Temporary Staffing</h5>
+                    <p class="card-text">
+                      Flexible staffing solutions to meet dynamic business
+                      needs.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4" data-aos="zoom-in">
+                <div class="card modern-card">
+                  <div class="card-icon">
+                    <i class="fa-solid fa-handshake" style="color: #9d50bb"></i>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">HR Consulting</h5>
+                    <p class="card-text">
+                      Optimizing workforce strategies for peak performance.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4" data-aos="slide-left">
+                <div class="card modern-card">
+                  <div class="card-icon">🚀</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Skill Enhancement</h5>
+                    <p class="card-text">
+                      Training programs to elevate employee skills and growth.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <!-- Bottom - Service Cards -->
-        <div class="services-cards mt-5">
+      <section class="why-choose-us text-center" id="whychooseus">
+        <div class="container">
+          <h2 class="section-title mb-4">Why Choose Us?</h2>
+          <p class="section-subtitle mb-5">
+            With over 25 years of experience, we lead the industry in IT
+            consulting and implementation.
+          </p>
+
           <div class="row">
-            <div class="col-md-4 mb-4" data-aos="slide-right">
-              <div class="card modern-card">
-                <div class="card-icon">
-                  <i class="fa-brands fa-searchengin" style="color: #9d50bb"></i
-                  ><span class="i-flat-color-icons-businessman"></span>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Executive Search</h5>
-                  <p class="card-text">
-                    Right leadership is of paramount importance for success.
-                  </p>
-                </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+              <div class="stat-card">
+                <div class="stat-icon">⏳</div>
+                <h3 class="stat-number" data-target="25">0</h3>
+                <p class="stat-text">Years Experience</p>
               </div>
             </div>
 
-            <div class="col-md-4 mb-4" data-aos="zoom-in">
-              <div class="card modern-card">
-                <div class="card-icon">📑</div>
-                <div class="card-body">
-                  <h5 class="card-title">Direct Hire Services</h5>
-                  <p class="card-text">
-                    Finding the right key resources for sustainable growth.
-                  </p>
+            <div class="col-md-3 col-sm-6 mb-4">
+              <div class="stat-card">
+                <div class="stat-icon">
+                  <i class="bi bi-person-workspace" style="color: #9d50bb"></i>
                 </div>
+                <h3 class="stat-number" data-target="4000">0</h3>
+                <p class="stat-text">Consultants</p>
               </div>
             </div>
 
-            <div class="col-md-4 mb-4" data-aos="slide-left">
-              <div class="card modern-card">
-                <div class="card-icon">
-                  <i class="fa-solid fa-laptop" style="color: #9d50bb"></i>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">IT Staffing</h5>
-                  <p class="card-text">
-                    Top IT talent to drive digital innovation and success.
-                  </p>
-                </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+              <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <h3 class="stat-number" data-target="2500">0</h3>
+                <p class="stat-text">Placements</p>
               </div>
             </div>
 
-            <div class="col-md-4 mb-4" data-aos="slide-right">
-              <div class="card modern-card">
-                <div class="card-icon">
-                  <i class="fa-solid fa-clock" style="color: #9d50bb"></i>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Temporary Staffing</h5>
-                  <p class="card-text">
-                    Flexible staffing solutions to meet dynamic business needs.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 mb-4" data-aos="zoom-in">
-              <div class="card modern-card">
-                <div class="card-icon">
+            <div class="col-md-3 col-sm-6 mb-4">
+              <div class="stat-card">
+                <div class="stat-icon">
                   <i class="fa-solid fa-handshake" style="color: #9d50bb"></i>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title">HR Consulting</h5>
-                  <p class="card-text">
-                    Optimizing workforce strategies for peak performance.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 mb-4" data-aos="slide-left">
-              <div class="card modern-card">
-                <div class="card-icon">🚀</div>
-                <div class="card-body">
-                  <h5 class="card-title">Skill Enhancement</h5>
-                  <p class="card-text">
-                    Training programs to elevate employee skills and growth.
-                  </p>
-                </div>
+                <h3 class="stat-number" data-target="200">0</h3>
+                <p class="stat-text">Clients</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="why-choose-us text-center" id="whychooseus">
-      <div class="container">
-        <h2 class="section-title mb-4">Why Choose Us?</h2>
-        <p class="section-subtitle mb-5">
-          With over 25 years of experience, we lead the industry in IT
-          consulting and implementation.
-        </p>
+      </section>
 
-        <div class="row">
-          <div class="col-md-3 col-sm-6 mb-4">
-            <div class="stat-card">
-              <div class="stat-icon">⏳</div>
-              <h3 class="stat-number" data-target="25">0</h3>
-              <p class="stat-text">Years Experience</p>
+      <section class="clients text-center">
+        <div class="container">
+          <h2 class="section-title">Our Clients</h2>
+
+          <!-- Row 1 -->
+          <div class="logo-row left-to-right">
+            <div class="logo-track">
+              <img src="./images/clients/Tech_Mahindra-Logo.wine.png" alt="TechM" />
+              <img src="./images/clients/Google-logo.png" alt="Google" />
+              <img src="./images/clients/apple.png" alt="Apple" />
+              <img src="./images/clients/Meta-Logo.png" alt="Meta" />
+              <img src="./images/clients/Wipro-logo.png" alt="Wipro" />
+              <img src="./images/clients/Amazon.png" alt="Amazon" />
+              <img src="./images/clients/Cisco-logo.png" alt="Cisco" />
+              <img src="./images/clients/Infosys-Logo-1024x640.png" alt="Infosys" />
+              <!-- Duplicate for seamless scroll -->
+              <img src="./images/clients/Tech_Mahindra-Logo.wine.png" alt="TechM" />
+              <img src="./images/clients/Google-logo.png" alt="Google" />
+              <img src="./images/clients/apple.png" alt="Apple" />
+              <img src="./images/clients/Meta-Logo.png" alt="Meta" />
+              <img src="./images/clients/Wipro-logo.png" alt="Wipro" />
+              <img src="./images/clients/Amazon.png" alt="Amazon" />
+              <img src="./images/clients/Cisco-logo.png" alt="Cisco" />
+              <img src="./images/clients/Infosys-Logo-1024x640.png" alt="Infosys" />
             </div>
           </div>
 
-          <div class="col-md-3 col-sm-6 mb-4">
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i class="bi bi-person-workspace" style="color: #9d50bb"></i>
+          <!-- Row 2 -->
+          <div class="logo-row right-to-left">
+            <div class="logo-track">
+              <img src="./images/clients/IBM-logo.png" alt="IBM" />
+              <img src="./images/clients/Hitachi-Emblem.png" alt="Hitachi" />
+              <img src="./images/clients/Xerox.jpeg" alt="Xerox" />
+              <img src="./images/clients/Pfizer-Logo-1990.png" alt="Pfizer" />
+              <img src="./images/clients/Capital-One-Logo.png" alt="Capital One" />
+              <img src="./images/clients/Accenture-Symbol.png" alt="Accenture" />
+              <img src="./images/clients/servicenow.png" alt="ServiceNow" />
+              <img src="./images/clients/mphasis-logo.png" alt="Mphasis" />
+              <!-- Duplicate for seamless scroll -->
+              <img src="./images/clients/IBM-logo.png" alt="IBM" />
+              <img src="./images/clients/Hitachi-Emblem.png" alt="Hitachi" />
+              <img src="./images/clients/Xerox.jpeg" alt="Xerox" />
+              <img src="./images/clients/Pfizer-Logo-1990.png" alt="Pfizer" />
+              <img src="./images/clients/Capital-One-Logo.png" alt="Capital One" />
+              <img src="./images/clients/Accenture-Symbol.png" alt="Accenture" />
+              <img src="./images/clients/servicenow.png" alt="ServiceNow" />
+              <img src="./images/clients/mphasis-logo.png" alt="Mphasis" />
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="logo-row left-to-right">
+            <div class="logo-track">
+              <img src="./images/clients/Meta-Logo.png" alt="Meta" />
+              <img src="./images/clients/Deloitte-Logo.png" alt="Deloitte" />
+              <img src="./images/clients/Amazon.png" alt="Amazon" />
+              <img src="./images/clients/Cisco-logo.png" alt="Cisco" />
+              <img src="./images/clients/Infosys-Logo-1024x640.png" alt="Infosys" />
+              <img src="./images/clients/Tech_Mahindra-Logo.wine.png" alt="TechM" />
+              <img src="./images/clients/Wipro-logo.png" alt="Wipro" />
+              <!-- Duplicate for seamless scroll -->
+              <img src="./images/clients/Meta-Logo.png" alt="Meta" />
+              <img src="./images/clients/Deloitte-Logo.png" alt="Deloitte" />
+              <img src="./images/clients/Amazon.png" alt="Amazon" />
+              <img src="./images/clients/Cisco-logo.png" alt="Cisco" />
+              <img src="./images/clients/Infosys-Logo-1024x640.png" alt="Infosys" />
+              <img src="./images/clients/Tech_Mahindra-Logo.wine.png" alt="TechM" />
+              <img src="./images/clients/Wipro-logo.png" alt="Wipro" />
+            </div>
+          </div>
+
+          <!-- Row 4 -->
+          <div class="logo-row right-to-left">
+            <div class="logo-track">
+              <img src="./images/clients/Accenture-Symbol.png" alt="Accenture" />
+              <img src="./images/clients/mphasis-logo.png" alt="Mphasis" />
+              <img src="./images/clients/servicenow.png" alt="ServiceNow" />
+              <img src="./images/clients/Pfizer-Logo-1990.png" alt="Pfizer" />
+              <img src="./images/clients/Hitachi-Emblem.png" alt="Hitachi" />
+              <img src="./images/clients/Capital-One-Logo.png" alt="Capital One" />
+              <!-- Duplicate for seamless scroll -->
+              <img src="./images/clients/Accenture-Symbol.png" alt="Accenture" />
+              <img src="./images/clients/mphasis-logo.png" alt="Mphasis" />
+              <img src="./images/clients/servicenow.png" alt="ServiceNow" />
+              <img src="./images/clients/Pfizer-Logo-1990.png" alt="Pfizer" />
+              <img src="./images/clients/Hitachi-Emblem.png" alt="Hitachi" />
+              <img src="./images/clients/Capital-One-Logo.png" alt="Capital One" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer Section -->
+      <footer class="footer-main">
+        <div class="footer-blur-background"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <h5>About Us</h5>
+              <p class="company-description">
+                Urpan Technologies is a leading IT consulting firm with over 25 years of experience in providing innovative solutions and top talent to businesses worldwide.
+              </p>
+            </div>
+            <div class="col-md-4 middle">
+              <h5>Quick Links</h5>
+              <ul class="list-unstyled">
+                <li><a href="./index.html" class="footer-link">Home</a></li>
+                <li><a href="./about.html" class="footer-link">About Us</a></li>
+                <li><a href="./service.html" class="footer-link">Services</a></li>
+                <li><a href="./career.html" class="footer-link">Career</a></li>
+                <li><a href="./contact.html" class="footer-link">Contact</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4 right">
+              <h5>Connect With Us</h5>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
               </div>
-              <h3 class="stat-number" data-target="4000">0</h3>
-              <p class="stat-text">Consultants</p>
             </div>
           </div>
-
-          <div class="col-md-3 col-sm-6 mb-4">
-            <div class="stat-card">
-              <div class="stat-icon">🎯</div>
-              <h3 class="stat-number" data-target="2500">0</h3>
-              <p class="stat-text">Placements</p>
-            </div>
-          </div>
-
-          <div class="col-md-3 col-sm-6 mb-4">
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i class="fa-solid fa-handshake" style="color: #9d50bb"></i>
-              </div>
-              <h3 class="stat-number" data-target="200">0</h3>
-              <p class="stat-text">Clients</p>
+          <div class="row mt-4">
+            <div class="col-12 text-center">
+              <p>&copy; 2025 Urpan Technologies. All rights reserved.</p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </footer>
+    </div>
 
-    <section class="clients text-center">
-      <div class="container">
-        <h2 class="section-title">Our Clients</h2>
+    <!-- Bootstrap 5 Bundle JS (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Row 1 -->
-        <div class="logo-row left-to-right">
-          <div class="logo-track">
-            <img
-              src="./images/clients/Tech_Mahindra-Logo.wine.png"
-              alt="TechM"
-            />
-            <img src="./images/clients/Google-logo.png" alt="Google" />
-            <img src="./images/clients/apple.png" alt="Apple" />
-            <img src="./images/clients/Meta-Logo.png" alt="Meta" />
-            <img src="./images/clients/Wipro-logo.png" alt="Wipro" />
-            <img src="./images/clients/Amazon.png" alt="Amazon" />
-            <img src="./images/clients/Cisco-logo.png" alt="Cisco" />
-            <img
-              src="./images/clients/Infosys-Logo-1024x640.png"
-              alt="Infosys"
-            />
-            <!-- Duplicate for seamless scroll -->
-            <img
-              src="./images/clients/Tech_Mahindra-Logo.wine.png"
-              alt="TechM"
-            />
-            <img src="./images/clients/Google-logo.png" alt="Google" />
-            <img src="./images/clients/apple.png" alt="Apple" />
-            <img src="./images/clients/Meta-Logo.png" alt="Meta" />
-            <img src="./images/clients/Wipro-logo.png" alt="Wipro" />
-            <img src="./images/clients/Amazon.png" alt="Amazon" />
-            <img src="./images/clients/Cisco-logo.png" alt="Cisco" />
-            <img
-              src="./images/clients/Infosys-Logo-1024x640.png"
-              alt="Infosys"
-            />
-          </div>
-        </div>
-
-        <!-- Row 2 -->
-        <div class="logo-row right-to-left">
-          <div class="logo-track">
-            <img src="./images/clients/IBM-logo.png" alt="IBM" />
-            <img src="./images/clients/Hitachi-Emblem.png" alt="Hitachi" />
-            <img src="./images/clients//Xerox.jpeg" alt="Xerox" />
-            <img src="./images/clients/Pfizer-Logo-1990.png" alt="Pfizer" />
-            <img
-              src="./images/clients/Capital-One-Logo.png"
-              alt="Capital One"
-            />
-            <img src="./images/clients/Accenture-Symbol.png" alt="Accenture" />
-            <img src="./images/clients/servicenow.png" alt="ServiceNow" />
-            <img src="./images/clients/mphasis-logo.png" alt="Mphasis" />
-            <!-- Duplicate for seamless scroll -->
-            <img src="./images/clients/IBM-logo.png" alt="IBM" />
-            <img src="./images/clients/Hitachi-Emblem.png" alt="Hitachi" />
-            <img src="./images/clients/Xerox.jpeg" alt="Xerox" />
-            <img src="./images/clients/Pfizer-Logo-1990.png" alt="Pfizer" />
-            <img
-              src="./images/clients/Capital-One-Logo.png"
-              alt="Capital One"
-            />
-            <img src="./images/clients/Accenture-Symbol.png" alt="Accenture" />
-            <img src="./images/clients/servicenow.png" alt="ServiceNow" />
-            <img src="./images/clients/mphasis-logo.png" alt="Mphasis" />
-          </div>
-        </div>
-
-        <!-- Row 3 -->
-        <div class="logo-row left-to-right">
-          <div class="logo-track">
-            <img src="./images/clients/Meta-Logo.png" alt="Meta" />
-            <img src="./images/clients/Deloitte-Logo.png" alt="Deloitte" />
-            <img src="./images/clients/Amazon.png" alt="Amazon" />
-            <img src="./images/clients/Cisco-logo.png" alt="Cisco" />
-            <img
-              src="./images/clients/Infosys-Logo-1024x640.png"
-              alt="Infosys"
-            />
-            <img
-              src="./images/clients/Tech_Mahindra-Logo.wine.png"
-              alt="TechM"
-            />
-            <img src="./images/clients/Wipro-logo.png" alt="Wipro" />
-            <!-- Duplicate for seamless scroll -->
-            <img src="./images/clients/Meta-Logo.png" alt="Meta" />
-            <img src="./images/clients/Deloitte-Logo.png" alt="Deloitte" />
-            <img src="./images/clients/Amazon.png" alt="Amazon" />
-            <img src="./images/clients/Cisco-logo.png" alt="Cisco" />
-            <img
-              src="./images/clients/Infosys-Logo-1024x640.png"
-              alt="Infosys"
-            />
-            <img
-              src="./images/clients/Tech_Mahindra-Logo.wine.png"
-              alt="TechM"
-            />
-            <img src="./images/clients/Wipro-logo.png" alt="Wipro" />
-          </div>
-        </div>
-
-        <!-- Row 4 -->
-        <div class="logo-row right-to-left">
-          <div class="logo-track">
-            <!-- <img src="./images/clients/IBM-logo.png" alt="IBM" /> -->
-            <img src="./images/clients/Accenture-Symbol.png" alt="Accenture" />
-            <img src="./images/clients/mphasis-logo.png" alt="Mphasis" />
-            <img src="./images/clients/servicenow.png" alt="ServiceNow" />
-            <img src="./images/clients/Pfizer-Logo-1990.png" alt="Pfizer" />
-            <img src="./images/clients/Hitachi-Emblem.png" alt="Hitachi" />
-            <img
-              src="./images/clients/Capital-One-Logo.png"
-              alt="Capital One"
-            />
-            <!-- Duplicate for seamless scroll -->
-            <!-- <img src="./images/clients/IBM-logo.png" alt="IBM" /> -->
-            <img src="./images/clients/Accenture-Symbol.png" alt="Accenture" />
-            <img src="./images/clients/mphasis-logo.png" alt="Mphasis" />
-            <img src="./images/clients/servicenow.png" alt="ServiceNow" />
-            <img src="./images/clients/Pfizer-Logo-1990.png" alt="Pfizer" />
-            <img src="./images/clients/Hitachi-Emblem.png" alt="Hitachi" />
-            <img
-              src="./images/clients/Capital-One-Logo.png"
-              alt="Capital One"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer-main py-5 position-relative overflow-hidden">
-      <div class="footer-blur-background"></div>
-
-      <div class="container position-relative z-1">
-        <div class="row align-items-start text-center text-md-start">
-          <!-- Left: Logo & About -->
-          <div class="col-md-4 mb-4">
-            <img
-              src="logo/logo-black.png"
-              alt="Logo"
-              class="mb-3 logo img-fluid"
-              style="max-height: 50px"
-            />
-            <p class="text-white-50 company-description mb-4">
-              UrpanTech has been providing staffing and recruitment services to
-              businesses in the IT industry since 2000. We aim to be your
-              trusted talent partner focused on long-term success.
-            </p>
-            <div class="social-links d-flex gap-3">
-              <a href="#" class="social-icon"
-                ><i class="fab fa-linkedin-in"></i
-              ></a>
-              <a href="#" class="social-icon"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <!-- <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a> -->
-              <a href="#" class="social-icon"
-                ><i class="fab fa-instagram"></i
-              ></a>
-            </div>
-          </div>
-
-          <!-- Middle: Quick Links -->
-          <div class="col-md-4 col-xs-12 mb-4 middle">
-            <h5 class="text-white fw-bold mb-3">Quick Links</h5>
-            <ul class="list-unstyled">
-              <li><a href="/index.html" class="footer-link">Home</a></li>
-              <li><a href="/about.html" class="footer-link">About Us</a></li>
-              <li><a href="/services.html" class="footer-link">Services</a></li>
-              <li><a href="/career.html" class="footer-link">Career</a></li>
-              <li><a href="/contact.html" class="footer-link">Contact</a></li>
-            </ul>
-          </div>
-
-          <!-- Right: Contact -->
-          <div class="col-md-4 mb-4 right">
-            <h5 class="text-white fw-bold mb-3">Contact Us</h5>
-            <ul class="list-unstyled text-white-50">
-              <li class="d-flex align-items-start mb-3">
-                <i class="fas fa-map-marker-alt me-2 mt-1"></i>
-                39355 California Street, #303, Fremont, CA 94538
-              </li>
-              <li class="mb-3">
-                <i class="fas fa-envelope me-2"></i>
-                <a href="mailto:info@urpantech.com" class="footer-link"
-                  >info@urpantech.com</a
-                >
-              </li>
-              <li><i class="fas fa-phone-alt me-2"></i> +1 408-744-6750</li>
-            </ul>
-          </div>
-        </div>
-
-        <div
-          class="text-center border-top border-secondary border-opacity-50 mt-5 pt-3"
-        >
-          <p class="mb-0 text-white-50">
-            &copy; 2025 UrpanTech. All Rights Reserved.
-          </p>
-        </div>
-      </div>
-    </footer>
-</div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
-
-    <!-- Custom jQuery Script -->
+    <!-- Active Page Script -->
     <script>
-      // Add active class to current page
-      $(document).ready(function () {
+      document.addEventListener('DOMContentLoaded', function() {
         var currentPage = window.location.pathname.split("/").pop();
-        $(".navbar-nav li").removeClass("active");
-        $(".navbar-nav li a").each(function () {
-          var href = $(this).attr("href").replace("./", "");
-          if (
-            href === currentPage ||
-            (currentPage === "" && href === "index.html")
-          ) {
-            $(this).parent().addClass("active");
+        document.querySelectorAll(".navbar-nav .nav-link").forEach(function(link) {
+          link.classList.remove("active");
+          var href = link.getAttribute("href").replace("./", "");
+          if (href === currentPage || (currentPage === "" && href === "index.html")) {
+            link.classList.add("active");
           }
         });
       });
     </script>
+
+    <!-- Counter Animation Script -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const counters = document.querySelectorAll(".stat-number");
@@ -516,26 +424,20 @@
           updateCount();
         };
 
-        // Use IntersectionObserver to trigger once
         const observer = new IntersectionObserver(
           (entries, observerSelf) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 const section = entry.target;
-                const sectionCounters =
-                  section.querySelectorAll(".stat-number");
-
+                const sectionCounters = section.querySelectorAll(".stat-number");
                 sectionCounters.forEach((counter) => runCounter(counter));
-
-                // Unobserve after running once
                 observerSelf.unobserve(section);
               }
             });
           },
           { threshold: 0.5 }
-        ); // Runs when 50% visible
+        );
 
-        // Observe the section
         const section = document.querySelector("#whychooseus");
         if (section) observer.observe(section);
       });
@@ -543,89 +445,14 @@
 
     <!-- AOS JS -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-
     <script>
       AOS.init({
-        duration: 3000, // animation duration (default: 400)
-        once: false, // whether animation should happen only once
+        duration: 3000,
+        once: false,
       });
     </script>
 
-    <!-- Loading -->
-     <!-- <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const loaderWrapper = document.getElementById("loader-wrapper");
-        const mainContent = document.getElementById("main-content");
-
-        // --- Configuration ---
-        const MIN_LOAD_TIME = 2000; // Minimum time the loader is displayed (2 seconds)
-        const startTime = new Date().getTime();
-
-        // The Reveal Function: Uses GSAP Timeline for the 3D effect
-        function showContent() {
-          // Create a new GSAP Timeline
-          const tl = gsap.timeline();
-
-          // 1. Hide the loader
-          tl.to(loaderWrapper, {
-            opacity: 0,
-            duration: 0.5,
-            ease: "power2.in",
-            onComplete: () => {
-              // Remove the loader from the layout after it fades out
-              loaderWrapper.style.display = "none";
-            },
-          })
-
-            // 2. Animate the main content in 3D
-            .fromTo(
-              mainContent,
-              // FROM state: Start hidden, slightly scaled, rotated back in 3D space
-              {
-                opacity: 0,
-                scale: 0.8,
-                rotateX: 90,
-                y: -50,
-              },
-              // TO state: End fully visible, unscaled, and flat
-              {
-                opacity: 1,
-                scale: 1,
-                rotateX: 0,
-                y: 0,
-                duration: 1.2,
-                ease: "back.out(1.7)", // A springy, dramatic reveal
-              },
-              "-=0.2" // Position Parameter: Start this tween 0.2 seconds BEFORE the loader fade-out ends
-            );
-        }
-
-        // --- Timing Logic ---
-
-        // This waits for the HTML structure to be ready and all assets to be loaded
-        window.onload = function () {
-          const endTime = new Date().getTime();
-          const actualLoadTime = endTime - startTime;
-
-          // Calculate remaining time needed to hit the MIN_LOAD_TIME
-          const timeToWait =
-            actualLoadTime < MIN_LOAD_TIME ? MIN_LOAD_TIME - actualLoadTime : 0;
-
-          setTimeout(showContent, timeToWait);
-        };
-
-        // Safety Fallback (optional, but good practice)
-        setTimeout(() => {
-          if (loaderWrapper.style.opacity > 0) {
-            console.warn(
-              "Forcing content display due to potential long load time."
-            );
-            showContent();
-          }
-        }, MIN_LOAD_TIME + 2000); // 4 seconds total, just in case
-      });
-    </script> -->
-
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   </body>
 </html>

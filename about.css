@@ -25,10 +25,6 @@ html {
   scroll-padding-top: 70px;
 }
 
-body {
-  padding-top: 70px;
-}
-
 /* ===== MODERN NAVBAR STYLES ===== */
 .modern-navbar {
   background-color: rgba(255, 255, 255, 0.95) !important;
@@ -801,89 +797,6 @@ h2::after {
 
 /* Mission & Vison */
 
-/* Footer */
-
-.footer-main {
-  background: radial-gradient(ellipse at bottom, #1e0036, #2f0036);
-  padding-top: 20px;
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-}
-
-.footer-blur-background {
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(15px);
-  background: rgba(186, 186, 186, 0.05);
-  z-index: 0;
-}
-
-.footer-main .container {
-  max-width: 1200px; /* Keeps everything centered properly */
-  z-index: 2;
-  position: relative;
-}
-
-.footer-main h5 {
-  font-size: 1.9rem;
-  /* margin-bottom: 1rem; */
-}
-
-.footer-link {
-  color: rgba(255, 255, 255, 0.856);
-  text-decoration: none;
-  display: inline-block;
-  padding: 6px 0;
-  transition: all 0.3s ease-in-out;
-}
-
-.footer-link:hover {
-  color: #fff;
-  text-decoration: none;
-  transform: scale(1.3);
-}
-
-.social-icon {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 1.2rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  padding: 10px;
-  width: 40px;
-  height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.social-icon:hover {
-  color: #fff;
-  background: linear-gradient(135deg, #6f42c1, #8a63d2);
-  transform: scale(1.15);
-  box-shadow: 0 0 15px rgba(111, 66, 193, 0.6);
-}
-
-.company-description {
-  font-size: 1.4rem;
-  text-align: justify;
-  line-height: 1.7;
-}
-
-@media (max-width: 768px) {
-  .footer-main {
-    text-align: center;
-  }
-
-  .social-links {
-    justify-content: center;
-  }
-
-  .footer-main .row {
-    text-align: center;
-  }
-}
 /* record section */
 .animated-bg {
       position: fixed;
