@@ -7,8 +7,6 @@ body {
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 60px;
-  /* FIX: Explicitly hide horizontal overflow on the root element 
-     to prevent AOS animations from showing a scrollbar */
   overflow-x: hidden; 
 }
 
@@ -37,7 +35,6 @@ html {
   vertical-align: middle;
 }
 
-/* Navigation Links - Bootstrap 5 */
 .modern-navbar .nav-link {
   color: #333 !important;
   font-family: "Josefin Sans", sans-serif;
@@ -74,7 +71,6 @@ html {
   width: 70%;
 }
 
-/* Contact Button */
 .modern-navbar .nav-item.cta-item .btn-contact {
   background: linear-gradient(135deg, #86047d, #1e0036);
   color: white !important;
@@ -97,7 +93,6 @@ html {
   background: linear-gradient(135deg, #c021b6, #86047d);
 }
 
-/* Mobile Toggle Button - Bootstrap 5 */
 .modern-navbar .navbar-toggler {
   border: none;
   padding: 8px;
@@ -105,26 +100,6 @@ html {
 
 .modern-navbar .navbar-toggler:focus {
   box-shadow: none;
-}
-
-/* Mobile Menu */
-@media (max-width: 991px) {
-  .modern-navbar .navbar-collapse {
-    background: white;
-    border-radius: 10px;
-    margin-top: 8px;
-    padding: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  }
-
-  .modern-navbar .nav-link {
-    text-align: center;
-    margin: 4px 0;
-  }
-
-  .modern-navbar .nav-item.cta-item .btn-contact {
-    margin: 8px 0;
-  }
 }
 
 /* ===== HERO SECTION ===== */
@@ -139,7 +114,6 @@ html {
   padding: 60px 0 40px;
 }
 
-/* Dynamic Gradient Overlay */
 .hero-section .overlay {
   position: absolute;
   inset: 0;
@@ -159,13 +133,11 @@ html {
   }
 }
 
-/* Content */
 .hero-section .container {
   position: relative;
   z-index: 3;
 }
 
-/* Hero Heading */
 .hero-heading {
   font-size: 3rem;
   font-family: "Libre Baskerville", serif;
@@ -224,7 +196,6 @@ html {
   }
 }
 
-/* Subheading */
 .hero-subheading {
   font-size: 1.15rem;
   font-family: "Josefin Sans", sans-serif;
@@ -281,7 +252,6 @@ html {
   text-transform: none;
 }
 
-/* Primary Button - Ultra Modern */
 .btn-primary {
   background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
   color: #4a148c;
@@ -341,7 +311,6 @@ html {
   transform: translateY(-2px) scale(1);
 }
 
-/* Outline Button - Glassmorphism */
 .btn-outline {
   background: rgba(122, 6, 140, 0.1);
   color: white;
@@ -407,7 +376,6 @@ html {
   transform: translateY(-2px) scale(1);
 }
 
-/* Button Icon/Emoji Animation */
 .btn span {
   display: inline-block;
   transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -457,7 +425,6 @@ html {
   line-height: 1.5;
 }
 
-/* Service Cards */
 .services-cards {
   margin-top: 30px;
 }
@@ -525,7 +492,6 @@ html {
   margin: 0 auto 35px;
 }
 
-/* Stat cards */
 .stat-card {
   background: #fff;
   border-radius: 12px;
@@ -635,9 +601,159 @@ html {
   opacity: 1;
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
-/* ===== TABLET STYLES (768px - 991px) ===== */
+/* ===== FOOTER STYLES ===== */
+.footer-main {
+  background: radial-gradient(ellipse at bottom, #1e0036, #2f0036);
+  padding-top: 40px;
+  padding-bottom: 20px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.footer-blur-background {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(12px);
+  background: rgba(186, 186, 186, 0.05);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.footer-main .container {
+  position: relative;
+  z-index: 2;
+}
+
+.footer-logo {
+  height: 40px;
+  filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.company-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 15px;
+  text-align: left;
+}
+
+.footer-main h5 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ff69eb;
+  text-align: left;
+}
+
+.footer-main ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none !important;
+  display: inline-block;
+  padding: 4px 0;
+  transition: all 0.3s ease-in-out;
+  font-size: 1rem;
+}
+
+.footer-link:hover {
+  color: #fff;
+  transform: translateX(4px);
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-list li {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+.contact-list i {
+  color: #c021b6;
+  font-size: 1.1rem;
+  width: 20px;
+  flex-shrink: 0;
+  margin-right: 15px;
+  margin-top: 3px;
+}
+
+.footer-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.copyright-text {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.social-links-combined {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-links-combined span {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 36px;
+}
+
+.social-icon-footer {
+  color: #fff;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  padding: 8px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  transform: scale(1);
+}
+
+.social-icon-footer:hover {
+  background: linear-gradient(135deg, #ff69eb, #86047d);
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(255, 105, 235, 0.5);
+}
+
+/* ===== TABLET RESPONSIVENESS ===== */
 @media (max-width: 991px) {
+  .modern-navbar .navbar-collapse {
+    background: white;
+    border-radius: 10px;
+    margin-top: 8px;
+    padding: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .modern-navbar .nav-link {
+    text-align: center;
+    margin: 4px 0;
+  }
+
+  .modern-navbar .nav-item.cta-item .btn-contact {
+    margin: 8px 0;
+  }
+
   .hero-heading {
     font-size: 2.5rem;
     margin-bottom: 14px;
@@ -668,9 +784,9 @@ html {
   }
 }
 
-/* ===== MOBILE STYLES (up to 767px) ===== */
-@media (max-width: 767px) {
-  /* Hero Section */
+/* ===== MOBILE RESPONSIVENESS ===== */
+@media (max-width: 767.98px) {
+  /* Hero Section Mobile */
   .hero-section {
     padding: 80px 0 40px;
     min-height: 80vh;
@@ -728,7 +844,7 @@ html {
     padding: 0 16px;
   }
 
-  /* Services */
+  /* Services Mobile */
   .services-section {
     padding: 40px 0;
   }
@@ -763,7 +879,7 @@ html {
     font-size: 0.9rem;
   }
 
-  /* Why Choose Us */
+  /* Why Choose Us Mobile */
   .why-choose-us {
     padding: 40px 0;
   }
@@ -792,7 +908,7 @@ html {
     font-size: 1rem;
   }
 
-  /* Clients */
+  /* Clients Mobile */
   .clients {
     padding: 40px 0;
   }
@@ -804,10 +920,79 @@ html {
   .logo-row {
     margin: 28px 0;
   }
+
+  /* Footer Mobile - CENTER ALIGNMENT */
+  .footer-main .row > div {
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .company-description {
+    text-align: justify !important;
+    padding: 0 10px;
+  }
+
+  .footer-main h5 {
+    text-align: center !important;
+  }
+
+  .footer-main ul {
+    text-align: center !important;
+    width: 100%;
+  }
+
+  .footer-main ul li {
+    text-align: center !important;
+    width: 100%;
+  }
+
+  .contact-list {
+    width: 100%;
+  }
+
+  .contact-list li {
+    text-align: justify !important;
+    justify-content: center !important;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 15px;
+  }
+
+  .contact-list i {
+    margin-right: 0;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+  }
+
+  .footer-link {
+    margin: 0 auto;
+  }
+
+  .social-links-combined {
+    justify-content: center !important;
+  }
+
+  .social-links-combined span {
+    display: none !important;
+  }
+
+  .copyright-text {
+    font-size: 0.85rem;
+  }
 }
 
-/* ===== SMALL MOBILE STYLES (up to 480px) ===== */
-@media (max-width: 480px) {
+/* ===== EXTRA SMALL MOBILE ===== */
+@media (max-width: 576px) {
+  body {
+    padding-top: 60px;
+  }
+
+  .modern-navbar {
+    min-height: 60px;
+  }
+
   .hero-heading {
     font-size: 1.5rem;
     margin-bottom: 10px;
@@ -853,6 +1038,28 @@ html {
 
   .section-title {
     font-size: 1.5rem;
+  }
+
+  .footer-main {
+    padding-top: 30px;
+  }
+
+  .footer-logo {
+    height: 35px;
+  }
+
+  .company-description {
+    font-size: 0.9rem;
+    text-align: justify;
+  }
+
+  .footer-main h5 {
+    font-size: 1.1rem;
+  }
+
+  .contact-list li {
+    font-size: 0.9rem;
+    text-align: justify;
   }
 }
 
@@ -944,7 +1151,6 @@ html {
   animation: fadeInUp 1s ease-out;
 }
 
-/* Remove default focus styles */
 .btn:focus,
 .btn:active:focus,
 .btn.active:focus {
@@ -956,168 +1162,7 @@ a:focus {
   outline: none;
 }
 
-/* Smooth transitions for all interactive elements */
 a,
 button {
   transition: all 0.3s ease;
-}
-/* ===== FOOTER STYLES (Combined and Themed) ===== */
-.footer-main {
-  background: radial-gradient(ellipse at bottom, #1e0036, #2f0036);
-  padding-top: 40px;
-  padding-bottom: 20px;
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  font-family: "Josefin Sans", sans-serif;
-}
-
-.footer-blur-background {
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(12px);
-  background: rgba(186, 186, 186, 0.05);
-  z-index: 0;
-  pointer-events: none;
-}
-
-.footer-main .container {
-  position: relative;
-  z-index: 2;
-}
-
-.footer-logo {
-    height: 40px;
-    filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
-}
-
-.company-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 15px; /* Added margin for separation from logo */
-}
-
-.footer-main h5 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 1rem; /* Adjusted margin for better spacing */
-  color: #ff69eb; /* Highlight title color */
-}
-
-.footer-main ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-link {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none !important; /* Force remove underline */
-  display: inline-block;
-  padding: 4px 0;
-  transition: all 0.3s ease-in-out;
-  font-size: 1rem;
-}
-
-.footer-link:hover {
-  color: #fff;
-  transform: translateX(4px);
-}
-
-/* Contact List Specifics */
-.contact-list li {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.8);
-    display: flex; /* Ensure flex for icon alignment */
-    align-items: flex-start; /* Align icons and text at the top */
-}
-
-.contact-list i {
-    color: #c021b6; /* Accent color for icons */
-    font-size: 1.1rem;
-    width: 20px;
-    flex-shrink: 0; /* Prevent icon from shrinking */
-    margin-right: 15px; /* Spacing between icon and text */
-}
-
-/* Divider line */
-.footer-divider {
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-/* Bottom Bar Styles (Copyright & Social) */
-.copyright-text {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.social-links-combined {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Spacing between "Follow us on" and icons */
-}
-
-.social-links-combined span {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 36px; /* Align text with icons */
-}
-
-.social-icon-footer {
-  color: #fff;
-  font-size: 1rem;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
-  padding: 8px;
-  width: 36px;
-  height: 36px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  transform: scale(1); /* Initial scale */
-  margin-right: 0; /* Reset previous margin-left if any */
-}
-
-.social-icon-footer:hover {
-  background: linear-gradient(135deg, #ff69eb, #86047d);
-  transform: scale(1.15); /* Scale up on hover */
-  box-shadow: 0 0 10px rgba(255, 105, 235, 0.5);
-}
-
-
-/* Footer Mobile Responsiveness */
-@media (max-width: 767.98px) {
-    .footer-main .row > div {
-        text-align: center;
-        /* Center content blocks using flexbox */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .company-description {
-        text-align: center;
-    }
-
-    .contact-list {
-        align-items: center; /* Center contact items on mobile */
-    }
-
-    .contact-list li {
-        justify-content: center; /* Center the icon and text */
-    }
-
-    .social-links-combined {
-        /* Ensure social links are centered on mobile */
-        justify-content: center !important; 
-    }
-    
-    .social-links-combined span {
-        /* Hide "Follow us on" on mobile for brevity */
-        display: none !important;
-    }
 }

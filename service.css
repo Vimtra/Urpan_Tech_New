@@ -4,30 +4,25 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 :root {
-  --bs-theme-color: #2f0036; /* Deep Violet/Aubergine */
-  --bs-accent-color: #45073c; /* Pink Accent */
+  --bs-theme-color: #2f0036;
+  --bs-accent-color: #45073c;
 }
 
 body {
-  font-family: "Josefin Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  font-family: "Josefin Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   overflow-x: hidden;
   padding-top: 70px;
-  /* CHANGED: Replaced animated dark background with a subtle light gradient */
-  background: linear-gradient(135deg, #f0f0f5 0%, #ffffff 100%); 
+  background: linear-gradient(135deg, #f0f0f5 0%, #ffffff 100%);
 }
-
-/* REMOVED: @keyframes gradient-animation and related animation properties */
-
 
 html {
   scroll-behavior: smooth;
-  /* Increased padding to account for fixed navbar height in B5 */
-  scroll-padding-top: 80px; 
+  scroll-padding-top: 80px;
 }
 
-/* ===== MODERN NAVBAR STYLES (NO CHANGE) ===== */
+/* ===== MODERN NAVBAR STYLES ===== */
 .modern-navbar {
   background-color: rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(10px);
@@ -53,7 +48,6 @@ html {
   vertical-align: middle;
 }
 
-/* Navigation Links - Updated selectors for B5 */
 .modern-navbar .nav-link {
   color: #333 !important;
   font-family: "Josefin Sans", sans-serif;
@@ -65,10 +59,9 @@ html {
   position: relative;
 }
 
-/* Use .nav-link.active and custom .active on nav-item for consistency */
 .modern-navbar .nav-link:hover,
 .modern-navbar .nav-link.active,
-.modern-navbar .nav-item.active .nav-link { 
+.modern-navbar .nav-item.active .nav-link {
   background-color: transparent !important;
   color: #86047d !important;
   transform: translateY(-2px);
@@ -92,10 +85,10 @@ html {
   width: 70%;
 }
 
-/* Contact Button */
 .modern-navbar .nav-item.cta-item {
-    margin: 8px 5px; 
+  margin: 8px 5px;
 }
+
 .modern-navbar .nav-item.cta-item .btn-contact {
   background: linear-gradient(135deg, #86047d, #1e0036);
   color: white !important;
@@ -113,7 +106,6 @@ html {
   background: linear-gradient(135deg, #c021b6, #86047d);
 }
 
-/* Mobile Toggle Button (UPDATED for B5) */
 .modern-navbar .navbar-toggler {
   border: none;
   background: transparent !important;
@@ -124,81 +116,66 @@ html {
   box-shadow: none;
 }
 
-/* Mobile Menu Styling */
-@media (max-width: 991px) { /* Changed to B5 default collapse breakpoint */
-  .modern-navbar .navbar-collapse {
-    background: white;
-    border-radius: 12px;
-    margin-top: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border: none;
-  }
-
-  .modern-navbar .navbar-nav {
-    margin: 10px 0;
-  }
-  
-  .modern-navbar .nav-link { /* Use B5 .nav-link class */
-    text-align: center;
-    margin: 5px 15px;
-  }
-
-  .modern-navbar .nav-item.cta-item {
-    margin: 10px 15px;
-    justify-content: center;
-  }
-}
-
-/* Service Page */
-/* === Card and Content Styling === */
+/* ===== SERVICE PAGE STYLES ===== */
 .service-header {
   padding: 3.4rem;
-  /* CHANGED: Text color to dark since the body is now light */
-  color: var(--bs-theme-color); 
-  background: linear-gradient(135deg, var(--bs-theme-color), #400050); /* Dark banner */
+  color: var(--bs-theme-color);
+  background: linear-gradient(135deg, var(--bs-theme-color), #400050);
+  border-radius: 1rem;
 }
+
 .service-header h1 {
   font-family: "Young Serif", serif;
   font-weight: 400;
-  color: #fff; /* White text on dark banner */
+  color: #fff;
 }
+
 .service-header span {
-    color: #ff69eb; /* Highlight color for "Services" */
+  color: #ff69eb;
 }
+
 .service-header p {
   font-family: "Questrial", sans-serif;
   font-weight: 400;
-  color: #f0f0f0; /* Light text on dark banner */
+  color: #f0f0f0;
 }
+
+.service-content-block {
+  text-align: left;
+}
+
 .service-card {
-  background: rgba(255, 255, 255);
-  border: 2px solid transparent; 
+  background: rgba(255, 255, 255, 0.98);
+  border: 2px solid transparent;
   border-radius: 1rem;
   padding: 2.5rem;
-  margin: 20px;
+  margin: 20px 0;
   transition: all 0.5s ease;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
 .service-card:hover {
-  background: rgba(255, 255, 255,0.9); /* Slightly more opaque on hover */
+  background: rgba(255, 255, 255, 1);
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Lighter shadow on light background */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  border-color: rgba(134, 4, 125, 0.1);
 }
 
 .service-card h2 {
   font-family: "Questrial", sans-serif;
   color: var(--bs-accent-color);
   font-weight: bold;
-  margin-bottom: 0.75rem;
-  font-size: 2.2rem; /* REDUCED FONT SIZE */
+  margin-bottom: 1rem;
+  font-size: 2.2rem;
 }
 
 .service-card p {
   font-family: "Josefin Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
-  font-size: 1.1rem; /* REDUCED FONT SIZE */
-  color: #000000;
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.8;
   text-align: justify;
 }
 
@@ -210,7 +187,7 @@ html {
 }
 
 .service-img {
-  max-width: 50%;
+  max-width: 70%;
   height: auto;
   border-radius: 0.75rem;
   transition: transform 0.4s ease;
@@ -220,23 +197,7 @@ html {
   transform: scale(1.03);
 }
 
-/* Responsive spacing for mobile */
-@media (max-width: 767.98px) {
-  .service-card {
-    padding: 1.5rem;
-  }
-  .service-card h2 {
-    font-size: 1.8rem;
-  }
-  .service-card p {
-    font-size: 0.95rem;
-  }
-  .service-img {
-      max-width: 70%; /* Increase image size on mobile */
-  }
-}
-
-/* === Scroll Animation CSS (Re-implemented fade-in) === */
+/* Scroll Animation */
 .service-item-animated {
   opacity: 0;
   transform: translateY(30px);
@@ -248,13 +209,8 @@ html {
   transform: translateY(0);
 }
 
-/*
- * UNIFIED FOOTER STYLES
- * (No changes here, keeping the finalized dark theme footer)
- */
-
+/* ===== UNIFIED FOOTER STYLES ===== */
 .footer-main {
-  /* Using dark theme gradient from existing CSS */
   background: radial-gradient(ellipse at bottom, #1e0036, #2f0036);
   padding-top: 40px;
   padding-bottom: 20px;
@@ -280,37 +236,35 @@ html {
 }
 
 .footer-logo {
-    height: 40px;
-    /* Inverting logo color to white for dark background */
-    filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  height: 40px;
+  filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
 }
 
 .company-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 15px; 
-    /* Ensures alignment with text, overriding the center alignment on desktop */
-    text-align: left; 
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 15px;
+  text-align: left;
 }
 
 .footer-main h5 {
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #ff69eb; /* Highlight title color */
-  text-align: left; /* FIX: Ensure titles are left-aligned on desktop */
+  color: #ff69eb;
+  text-align: left;
 }
 
 .footer-main ul {
   list-style: none;
   padding: 0;
-  text-align: left; /* FIX: Ensure quick links align left */
+  text-align: left;
 }
 
 .footer-link {
   color: rgba(255, 255, 255, 0.8);
-  text-decoration: none !important; /* REQUEST: Force remove underline */
+  text-decoration: none !important;
   display: inline-block;
   padding: 4px 0;
   transition: all 0.3s ease-in-out;
@@ -322,45 +276,49 @@ html {
   transform: translateX(4px);
 }
 
-/* Contact List Specifics - Enhanced Alignment */
+.contact-list {
+  list-style: none;
+  padding: 0;
+}
+
 .contact-list li {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.8);
-    display: flex; 
-    align-items: flex-start; 
-    text-align: left; /* Ensures multi-line address doesn't hang */
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+  margin-bottom: 12px;
 }
 
 .contact-list i {
-    color: #c021b6; 
-    font-size: 1.1rem;
-    width: 20px;
-    flex-shrink: 0; 
-    margin-right: 15px; 
+  color: #c021b6;
+  font-size: 1.1rem;
+  width: 20px;
+  flex-shrink: 0;
+  margin-right: 15px;
+  margin-top: 3px;
 }
 
-/* Divider line */
 .footer-divider {
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-/* Bottom Bar Styles (Copyright & Social) */
 .copyright-text {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .social-links-combined {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .social-links-combined span {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 36px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 36px;
 }
 
 .social-icon-footer {
@@ -376,48 +334,228 @@ html {
   justify-content: center;
   transition: all 0.3s ease;
   text-decoration: none;
-  transform: scale(1); /* REQUEST: Initial scale */
+  transform: scale(1);
 }
 
 .social-icon-footer:hover {
   background: linear-gradient(135deg, #ff69eb, #86047d);
-  transform: scale(1.2); /* REQUEST: Scale up on hover (Increased slightly from 1.15 to 1.2 for visibility) */
+  transform: scale(1.2);
   box-shadow: 0 0 10px rgba(255, 105, 235, 0.5);
 }
 
+/* ===== TABLET RESPONSIVENESS ===== */
+@media (max-width: 991px) {
+  .modern-navbar .navbar-collapse {
+    background: white;
+    border-radius: 12px;
+    margin-top: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: none;
+    padding: 10px 0;
+  }
 
-/* Footer Mobile Responsiveness (FIXED ALIGNMENT) */
+  .modern-navbar .navbar-nav {
+    margin: 10px 0;
+  }
+
+  .modern-navbar .nav-link {
+    text-align: center;
+    margin: 5px 15px;
+  }
+
+  .modern-navbar .nav-item.cta-item {
+    margin: 10px 15px;
+    justify-content: center;
+  }
+}
+
+/* ===== MOBILE RESPONSIVENESS ===== */
 @media (max-width: 767.98px) {
-    /* Resetting the text align on the row div back to left/start for the main columns */
-    .footer-main .row > div {
-        text-align: center;
-        /* Force blocks to stack vertically and center-align contents */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .company-description {
-        text-align: center;
-    }
-    
-    .footer-main h5 {
-        text-align: center; /* Center titles on mobile */
-    }
+  /* Service Header Mobile */
+  .service-header {
+    padding: 2rem 1.5rem;
+    border-radius: 0.75rem;
+  }
 
-    .contact-list li {
-        /* FIX: Ensure contact details are legible and centered */
-        text-align: center;
-        justify-content: center; 
-        padding: 0 10px; /* Add padding to prevent overflow */
-    }
+  .service-header h1 {
+    font-size: 2.5rem !important;
+  }
 
-    .social-links-combined {
-        /* Ensure social links are centered on mobile */
-        justify-content: center !important; 
-    }
-    
-    .social-links-combined span {
-        display: none !important;
-    }
+  .service-header p {
+    font-size: 1rem;
+  }
+
+  /* Service Cards Mobile - CENTER ALIGNMENT */
+  .service-card {
+    margin: 15px 0;
+    padding: 2rem 1.5rem;
+  }
+
+  .service-card h2 {
+    font-size: 1.8rem;
+    text-align: center !important;
+    margin-bottom: 1rem;
+  }
+
+  .service-card p {
+    font-size: 1rem;
+    text-align: justify !important;
+    line-height: 1.7;
+  }
+
+  .service-content-block {
+    text-align: center !important;
+  }
+
+  /* Service Images Mobile */
+  .service-img {
+    max-width: 80%;
+  }
+
+  .service-img-wrapper {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Footer Mobile - CENTER ALIGNMENT WITH JUSTIFIED TEXT */
+  .footer-main .row > div {
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .company-description {
+    text-align: justify !important;
+    text-align-last: center !important;
+    padding: 0 15px;
+    max-width: 100%;
+  }
+
+  .footer-main h5 {
+    text-align: center !important;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-main ul {
+    text-align: center !important;
+    width: 100%;
+    padding: 0;
+  }
+
+  .footer-main ul li {
+    text-align: center !important;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-list {
+    width: 100%;
+    padding: 0;
+  }
+
+  .contact-list li {
+    justify-content: center !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 0 15px;
+    margin-bottom: 1rem;
+    text-align: center !important;
+  }
+
+  .contact-list li span,
+  .contact-list li a {
+    text-align: justify !important;
+    text-align-last: center !important;
+    width: 100%;
+    display: block;
+  }
+
+  .contact-list i {
+    margin-right: 0 !important;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+
+  .footer-link {
+    margin: 0 auto;
+    text-align: center !important;
+  }
+
+  .social-links-combined {
+    justify-content: center !important;
+    margin-top: 1rem;
+  }
+
+  .social-links-combined span {
+    display: none !important;
+  }
+
+  .copyright-text {
+    font-size: 0.85rem;
+    text-align: center !important;
+  }
+}
+
+/* ===== EXTRA SMALL MOBILE DEVICES ===== */
+@media (max-width: 576px) {
+  body {
+    padding-top: 60px;
+  }
+
+  .modern-navbar {
+    min-height: 60px;
+  }
+
+  .service-header {
+    padding: 1.5rem 1rem;
+  }
+
+  .service-header h1 {
+    font-size: 2rem !important;
+  }
+
+  .service-header p {
+    font-size: 0.95rem;
+  }
+
+  .service-card {
+    padding: 1.5rem 1rem;
+    margin: 10px 0;
+  }
+
+  .service-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .service-card p {
+    font-size: 0.95rem;
+    text-align: justify;
+  }
+
+  .service-img {
+    max-width: 90%;
+  }
+
+  .footer-main {
+    padding-top: 30px;
+  }
+
+  .footer-logo {
+    height: 35px;
+  }
+
+  .company-description {
+    font-size: 0.9rem;
+    text-align: justify;
+  }
+
+  .footer-main h5 {
+    font-size: 1.1rem;
+  }
+
+  .contact-list li {
+    font-size: 0.9rem;
+    text-align: justify;
+  }
 }
