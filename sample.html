@@ -1,70 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Career Form</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f7f7f7; }
-    form { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-    input, select, button { width: 100%; padding: 10px; margin-top: 10px; }
-    button { background: #007bff; color: white; border: none; cursor: pointer; border-radius: 4px; }
-    button:hover { background: #0056b3; }
-  </style>
-</head>
-<body>
-  <h2>Apply for a Career Opportunity</h2>
-
-  <form id="careerForm" enctype="multipart/form-data">
-    <label>Full Name</label>
-    <input type="text" name="name" required />
-
-    <label>Email</label>
-    <input type="email" name="email" required />
-
-    <label>Phone</label>
-    <input type="text" name="phone" required />
-
-    <label>Job Applied For</label>
-    <select name="job_applied_for" required>
-      <option value="">--Select--</option>
-      <option value="Stylist">Stylist</option>
-      <option value="Beautician">Beautician</option>
-      <option value="Hair Expert">Hair Expert</option>
-    </select>
-
-    <label>Upload Resume</label>
-    <input type="file" name="resumeFile" accept=".pdf,.doc,.docx" required />
-
-    <button type="submit">Submit Application</button>
-  </form>
-
-  <script>
-    const form = document.getElementById("careerForm");
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(form);
-      const scriptURL = "YOUR_DEPLOYED_WEB_APP_URL"; // Replace with your actual web app URL
-
-      try {
-        const response = await fetch(scriptURL, {
-          method: "POST",
-          body: formData,
-        });
-
-        const result = await response.json();
-
-        if (result.status === "success") {
-          alert("✅ Application submitted successfully!");
-          form.reset();
-        } else {
-          alert("❌ Submission failed: " + (result.message || "Unknown error"));
-        }
-      } catch (error) {
-        alert("⚠️ Network error: " + error.message);
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
       }
-    });
-  </script>
-</body>
+      input[type="text"], input[type="email"], input[type="file"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+      }
+      input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Submit Your Info</h2>
+    <form id="myForm">
+      <label>Name:</label><br>
+      <input type="text" name="name" required><br>
+
+      <label>Email:</label><br>
+      <input type="email" name="email" required><br>
+
+      <label>Upload PDF:</label><br>
+      <input type="file" id="pdfFile" accept="application/pdf" required><br>
+
+      <input type="submit" value="Send">
+    </form>
+
+    <script>
+      document.getElementById("myForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const fileInput = document.getElementById("pdfFile");
+        const file = fileInput.files[0];
+
+        const reader = new FileReader();
+        reader.onload = function() {
+          const base64 = reader.result.split(',')[1]; // Remove data URL prefix
+          const formData = {
+            name: document.querySelector('input[name="name"]').value,
+            email: document.querySelector('input[name="email"]').value,
+            filename: file.name,
+            base64: base64
+          };
+
+          google.script.run.withSuccessHandler(function(response) {
+            alert(response);
+            document.getElementById("myForm").reset();
+          }).processForm(formData);
+        };
+        reader.readAsDataURL(file);
+      });
+    </script>
+  </body>
 </html>
