@@ -71,7 +71,6 @@
       </div>
     </nav>
 
-    <!-- <div style="padding-top: 70px"></div> -->
     <div id="main-content" class="content-panel">
       <section class="hero-section">
         <div class="overlay"></div>
@@ -158,8 +157,7 @@
                 <div class="card modern-card">
                   <div class="card-icon">
                     <i class="bi bi-person-vcard" style="color: #9d50bb"></i>
-                    <!-- <i class="fa-solid fa-hand-holding-box" ></i> -->
-                  </div>
+                    </div>
                   <div class="card-body">
                     <h5 class="card-title">Temporary Staffing</h5>
                     <p class="card-text">
@@ -212,7 +210,7 @@
             <div class="col-md-3 col-sm-6 mb-4">
               <div class="stat-card">
                 <div class="stat-icon"><i class="fa-solid fa-medal" style="color: #9d50bb"></i></div>
-                <h3 class="stat-number" data-target="25">0</h3>
+                <h3 class="stat-number" data-target="25" data-text="Years Experience">0</h3>
                 <p class="stat-text">Years Experience</p>
               </div>
             </div>
@@ -222,7 +220,7 @@
                 <div class="stat-icon">
                   <i class="bi bi-people-fill" style="color: #9d50bb"></i>
                 </div>
-                <h3 class="stat-number" data-target="4000">0</h3>
+                <h3 class="stat-number" data-target="4000" data-text="Consultants">0</h3>
                 <p class="stat-text">Consultants</p>
               </div>
             </div>
@@ -230,7 +228,7 @@
             <div class="col-md-3 col-sm-6 mb-4">
               <div class="stat-card">
                 <div class="stat-icon"><i class="fa-solid fa-briefcase" style="color: #9d50bb"></i></div>
-                <h3 class="stat-number" data-target="2500">0</h3>
+                <h3 class="stat-number" data-target="2500" data-text="Placements">0</h3>
                 <p class="stat-text">Placements</p>
               </div>
             </div>
@@ -240,7 +238,7 @@
                 <div class="stat-icon">
                   <i class="fa-solid fa-handshake-angle" style="color: #9d50bb"></i>
                 </div>
-                <h3 class="stat-number" data-target="200">0</h3>
+                <h3 class="stat-number" data-target="200" data-text="Clients">0</h3>
                 <p class="stat-text">Clients</p>
               </div>
             </div>
@@ -423,6 +421,7 @@
 
         const runCounter = (counter) => {
           const target = +counter.getAttribute("data-target");
+          const counterText = counter.getAttribute("data-text"); // Get the associated text
           const updateCount = () => {
             const count = +counter.innerText;
             const increment = target / speed;
@@ -430,8 +429,12 @@
               counter.innerText = Math.ceil(count + increment);
               setTimeout(updateCount, 20);
             } else {
-              // Append the '+' sign once the target is reached
-              counter.innerText = target + "+";
+              // Check if the counter is NOT "Years Experience" to append the '+' symbol
+              if (counterText !== "Years Experience") {
+                  counter.innerText = target + "+";
+              } else {
+                  counter.innerText = target;
+              }
             }
           };
           updateCount();
