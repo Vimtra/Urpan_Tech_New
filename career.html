@@ -170,10 +170,10 @@
                 <input type="hidden" id="jobTitleHidden" name="job_applied_for" />
               </div>
 
-              <div class="col-12">
-                <label for="resumeFile" class="form-label">Upload Resume (PDF, DOC, DOCX)</label>
-                <input class="form-control" type="file" id="resumeFile" name="resumeFile" accept=".pdf,.doc,.docx" /> 
-              </div>
+<div class="col-12">
+    <label for="resumeFile" class="form-label">Upload Resume (PDF, DOC, DOCX)</label>
+    <input class="form-control" type="file" id="resumeFile" name="resumeFile" accept=".pdf,.doc,.docx" required /> 
+  </div>
 
               <div class="col-12 d-flex justify-content-end gap-2 modal-footer border-0 pt-4">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
@@ -265,7 +265,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/js/aos.js"></script>
 
     <script>
       const jobs = [
@@ -326,8 +326,8 @@
         }
       ];
 
-      // YOUR GOOGLE APPS SCRIPT URL - UPDATED!
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbw_kY06u0sC5mjLq0sjlPLfGWNRMqxVTq7XX0jpe4BnI_p7mIM-ciXSdi7tpQl7wgap/exec';
+      // THE GOOGLE APPS SCRIPT URL HAS BEEN UPDATED TO YOUR LATEST DEPLOYMENT
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbx-USPemcB_0ukJsfVW7st3CQWKJNXYTqqTsgwY0gcL4r07Mi1wv70Dr5F5dOy91GxT/exec';
 
       const jobListEl = document.getElementById('jobList');
       const jobTitleEl = document.getElementById('jobTitle');
@@ -399,7 +399,7 @@
         }, 200);
       }
 
-      // UPDATED SUBMISSION LOGIC FOR GOOGLE APPS SCRIPT WITH FILE UPLOAD
+      // SUBMISSION LOGIC FOR GOOGLE APPS SCRIPT WITH FILE UPLOAD
       applicationForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -408,6 +408,13 @@
         submitBtn.disabled = true;
         submitBtn.textContent = 'Submitting...';
         
+        // Remove previous error messages if present
+        const modalBody = document.querySelector('#applicationModal .modal-body');
+        const existingMsgBox = modalBody.querySelector('.border-danger-subtle');
+        if (existingMsgBox) {
+            existingMsgBox.remove();
+        }
+
         try {
           const formData = new FormData(applicationForm);
           
@@ -417,6 +424,15 @@
             body: formData,
           });
 
+          // Check for a non-200 status code before trying to parse JSON
+          if (!response.ok) {
+             // If the error isn't JSON based, fetch the raw text for better debugging
+             const errorText = await response.text();
+             console.error('Server responded with non-OK status:', response.status, errorText);
+             // Throw an error with the HTTP status
+             throw new Error(`HTTP Error ${response.status}: Failed to connect to script.`);
+          }
+          
           const result = await response.json();
 
           if (result.status === 'success') {
@@ -437,11 +453,17 @@
               }, 500);
             }, 3000);
           } else {
-            throw new Error(result.message || 'Submission failed');
+            // Handle error from the script's JSON response (e.g., sheet name not found)
+            throw new Error(result.message || 'Submission failed on server side.');
           }
         } catch (error) {
-          console.error('Submission error:', error);
-          alert('There was an error submitting your application. Please try again or contact us at info@urpantech.com');
+          console.error('Submission caught error:', error);
+          
+          const msgBox = document.createElement('div');
+          msgBox.className = 'p-3 mb-3 border border-danger-subtle bg-danger-subtle text-danger-emphasis rounded';
+          msgBox.textContent = `Error: There was an issue submitting your application. Reason: ${error.message}. Please check your browser console for details or contact the administrator.`;
+          modalBody.prepend(msgBox);
+
           submitBtn.disabled = false;
           submitBtn.textContent = originalBtnText;
         }

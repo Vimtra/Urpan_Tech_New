@@ -1,0 +1,121 @@
+// 1. PASTE YOUR SPREADSHEET ID HERE
+const SPREADSHEET_ID = "";
+
+// 2. PASTE YOUR GOOGLE DRIVE FOLDER ID HERE
+const DRIVE_FOLDER_ID = "";
+
+// 3. Enter the email address where you want to receive notifications
+const RECIPIENT_EMAIL = "";
+
+// 4. PASTE YOUR SHEET (TAB) NAME HERE (it is case-sensitive)
+const SHEET_NAME = "";
+
+// --- No need to change anything below this line ---
+
+function doPost(e) {
+  const lock = LockService.getScriptLock();
+  // Try to acquire lock for 10 seconds (10000ms)
+  lock.tryLock(10000); 
+
+  try {
+    const doc = SpreadsheetApp.openById(SPREADSHEET_ID);
+    const sheet = doc.getSheetByName(SHEET_NAME);
+
+    if (!sheet) {
+      // Use standard error concatenation
+      throw new Error("Sheet with name \"" + SHEET_NAME + "\" not found.");
+    }
+
+    // Since the form uses multipart/form-data for file upload, the data is in e.parameter (key-value text fields) 
+    // and e.parameters[fieldName] (file blobs).
+    const formData = e.parameter;
+    
+    // --- 1. Handle File Upload ---
+    let fileUrl = 'N/A';
+    const fileBlobs = e.parameters.resumeFile;
+
+    if (fileBlobs && fileBlobs.length > 0) {
+      const folder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
+      if (!folder) {
+          throw new Error("Could not find Drive folder. Check DRIVE_FOLDER_ID and share settings.");
+      }
+      
+      // Get the first (and only) file blob from the input array
+      const fileBlob = fileBlobs[0]; 
+      
+      // Naming the file: [Job Title]_[Full Name]_[Timestamp]
+      const name = formData.name || 'Applicant';
+      const job = formData.job_applied_for || 'UnknownJob';
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+      const filename = job.replace(/[^a-zA-Z0-9]/g, '_') + '_' + name.replace(/[^a-zA-Z0-9]/g, '_') + '_' + timestamp;
+      
+      fileBlob.setName(filename);
+      const newFile = folder.createFile(fileBlob);
+      fileUrl = newFile.getUrl();
+    }
+    
+    // --- 2. Prepare new row data ---
+    // Map form field names (from HTML) to template field names (from your script template)
+    const newRow = {
+      Timestamp: new Date(),
+      ApplyingFor: formData.job_applied_for || 'N/A',
+      FullName: formData.name || 'N/A',
+      Email: formData.email || 'N/A',
+      Phone: formData.phone || 'N/A',
+      
+      // Remaining fields from your template are set to N/A as they are not in the HTML form
+      CurrentCompany: 'N/A',
+      CurrentPosition: 'N/A',
+      YearsOfExperience: 'N/A',
+      Message: 'N/A', 
+      
+      ResumeLink: fileUrl
+    };
+
+    // --- 3. Write to Spreadsheet ---
+    const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    
+    // Ensure the order of data matches the headers in the spreadsheet
+    const rowData = headers.map(header => newRow[header] || ""); 
+    sheet.appendRow(rowData);
+    
+    // --- 4. Send Email Notification ---
+    sendNotificationEmail(newRow);
+
+    return ContentService.createTextOutput(JSON.stringify({ 'status': 'success' })).setMimeType(ContentService.MimeType.JSON);
+  } catch (e) {
+    Logger.log("Application submission error: " + e.message + " Stack: " + e.stack);
+    return ContentService.createTextOutput(JSON.stringify({ 'status': 'error', 'message': e.message })).setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function sendNotificationEmail(data) {
+    try {
+      // Use Urpan Technologies in the email subject/body
+      const emailSubject = `New Job Application: ${data.ApplyingFor} - ${data.FullName}`;
+      let htmlBody = `
+        <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
+          <div style="background-color: #f4f4f4; padding: 20px; text-align: center;">
+            <h2 style="color: #c00000;">Urpan Technologies</h2>
+            <h3 style="color: #343a40;">New Job Application</h3>
+          </div>
+          <div style="padding: 20px;">
+            <p>A new application has been submitted for the following position:</p>
+            <h3 style="color:#c00000;">${data.ApplyingFor}</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+              <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px; font-weight: bold; width: 150px;">Applicant Name:</td><td style="padding: 10px;">${data.FullName}</td></tr>
+              <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px; font-weight: bold;">Email:</td><td style="padding: 10px;">${data.Email}</td></tr>
+              <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px; font-weight: bold;">Phone:</td><td style="padding: 10px;">${data.Phone}</td></tr>
+              <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px; font-weight: bold;">Resume:</td><td style="padding: 10px;"><a href="${data.ResumeLink}" target="_blank">View Resume</a></td></tr>
+            </table>
+          </div>
+          <div style="background-color: #f4f4f4; padding: 10px; text-align: center; font-size: 12px; color: #777;"><p>This is an automated notification from your website's career page.</p></div>
+        </div>
+      `;
+      MailApp.sendEmail({ to: RECIPIENT_EMAIL, subject: emailSubject, htmlBody: htmlBody });
+    } catch(err) {
+      Logger.log("Email sending failed: " + err);
+    }
+}
