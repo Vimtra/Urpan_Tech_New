@@ -171,7 +171,7 @@
               </div>
 
               <div class="col-12">
-                <label for="resumeFile" class="form-label">Upload Resume (PDF, DOC, DOCX)</label>
+                <label for="resumeFile" class="form-label">Upload Resume (PDF, DOC, DOCX - Max 10MB)</label>
                 <input class="form-control" type="file" id="resumeFile" name="resumeFile" accept=".pdf,.doc,.docx" required /> 
               </div>
 
@@ -257,17 +257,19 @@
                     <a href="https://www.linkedin.com/company/urpantech/" target="_blank" aria-label="LinkedIn" class="social-icon-footer">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
 </footer>
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
     <script>
+      // ============================================
+      // JOB DATA
+      // ============================================
       const jobs = [
         {
           id: 'job-1',
@@ -315,21 +317,24 @@
         },
         {
           id: 'job-5',
-          title: "Senior Product Manager",
+          title: "DevOps Engineer",
           postedDate: "10/12/2025",
-          salary: "$130,000 / year",
+          salary: "$120,000 / year",
           workingHours: "Fulltime, 40 hours/week",
-          openings: 12,
-          experience: "5+ years managing product roadmaps for B2B SaaS applications and deep understanding of agile methodologies.",
-          education: "Bachelor's or equivalent experience. MBA or relevant certification highly valued.",
-          jobDuties: "Define product vision and strategy; prioritize roadmap based on customer feedback and business goals; coordinate cross-functional delivery with engineering and marketing teams."
+          openings: 2,
+          experience: "3+ years with CI/CD pipelines, Docker, Kubernetes, and cloud platforms (AWS/Azure/GCP).",
+          education: "Bachelor's in Computer Science or equivalent experience. Relevant certifications are a plus.",
+          jobDuties: "Design and implement CI/CD pipelines; manage cloud infrastructure; automate deployment processes; monitor system performance and security."
         }
       ];
 
-      // ⚠️ IMPORTANT: UPDATE THIS WITH YOUR NEW GOOGLE APPS SCRIPT DEPLOYMENT URL
-      // Get this from: Google Apps Script → Deploy → Manage deployments → Copy Web app URL
+      // ⚠️ CRITICAL: UPDATE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
+      // Get this from: Apps Script → Deploy → Manage deployments → Copy Web app URL
       const scriptURL = 'https://script.google.com/macros/s/AKfycbzUHNnqPbjLbKsf4Ayj8rAJ0l3L42UZvrrESwjfHo335PCPuTo7DDkeSpzRUPNRC8J4/exec';
 
+      // ============================================
+      // DOM ELEMENTS
+      // ============================================
       const jobListEl = document.getElementById('jobList');
       const jobTitleEl = document.getElementById('jobTitle');
       const postedDateEl = document.getElementById('postedDate');
@@ -345,6 +350,9 @@
       const thankYouMessage = document.getElementById('thankYouMessage');
       const jobInfoPanel = document.getElementById('jobInfo');
 
+      // ============================================
+      // RENDER JOB LIST
+      // ============================================
       function renderJobList(selectedId = null) {
         jobListEl.innerHTML = '';
         jobs.forEach((job, idx) => {
@@ -369,6 +377,9 @@
         if (selectedId) selectJob(selectedId);
       }
 
+      // ============================================
+      // SELECT JOB
+      // ============================================
       function selectJob(id) {
         const job = jobs.find(j => j.id === id);
         if (!job) return;
@@ -400,7 +411,9 @@
         }, 200);
       }
 
-      // FIXED SUBMISSION LOGIC - THIS WILL WORK WITH FILE UPLOADS
+      // ============================================
+      // FORM SUBMISSION - FIXED FOR FILE UPLOADS & CORS
+      // ============================================
       applicationForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -409,75 +422,102 @@
         submitBtn.disabled = true;
         submitBtn.textContent = 'Submitting...';
         
-        // Remove previous error messages if present
+        // Remove previous error messages
         const modalBody = document.querySelector('#applicationModal .modal-body');
         const existingMsgBox = modalBody.querySelector('.alert-danger, .border-danger-subtle');
         if (existingMsgBox) {
-            existingMsgBox.remove();
+          existingMsgBox.remove();
         }
 
         try {
-          const formData = new FormData(applicationForm);
-          
           // Validate file is selected
           const fileInput = document.getElementById('resumeFile');
           if (!fileInput.files || fileInput.files.length === 0) {
             throw new Error('Please select a resume file to upload.');
           }
 
-          const fileName = fileInput.files[0].name;
-          const fileSize = (fileInput.files[0].size / 1024 / 1024).toFixed(2); // Convert to MB
-          console.log(`📎 Submitting form with file: ${fileName} (${fileSize} MB)`);
+          const file = fileInput.files[0];
+          const maxSize = 10 * 1024 * 1024; // 10MB
           
-          // Check if running from localhost
-          if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            throw new Error('❌ Cannot submit from localhost due to CORS restrictions. Please deploy to Netlify, Vercel, or another hosting service to test the form.');
+          if (file.size > maxSize) {
+            throw new Error('File size must be less than 10MB.');
+          }
+
+          // Validate file type
+          const allowedTypes = ['.pdf', '.doc', '.docx'];
+          const fileExt = '.' + file.name.split('.').pop().toLowerCase();
+          if (!allowedTypes.includes(fileExt)) {
+            throw new Error('Please upload a PDF, DOC, or DOCX file.');
+          }
+
+          console.log(`📎 Submitting file: ${file.name} (${(file.size / 1024).toFixed(2)} KB)`);
+          
+          // Create FormData object
+          const formData = new FormData(applicationForm);
+          
+          // Log form data for debugging
+          console.log('📋 Form data being sent:');
+          for (let pair of formData.entries()) {
+            if (pair[1] instanceof File) {
+              console.log(`  ${pair[0]}: ${pair[1].name} (${pair[1].type})`);
+            } else {
+              console.log(`  ${pair[0]}: ${pair[1]}`);
+            }
           }
           
-          // Submit the form with file
+          // Submit the form
           const response = await fetch(scriptURL, {
             method: 'POST',
             body: formData,
-            redirect: 'follow'
+            // Don't set Content-Type header - browser will set it automatically with boundary
           });
 
           console.log('📡 Response status:', response.status);
-          console.log('📡 Response type:', response.type);
+          console.log('📡 Response OK:', response.ok);
 
-          // Check if the response indicates success
-          // Note: With cross-origin requests, we may get an opaque response
-          if (response.ok || response.type === 'opaque') {
+          let result;
+          try {
+            result = await response.json();
+            console.log('📦 Response data:', result);
+          } catch (jsonError) {
+            console.log('⚠️ Could not parse JSON response, but request may have succeeded');
+            result = { status: 'success' }; // Assume success if we can't parse response
+          }
+
+          if (response.ok || result.status === 'success') {
+            // Show success message
             applicationForm.classList.add('d-none');
             thankYouMessage.classList.remove('d-none');
             console.log('✅ Form submitted successfully!');
-          } else {
-            throw new Error(`Server returned status ${response.status}`);
-          }
-          
-          // Reset form after 3 seconds and close modal
-          setTimeout(() => {
-            const modal = bootstrap.Modal.getInstance(document.getElementById('applicationModal'));
-            if (modal) {
-              modal.hide();
-            }
+            
+            // Reset form after 3 seconds and close modal
             setTimeout(() => {
-              applicationForm.reset();
-              applicationForm.classList.remove('d-none');
-              thankYouMessage.classList.add('d-none');
-              submitBtn.disabled = false;
-              submitBtn.textContent = originalBtnText;
-            }, 500);
-          }, 3000);
+              const modal = bootstrap.Modal.getInstance(document.getElementById('applicationModal'));
+              if (modal) {
+                modal.hide();
+              }
+              setTimeout(() => {
+                applicationForm.reset();
+                applicationForm.classList.remove('d-none');
+                thankYouMessage.classList.add('d-none');
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
+              }, 500);
+            }, 3000);
+            
+          } else {
+            throw new Error(result.message || `Server returned status ${response.status}`);
+          }
           
         } catch (error) {
           console.error('❌ Submission error:', error);
           
           let errorMessage = 'There was an issue submitting your application. ';
           
-          if (error.name === 'AbortError') {
-            errorMessage += 'The request timed out. Please try again.';
-          } else if (error.message.includes('Failed to fetch')) {
-            errorMessage += 'Unable to connect to the server. Please check your internet connection and try again.';
+          if (error.message.includes('Failed to fetch')) {
+            errorMessage += 'Unable to connect to the server. Please check your internet connection.';
+          } else if (error.message.includes('NetworkError')) {
+            errorMessage += 'Network error occurred. Please try again.';
           } else {
             errorMessage += error.message;
           }
@@ -495,6 +535,9 @@
         }
       });
 
+      // ============================================
+      // INITIALIZE
+      // ============================================
       document.addEventListener('DOMContentLoaded', () => {
         renderJobList();
         AOS.init({
