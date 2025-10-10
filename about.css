@@ -104,11 +104,11 @@ html {
 /* DEFINITIVE FIXES FOR MOBILE (Overlap, Font Size, Image Size) */
 @media (max-width: 576px) {
     .about-hero {
-        height: 60vh;
+        height: 100vh;
         /* INCREASED TOP PADDING TO PUSH CONTENT BELOW FIXED NAV */
         /* padding-top: 90px;  */
         /* Ensure content is aligned slightly higher on smaller screens */
-        align-items: flex-start;
+        align-items: center;
     }
     
     .hero-content {
