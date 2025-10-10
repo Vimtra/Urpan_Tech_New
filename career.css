@@ -349,13 +349,14 @@ html {
 
 /* Thank You Message */
 .thank-you-container {
+  color: var(--accent);
   text-align: center;
   padding: 2rem;
 }
 
 .checkmark-circle {
   font-size: 4rem;
-  color: var(--accent);
+  color:#1e0036;
   animation: scaleIn 0.5s ease-out;
 }
 

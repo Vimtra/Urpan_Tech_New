@@ -42,26 +42,26 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="./index.html" data-aos="zoom-in">Home</a>
+              <a class="nav-link" href="./index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./about.html" data-aos="zoom-in">About Us</a>
+              <a class="nav-link" href="./about.html">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./service.html" data-aos="zoom-in">Services</a>
+              <a class="nav-link" href="./service.html">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="./career.html" data-aos="zoom-in">Career</a>
+              <a class="nav-link active" href="./career.html">Career</a>
             </li>
             <li class="nav-item cta-item">
-              <a href="./contact.html" data-aos="zoom-in" class="btn-contact">Contact</a>
+              <a href="./contact.html" class="btn-contact">Contact</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <!-- <div style="padding-top: 70px"></div> -->
+    <div style="padding-top: 70px"></div>
 
     <div class="animated-gradient-bg" aria-hidden="true">
       <div class="gradient-blob blob-1"></div>
@@ -150,7 +150,7 @@
           </div>
 
           <div class="modal-body">
-            <form id="applicationForm" action="" method="POST" enctype="multipart/form-data" class="row g-3">
+            <form id="applicationForm" method="POST" enctype="multipart/form-data" class="row g-3">
               <div class="col-md-6">
                 <label for="applicantName" class="form-label">Full Name</label>
                 <input type="text" class="form-control" id="applicantName" name="name" required />
@@ -172,7 +172,7 @@
 
               <div class="col-12">
                 <label for="resumeFile" class="form-label">Upload Resume (PDF, DOC, DOCX)</label>
-                <input class="form-control" type="file" id="resumeFile" name="" accept=".pdf,.doc,.docx" /> 
+                <input class="form-control" type="file" id="resumeFile" name="resumeFile" accept=".pdf,.doc,.docx" /> 
               </div>
 
               <div class="col-12 d-flex justify-content-end gap-2 modal-footer border-0 pt-4">
@@ -185,9 +185,9 @@
               <div class="checkmark-circle mb-3" style="font-size: 3rem; color: var(--accent);"><i class="bi bi-check-circle-fill"></i></div>
               <h5>Thank You for Your Application!</h5>
               <p>
-                We have received your text details and will review them shortly.
+                We have received your application and will review it shortly.
                 <br>
-                **IMPORTANT:** Please email your resume separately to **info@urpantech.com** for your application to be complete.
+                Our HR team will contact you if your qualifications match our requirements.
               </p>
             </div>
           </div>
@@ -326,8 +326,8 @@
         }
       ];
 
-      // YOUR GOOGLE APPS SCRIPT URL
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbzDWX9TDxyLM5qfn_SUO-SD3xtPvURcOKbMlPmHOegWnFGu94Iqi7FV-N-vWrHu8Lg/exec';
+      // YOUR GOOGLE APPS SCRIPT URL - UPDATED!
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbw_kY06u0sC5mjLq0sjlPLfGWNRMqxVTq7XX0jpe4BnI_p7mIM-ciXSdi7tpQl7wgap/exec';
 
       const jobListEl = document.getElementById('jobList');
       const jobTitleEl = document.getElementById('jobTitle');
@@ -343,8 +343,6 @@
       const applicationForm = document.getElementById('applicationForm');
       const thankYouMessage = document.getElementById('thankYouMessage');
       const jobInfoPanel = document.getElementById('jobInfo');
-
-      // --- Utility Functions (renderJobList, selectJob) ---
 
       function renderJobList(selectedId = null) {
         jobListEl.innerHTML = '';
@@ -401,18 +399,15 @@
         }, 200);
       }
 
-      // --- SUBMISSION LOGIC FOR GOOGLE APPS SCRIPT ---
+      // UPDATED SUBMISSION LOGIC FOR GOOGLE APPS SCRIPT WITH FILE UPLOAD
       applicationForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         const submitBtn = applicationForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
         submitBtn.disabled = true;
         submitBtn.textContent = 'Submitting...';
         
-        // --- NOTE on File Upload: File uploads via simple AJAX/Google Script are complex. 
-        // We submit only the text fields below. File upload fields should be handled 
-        // by instructing the user to email the resume. ---
-
         try {
           const formData = new FormData(applicationForm);
           
@@ -422,7 +417,9 @@
             body: formData,
           });
 
-          if (response.ok) {
+          const result = await response.json();
+
+          if (result.status === 'success') {
             // Handle successful submission
             applicationForm.classList.add('d-none');
             thankYouMessage.classList.remove('d-none');
@@ -436,18 +433,17 @@
                 applicationForm.classList.remove('d-none');
                 thankYouMessage.classList.add('d-none');
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit Application';
+                submitBtn.textContent = originalBtnText;
               }, 500);
             }, 3000);
           } else {
-            // Handle non-OK response from the script
-            throw new Error('Google Script submission failed.');
+            throw new Error(result.message || 'Submission failed');
           }
         } catch (error) {
-          alert('There was an error submitting your application. Please ensure all required fields are filled.');
-          console.error(error);
+          console.error('Submission error:', error);
+          alert('There was an error submitting your application. Please try again or contact us at info@urpantech.com');
           submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Application';
+          submitBtn.textContent = originalBtnText;
         }
       });
 
