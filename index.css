@@ -601,7 +601,7 @@ html {
   opacity: 1;
 }
 
-/* ===== FOOTER STYLES ===== */
+/* ===== FOOTER STYLES (FIXED ALIGNMENT) ===== */
 .footer-main {
   background: radial-gradient(ellipse at bottom, #1e0036, #2f0036);
   padding-top: 40px;
@@ -637,21 +637,27 @@ html {
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.7);
   margin-top: 15px;
-  text-align: left;
+  text-align: justify; /* Use justify as in service.css */
+  text-justify: inter-word; /* Added from service.css for consistency */
 }
 
 .footer-main h5 {
   font-size: 1.3rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem; /* Adjusted to 1.2rem from service.css */
   color: #ff69eb;
-  text-align: left;
+  /* Removed text-align: left; to rely on Bootstrap's text-md-start/text-center */
 }
 
 .footer-main ul {
   list-style: none;
   padding: 0;
-  text-align: left;
+  margin: 0; /* Added from service.css */
+  /* Removed text-align: left; to rely on Bootstrap's text-md-start/text-center */
+}
+
+.footer-main ul li {
+  margin-bottom: 0.6rem; /* Added from service.css */
 }
 
 .footer-link {
@@ -661,6 +667,7 @@ html {
   padding: 4px 0;
   transition: all 0.3s ease-in-out;
   font-size: 1rem;
+  line-height: 1.5; /* Added from service.css */
 }
 
 .footer-link:hover {
@@ -671,16 +678,17 @@ html {
 .contact-list {
   list-style: none;
   padding: 0;
+  margin: 0; /* Added from service.css */
 }
 
 .contact-list li {
-  font-size: 1rem;
-  line-height: 1.8;
+  font-size: 0.95rem; /* Used 0.95rem from service.css */
+  line-height: 1.6; /* Used 1.6 from service.css */
   color: rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: flex-start;
-  text-align: left;
-  margin-bottom: 12px;
+  /* Removed text-align: left; to rely on Bootstrap's text-md-start/text-center */
+  margin-bottom: 1rem; /* Used 1rem from service.css */
 }
 
 .contact-list i {
@@ -688,8 +696,8 @@ html {
   font-size: 1.1rem;
   width: 20px;
   flex-shrink: 0;
-  margin-right: 15px;
-  margin-top: 3px;
+  margin-right: 12px; /* Used 12px from service.css */
+  margin-top: 2px; /* Used 2px from service.css */
 }
 
 .footer-divider {
@@ -784,7 +792,7 @@ html {
   }
 }
 
-/* ===== MOBILE RESPONSIVENESS ===== */
+/* ===== MOBILE RESPONSIVENESS (FIXED FOOTER ALIGNMENT) ===== */
 @media (max-width: 767.98px) {
   /* Hero Section Mobile */
   .hero-section {
@@ -927,6 +935,7 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 2rem; /* Added margin-bottom for spacing */
   }
 
   .company-description {
@@ -936,11 +945,15 @@ html {
 
   .footer-main h5 {
     text-align: center !important;
+    width: 100%; /* Ensures full width for centering */
   }
 
   .footer-main ul {
     text-align: center !important;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .footer-main ul li {
@@ -953,11 +966,13 @@ html {
   }
 
   .contact-list li {
-    text-align: justify !important;
+    /* Text will be centered, icon above text */
+    text-align: center !important;
     justify-content: center !important;
     flex-direction: column;
     align-items: center;
     padding: 0 15px;
+    margin-bottom: 12px; /* Adjusted spacing */
   }
 
   .contact-list i {
