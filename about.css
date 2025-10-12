@@ -32,13 +32,14 @@ html {
   padding-top: 100px; 
 }
 .about-hero {
+  
   position: relative;
   height: 100vh;
   display: flex;
-  align-items: center;
+  align-items:center;
   justify-content: center;
   text-align: center;
-  background: url("./images/people-taking-part-business-event.jpg") no-repeat
+  background: url("./images/business-concept-with-team-close-up.jpg") no-repeat
     center bottom/cover;
   overflow: hidden;
   background-attachment: fixed;
@@ -53,7 +54,7 @@ html {
   opacity: 0.7;
   background: linear-gradient(
     180deg,
-    rgba(157, 80, 187, 0.7),
+    rgba(62, 31, 75, 0.7),
     rgba(65, 8, 58, 0.9)
   );
   z-index: 1;
@@ -62,7 +63,7 @@ html {
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 800px;
+  max-width: 100vw;
   padding: 0 20px;
 }
 .hero-content h1 {
@@ -73,7 +74,17 @@ html {
   text-transform: uppercase;
   position: relative;
   display: inline-block;
-  color: #f5f3f5;
+  color: #f3c9f3;
+  text-shadow: 
+                1px 1px 0 #ed87e0,
+                2px 2px 0 #bbb,
+                3px 3px 0 #aaa,
+                4px 4px 0 #999,
+                5px 5px 0 #888,
+                6px 6px 0 #777,
+                7px 7px 0 #666,
+                8px 8px 0 #3e033d,
+                9px 9px 20px rgba(0,0,0,0.5);
 }
 
 .hero-content p {
@@ -101,14 +112,14 @@ html {
 /* DEFINITIVE FIXES FOR MOBILE (Overlap, Font Size, Image Size) */
 @media (max-width: 576px) {
     .about-hero {
-        height: 100vh;
+        height: 50vh;
         /* INCREASED TOP PADDING TO PUSH CONTENT BELOW FIXED NAV */
         /* Ensure content is aligned slightly higher on smaller screens */
-        align-items: center;
+        align-items:flex-start
     }
     
     .hero-content {
-        margin-top: 15%; /* Vertically centers the text nicely in the remaining space */
+        margin-top: 15%;
     }
 
     .hero-content .hero-h1 { 
