@@ -306,6 +306,7 @@ html {
 .modal-title {
   color: var(--accent);
   font-weight: 700;
+  text-align: center;
 }
 
 .form-label {

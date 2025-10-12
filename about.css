@@ -106,7 +106,6 @@ html {
     .about-hero {
         height: 80vh;
         /* INCREASED TOP PADDING TO PUSH CONTENT BELOW FIXED NAV */
-        /* padding-top: 90px;  */
         /* Ensure content is aligned slightly higher on smaller screens */
         align-items: center;
     }
@@ -116,7 +115,7 @@ html {
     }
 
     .hero-content .hero-h1 { 
-        font-size: 2.2rem; /* REDUCED FONT SIZE */
+        font-size: 2.2rem; 
         letter-spacing: 0.5rem;
         margin-top: 0; 
     }
