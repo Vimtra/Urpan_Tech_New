@@ -25,10 +25,7 @@ html {
   scroll-padding-top: 60px; 
   overflow-x: hidden;
 }
-.modern-navbar .navbar-nav > li > a:focus {
-  outline: none;
-  background: transparent;
-}
+
 /* FIX: Ensure content starts below fixed navbar */
 .who-we-are {
   /* This padding is now managed by the media query below to ensure space */
@@ -163,7 +160,6 @@ html {
   background-size: 200% 200%;
   animation: gradientFlow 12s ease infinite;
 }
-
 /* Gradient animation */
 @keyframes gradientFlow {
   0% {
@@ -208,7 +204,7 @@ html {
 /* ---------- TEXT ---------- */
 .who-we-are p {
   font-family: "Josefin Sans", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-align: justify;
   line-height: 1.8;
   color: #2f0534;
@@ -310,13 +306,13 @@ h2::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, #4a0242 0%);
+  background: radial-gradient(circle at 50% 50%, #52114a 0%);
   /* background-color: #4a0242; */
   pointer-events: none;
 }
 
 .core-values-section p {
-  font-size: 20px;
+  font-size: 1.4rem;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.8;
   margin-bottom: 50px;
@@ -427,7 +423,7 @@ h2::after {
   position: relative;
 }
 .sectors-serve-section p{
-  font-size:large;
+  font-size:1.9rem;
 }
 
 .sectors-serve-section::before {
@@ -458,7 +454,7 @@ h2::after {
   background: linear-gradient(
     135deg,
     rgba(134, 4, 125, 0.15),
-    rgba(74, 2, 66, 0.25)
+    rgba(38, 2, 34, 0.25)
   );
   backdrop-filter: blur(10px);
   border: 2px solid rgba(134, 4, 125, 0.3);
@@ -486,7 +482,7 @@ h2::after {
   background: linear-gradient(
     135deg,
     rgba(134, 4, 125, 0.3),
-    rgba(74, 2, 66, 0.4)
+    rgba(35, 4, 32, 0.4)
   );
 }
 
@@ -494,7 +490,7 @@ h2::after {
   color: #3c0535;
   font-size: 20px;
   margin-right: 15px;
-  filter: drop-shadow(0 0 8px rgba(255, 105, 235, 0.6));
+  filter: drop-shadow(0 0 8px rgba(77, 16, 69, 0.6));
   animation: pulse 2s ease-in-out infinite;
 }
 

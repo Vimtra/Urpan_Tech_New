@@ -105,7 +105,7 @@ html {
 /* ===== HERO SECTION ===== */
 .hero-section {
   position: relative;
-  min-height: 85vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   background: url("./images/successful-businessmen-talking-each-other.jpg") no-repeat center center/cover;
@@ -397,7 +397,7 @@ html {
 }
 
 .services-title h1 {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 800;
   margin-bottom: 14px;
 }
@@ -419,7 +419,7 @@ html {
 .services-subheading {
   font-family: "Josefin Sans", sans-serif;
   font-weight: 400;
-  font-size: 1.1rem;
+  font-size: 1.9rem;
   color: #555;
   margin-top: 10px;
   line-height: 1.5;
@@ -443,7 +443,12 @@ html {
 
 .modern-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+  /* color: #fff; */
+  /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12); */
+  box-shadow: 0px 0px 10px 2px rgba(239, 68, 68, 0.2), 0px 0px 20px 8px rgba(239, 68, 68, 0.1);
+  background: linear-gradient(135deg, #dba1d6 0%, #f0f0f0 100%);
+  background-color: #dec6e2;
+  /* color: rgb(255, 255, 255); */
 }
 
 .card-icon {
@@ -486,7 +491,7 @@ html {
 .section-subtitle {
   font-family: "Josefin Sans", sans-serif;
   font-weight: 400;
-  font-size: 1.1rem;
+  font-size: 1.9rem;
   color: #666;
   max-width: 650px;
   margin: 0 auto 35px;
@@ -505,6 +510,7 @@ html {
   transform: translateY(-6px);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
   background-color: #f5f7ff;
+  box-shadow: 0 0 40px 10px rgba(98, 8, 90, 0.7);
 }
 
 .stat-icon {
@@ -1181,3 +1187,248 @@ a,
 button {
   transition: all 0.3s ease;
 }
+
+/* Loading section */
+.urpan-loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #2f0036 0%, #1a0020 100%);
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .urpan-loader-container.urpan-fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .urpan-logo-container {
+            margin-bottom: 40px;
+            animation: urpanFadeInDown 0.8s ease-out;
+        }
+
+        .urpan-logo-text {
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .urpan-logo-subtext {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            margin-top: 8px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .urpan-loader-animation {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            animation: urpanFadeIn 1s ease-out 0.3s both;
+        }
+
+        .urpan-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .urpan-circle-outer {
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            animation: urpanRotate 3s linear infinite;
+        }
+
+        .urpan-circle-middle {
+            border: 4px solid transparent;
+            border-top-color: white;
+            border-right-color: white;
+            animation: urpanRotate 2s linear infinite reverse;
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+        }
+
+        .urpan-circle-inner {
+            border: 3px solid transparent;
+            border-top-color: rgba(255, 255, 255, 0.6);
+            animation: urpanRotate 1.5s linear infinite;
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+        }
+
+        .urpan-center-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            animation: urpanPulse 1.5s ease-in-out infinite;
+        }
+
+        .urpan-progress-container {
+            margin-top: 60px;
+            width: 300px;
+            animation: urpanFadeIn 1s ease-out 0.6s both;
+        }
+
+        .urpan-progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .urpan-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+            border-radius: 10px;
+            width: 0%;
+            animation: urpanFillProgress 3s ease-in-out forwards;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .urpan-progress-text {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        .urpan-loading-dots {
+            display: inline-block;
+        }
+
+        .urpan-loading-dots span {
+            animation: urpanBlink 1.4s infinite;
+            animation-fill-mode: both;
+        }
+
+        .urpan-loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .urpan-loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes urpanRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes urpanPulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.3);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes urpanFillProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes urpanFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes urpanFadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes urpanBlink {
+            0%, 20% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .urpan-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .urpan-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: urpanFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes urpanFloat {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .urpan-logo-text {
+                font-size: 36px;
+            }
+            .urpan-loader-animation {
+                width: 150px;
+                height: 150px;
+            }
+            .urpan-progress-container {
+                width: 250px;
+            }
+        }
