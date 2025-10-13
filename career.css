@@ -144,12 +144,12 @@ html {
   border-radius: 12px;
   font-weight: 800;
   font-size: 2.8rem;
-  color: rgba(134, 4, 125, 1);
-  text-shadow: 0 0 5px rgba(220, 180, 215, 1), 0 0 10px rgba(220, 180, 215, 0.8),
-    0 0 15px rgba(134, 4, 125, 0.8), 0 0 20px rgba(134, 4, 125, 0.6),
-    0 0 30px rgba(134, 4, 125, 0.4), 2px 2px 0 rgba(100, 3, 93, 1),
-    4px 4px 0 rgba(70, 2, 65, 1), 6px 6px 20px rgba(134, 4, 125, 0.8);
-  backdrop-filter: blur(15px);
+color: var(--accent);
+  font-family: "Questrial", sans-serif;
+            
+    /* background: var(--glass-bg); */
+
+
 }
 
 /* ===== CAREER SECTION ===== */
