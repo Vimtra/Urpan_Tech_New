@@ -685,13 +685,20 @@ h2::after {
   .feature-module {
     height: 400px;
   }
+  .feature-title{
+    font-size: 1.4rem;
+  }
+  .feature-subtitle{
+    font-size: 1.2rem;
+  }
 
   .back-title {
-    font-size: 1.5rem;
+    font-size: 1.9rem;
   }
 
   .back-description {
     font-size: 0.95rem;
+    text-align: justify;
   }
 
   .value-proposition-section {
@@ -712,8 +719,6 @@ h2::after {
   content: "";
   position: absolute;
   inset: 0;
-  /* background: radial-gradient(circle at 30% 50%, rgba(186, 4, 165, 0.2) 0%, transparent 60%); */
-  /* background: linear-gradient(135deg, #f5f7ff, #eef1fb); */
   pointer-events: none;
 }
 
