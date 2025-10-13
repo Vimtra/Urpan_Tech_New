@@ -108,7 +108,7 @@ color: rgba(134, 4, 125, 1);
   }
 } 
 
-/* DEFINITIVE FIXES FOR MOBILE (Overlap, Font Size, Image Size) */
+/* DEFINITIVE FIXES FOR MOBILE(Overlap, Font Size, Image Size) */
 @media (max-width: 576px) {
     .about-hero {
         height: 50vh;
