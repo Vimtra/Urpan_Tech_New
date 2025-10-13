@@ -516,8 +516,8 @@
     if (imageWrapper && trackImage) {
       document.addEventListener('mousemove', (e) => {
         if (window.innerWidth > 768) {
-          const mouseX = (e.clientX / window.innerWidth) - 0.5;
-          const mouseY = (e.clientY / window.innerHeight) - 0.5;
+          const mouseX = (e.clientX / window.innerWidth) - 0.1;
+          const mouseY = (e.clientY / window.innerHeight) -0.1;
 
           const rotateY = mouseX * 10;
           const rotateX = -mouseY * 10;
