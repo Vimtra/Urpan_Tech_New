@@ -144,12 +144,10 @@ html {
   border-radius: 12px;
   font-weight: 800;
   font-size: 2.8rem;
-color: var(--accent);
+  color: var(--accent);
   font-family: "Questrial", sans-serif;
-            
-    /* background: var(--glass-bg); */
 
-
+  /* background: var(--glass-bg); */
 }
 
 /* ===== CAREER SECTION ===== */

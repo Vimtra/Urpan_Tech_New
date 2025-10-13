@@ -16,124 +16,122 @@ body {
   padding-top: 70px; /* Space for the navbar */
 }
 
-
 html {
   scroll-behavior: smooth;
   /* Increased padding to account for fixed navbar height in B5 */
-  scroll-padding-top: 80px; 
+  scroll-padding-top: 80px;
 }
 
 /* ===== CONTACT PAGE CONTENT STYLES ===== */
 
 /* Hero Container */
 .contact {
-    position: relative;
-    height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; 
-    padding-top: 70px; /* Pushed content down */
-    background-color: var(--bs-theme-color); /* Fallback */
+  position: relative;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: 70px; /* Pushed content down */
+  background-color: var(--bs-theme-color); /* Fallback */
 }
 
 /* Blurred Background (Parallax Effect) */
 .bg-blur {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 150%; 
-    background-image: url("./images/Contact\ Us.jpg");
-    background-size: cover;
-    background-position: center;
-    filter: blur(8px) brightness(0.5); /* Stronger blur/darkness for readability */
-    z-index: 1;
-    transition: transform 0.1s linear; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150%;
+  background-image: url("./images/Contact\ Us.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px) brightness(0.5); /* Stronger blur/darkness for readability */
+  z-index: 1;
+  transition: transform 0.1s linear;
 }
 
 /* Hero Content (Over the blur) */
 .hero-content {
-    font-family: "Young Serif", serif;
-    position: relative;
-    z-index: 2; 
-    text-align: center;
-    color: #fff;
-    padding: 0 20px;
+  font-family: "Young Serif", serif;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;
 }
 
 .hero-content h2 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
 .hero-content p {
-    font-family: "Questrial", sans-serif;
-    font-size: 1.5rem;
-    font-weight: 400;
-    opacity: 0.9;
+  font-family: "Questrial", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  opacity: 0.9;
 }
 
 /* Contact Details Section Styling */
 .contact-section {
-    background-color: #f8f9fa; /* Light grey background for contrast */
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+  background-color: #f8f9fa; /* Light grey background for contrast */
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 .contact-section .card {
-    border: 1px solid rgba(0,0,0,0.1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 .contact-section h3 {
-    font-family: "Young Serif", serif;
-    color: var(--bs-theme-color);
-    font-size: 1.5rem;
+  font-family: "Young Serif", serif;
+  color: var(--bs-theme-color);
+  font-size: 1.5rem;
 }
 .contact-section h2 {
-    font-family: "Young Serif", serif;
-    color: var(--bs-theme-color);
-    font-size: 2.5rem;
+  font-family: "Young Serif", serif;
+  color: var(--bs-theme-color);
+  font-size: 2.5rem;
 }
 .contact-section h4 {
-    font-weight: 600;
-    color: var(--bs-theme-color);
-    font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--bs-theme-color);
+  font-size: 1.2rem;
 }
 .contact-section p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #495057;
-    text-align: justify;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #495057;
+  text-align: justify;
 }
 
 /* Contact List Styling */
 .contact-detail li {
-    font-size: 1rem;
-    color: #495057;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: flex-start;
+  font-size: 1rem;
+  color: #495057;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: flex-start;
 }
 .contact-detail i {
-    color: var(--bs-accent-color);
-    width: 25px;
-    text-align: center;
-    font-size: 1.1rem;
-    margin-top: 2px;
+  color: var(--bs-accent-color);
+  width: 25px;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 2px;
 }
 
 /* Map Container Styling */
 .map-container {
-    height: 450px;
-    border: 5px solid white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  height: 450px;
+  border: 5px solid white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 .map-container iframe {
-    display: block;
+  display: block;
 }
-
 
 /* ===== FOOTER STYLES (FINAL UNIFIED VERSION) ===== */
 
@@ -164,16 +162,16 @@ html {
 }
 
 .footer-logo {
-    height: 40px;
-    filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  height: 40px;
+  filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
 }
 
 .company-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 15px; 
-    text-align: left; /* ENSURES LEFT ALIGNMENT */
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 15px;
+  text-align: left; /* ENSURES LEFT ALIGNMENT */
 }
 
 .footer-main h5 {
@@ -192,7 +190,7 @@ html {
 
 .footer-link {
   color: rgba(255, 255, 255, 0.8);
-  text-decoration: none !important; 
+  text-decoration: none !important;
   display: inline-block;
   padding: 4px 0;
   transition: all 0.3s ease-in-out;
@@ -206,43 +204,43 @@ html {
 
 /* Contact List Specifics - Enhanced Alignment (Desktop) */
 .contact-list li {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.8);
-    display: flex; 
-    align-items: flex-start; /* Aligns content (text/link) to the top of the icon */
-    text-align: left; 
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: flex-start; /* Aligns content (text/link) to the top of the icon */
+  text-align: left;
 }
 
 .contact-list i {
-    color: #c021b6; 
-    font-size: 1.1rem;
-    width: 20px;
-    flex-shrink: 0; 
-    margin-right: 15px; 
+  color: #c021b6;
+  font-size: 1.1rem;
+  width: 20px;
+  flex-shrink: 0;
+  margin-right: 15px;
 }
 
 /* Divider line */
 .footer-divider {
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 /* Bottom Bar Styles (Copyright & Social) */
 .copyright-text {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .social-links-combined {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .social-links-combined span {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 36px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 36px;
 }
 
 .social-icon-footer {
@@ -263,42 +261,41 @@ html {
 
 .social-icon-footer:hover {
   background: linear-gradient(135deg, #ff69eb, #86047d);
-  transform: scale(1.2); 
+  transform: scale(1.2);
   box-shadow: 0 0 10px rgba(255, 105, 235, 0.5);
 }
 
-
 /* Footer Mobile Responsiveness (FIXED ALIGNMENT) */
 @media (max-width: 767.98px) {
-    /* Main columns are forced to be centered on mobile via flexbox */
-    .footer-main .row > div {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .company-description {
-        text-align: center;
-    }
-    
-    .footer-main h5 {
-        text-align: center; /* Center titles on mobile */
-    }
+  /* Main columns are forced to be centered on mobile via flexbox */
+  .footer-main .row > div {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    /* Contact list items are centered on mobile */
-    .contact-list li {
-        text-align: center;
-        justify-content: center; 
-        padding: 0 10px; 
-    }
+  .company-description {
+    text-align: center;
+  }
 
-    .social-links-combined {
-        /* Ensure social links are centered on mobile */
-        justify-content: center !important; 
-    }
-    
-    .social-links-combined span {
-        display: none !important;
-    }
+  .footer-main h5 {
+    text-align: center; /* Center titles on mobile */
+  }
+
+  /* Contact list items are centered on mobile */
+  .contact-list li {
+    text-align: center;
+    justify-content: center;
+    padding: 0 10px;
+  }
+
+  .social-links-combined {
+    /* Ensure social links are centered on mobile */
+    justify-content: center !important;
+  }
+
+  .social-links-combined span {
+    display: none !important;
+  }
 }
