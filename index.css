@@ -1221,7 +1221,7 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #2f0036 0%, #1a0020 100%);
+  background: linear-gradient(135deg, #bf12a2 0%, #540a65 100%);
   z-index: 9999;
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
