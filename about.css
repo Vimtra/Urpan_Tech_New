@@ -50,7 +50,7 @@ html {
   inset: 0;
   background: linear-gradient(120deg, #c22d90, #d275ca, #64005d, #c22d90);
   background-size: 300% 300%;
-  animation: gradientShift 15s ease infinite;
+  animation: gradientShift 5s ease infinite;
   opacity: 0.5;
   z-index: 1;
 }
