@@ -1,0 +1,419 @@
+// === CONFIGURATION (UPDATE THESE VALUES) ===
+const SPREADSHEET_ID = "Spreadsheet ID";
+const DRIVE_FOLDER_ID = "Drive Folder ID";
+const RECIPIENT_EMAIL = "Receiver Mail";
+const SHEET_NAME = "Sheet1";
+
+/**
+ * Handle GET requests - Test endpoint
+ */
+function doGet() {
+  return ContentService.createTextOutput(JSON.stringify({
+    status: "online",
+    message: "Career Form API is running",
+    timestamp: new Date().toISOString()
+  })).setMimeType(ContentService.MimeType.JSON);
+}
+
+/**
+ * Handle POST requests - Main form submission
+ */
+function doPost(e) {
+  const lock = LockService.getScriptLock();
+
+  try {
+    lock.tryLock(10000);
+    Logger.log("📨 ========== NEW SUBMISSION ==========");
+    Logger.log("Event object keys: " + Object.keys(e).join(", "));
+    Logger.log("Parameter keys: " + Object.keys(e.parameter || {}).join(", "));
+
+    const formData = e.parameter || {};
+    Logger.log("Form data: " + JSON.stringify(formData));
+
+    // --- Parse applicant data ---
+    const applicantName = (formData.name || "").trim();
+    const applicantEmail = (formData.email || "").trim();
+    const applicantPhone = (formData.phone || "").trim();
+    const jobAppliedFor = (formData.job_applied_for || "").trim();
+
+    // NEW: Get base64 file data
+    const fileData = formData.fileData || "";
+    const fileName = formData.fileName || "resume.pdf";
+    const mimeType = formData.mimeType || "application/pdf";
+
+    // --- Validate required fields ---
+    if (!applicantName) throw new Error("Missing required field: name");
+    if (!applicantEmail) throw new Error("Missing required field: email");
+    if (!jobAppliedFor) throw new Error("Missing required field: job_applied_for");
+    if (!fileData) throw new Error("Resume file is required but was not provided in the submission payload.");
+
+    // --- Validate email format ---
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(applicantEmail)) throw new Error("Invalid email format");
+
+    Logger.log(`📎 File received: ${fileName} (base64 length: ${fileData.length})`);
+
+    // --- Handle file upload from base64 ---
+    let fileUrl = "N/A";
+
+    try {
+      Logger.log("📁 Decoding base64 file...");
+      const fileBytes = Utilities.base64Decode(fileData);
+      const fileBlob = Utilities.newBlob(fileBytes, mimeType, fileName);
+
+      Logger.log("✅ File decoded successfully");
+      Logger.log("📤 Uploading to Drive...");
+
+      const folder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
+      Logger.log("✅ Folder found: " + folder.getName());
+
+      const safeName = applicantName.replace(/[^a-zA-Z0-9]/g, "_");
+      const safeJob = jobAppliedFor.replace(/[^a-zA-Z0-9]/g, "_").substring(0, 30);
+      const timestamp = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyyMMdd_HHmmss");
+
+      const fileExtension = fileName.split('.').pop();
+      const newFileName = `${safeJob}_${safeName}_${timestamp}.${fileExtension}`;
+
+      const newFile = folder.createFile(fileBlob);
+      newFile.setName(newFileName);
+      newFile.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+
+      fileUrl = newFile.getUrl();
+      Logger.log(`✅ File uploaded successfully: ${newFileName}`);
+      Logger.log(`✅ File URL: ${fileUrl}`);
+
+    } catch (fileError) {
+      Logger.log("❌ File upload error: " + fileError.message);
+      throw new Error("Failed to upload resume file: " + fileError.message);
+    }
+
+    // --- Save to spreadsheet ---
+    Logger.log("📊 Attempting to open spreadsheet...");
+    const doc = SpreadsheetApp.openById(SPREADSHEET_ID);
+    Logger.log("✅ Spreadsheet opened: " + doc.getName());
+
+    const sheet = doc.getSheetByName(SHEET_NAME);
+    if (!sheet) {
+      const availableSheets = doc.getSheets().map(s => s.getName()).join(", ");
+      throw new Error(`Sheet "${SHEET_NAME}" not found. Available sheets: ${availableSheets}`);
+    }
+    Logger.log("✅ Sheet found: " + sheet.getName());
+
+    // Check if headers exist, if not create them
+    if (sheet.getLastRow() === 0) {
+      const headers = ["Timestamp", "Position", "Full Name", "Email", "Phone", "Resume Link"];
+      sheet.appendRow(headers);
+      sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold");
+      Logger.log("✅ Headers created");
+    }
+
+    const newRowData = {
+      Timestamp: Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "MM/dd/yyyy HH:mm:ss"),
+      ApplyingFor: jobAppliedFor,
+      FullName: applicantName,
+      Email: applicantEmail,
+      Phone: applicantPhone || "N/A",
+      ResumeLink: fileUrl
+    };
+
+    const newRow = [
+      newRowData.Timestamp,
+      newRowData.ApplyingFor,
+      newRowData.FullName,
+      newRowData.Email,
+      newRowData.Phone,
+      newRowData.ResumeLink
+    ];
+
+    Logger.log("📝 Appending row: " + JSON.stringify(newRow));
+    sheet.appendRow(newRow);
+
+    // Force flush to ensure data is written
+    SpreadsheetApp.flush();
+
+    const lastRow = sheet.getLastRow();
+    Logger.log("✅ Data saved to row " + lastRow);
+    Logger.log("✅ Data: " + JSON.stringify(newRowData));
+
+    // --- Send notification email ---
+    try {
+      sendNotificationEmail(newRowData);
+    } catch (emailErr) {
+      Logger.log("⚠️ Email notification failed: " + emailErr.message);
+    }
+
+    return ContentService.createTextOutput(
+      JSON.stringify({
+        status: "success",
+        message: "Application submitted successfully",
+        applicant: applicantName,
+        fileUrl: fileUrl
+      })
+    ).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    Logger.log("❌ Error: " + err.message);
+    Logger.log("Error stack: " + err.stack);
+
+    try {
+      sendErrorNotificationEmail({
+        FullName: e?.parameter?.name || "Unknown",
+        ApplyingFor: e?.parameter?.job_applied_for || "Unknown",
+        ErrorMessage: err.message
+      });
+    } catch (emailError) {
+      Logger.log("⚠️ Error email failed: " + emailError.message);
+    }
+
+    return ContentService.createTextOutput(
+      JSON.stringify({
+        status: "error",
+        message: err.message
+      })
+    ).setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    if (lock.hasLock()) lock.releaseLock();
+  }
+}
+
+/**
+ * Parse multipart form data (for file uploads)
+ */
+function parseMultipartFormData(contents, boundary) {
+  const result = {};
+  const boundaryString = '--' + boundary;
+
+  try {
+    // Split by boundary
+    const parts = contents.split(boundaryString);
+
+    for (let part of parts) {
+      if (part.includes('Content-Disposition')) {
+        const nameMatch = part.match(/name="([^"]+)"/);
+        const filenameMatch = part.match(/filename="([^"]+)"/);
+
+        if (nameMatch && filenameMatch) {
+          // This is a file
+          const fieldName = nameMatch[1];
+          const filename = filenameMatch[1];
+
+          // Extract file content (after double newline)
+          const contentStart = part.indexOf('\r\n\r\n') + 4;
+          const contentEnd = part.lastIndexOf('\r\n');
+
+          if (contentStart > 3 && contentEnd > contentStart) {
+            const fileContent = part.substring(contentStart, contentEnd);
+            const blob = Utilities.newBlob(fileContent, 'application/octet-stream', filename);
+            result[fieldName] = blob;
+            Logger.log(`Parsed file: ${filename} for field ${fieldName}`);
+          }
+        }
+      }
+    }
+  } catch (err) {
+    Logger.log("Error in parseMultipartFormData: " + err.message);
+  }
+
+  return result;
+}
+
+/**
+ * Send success notification email
+ */
+function sendNotificationEmail(data) {
+  try {
+    const subject = `✅ New Job Application: ${data.ApplyingFor} - ${data.FullName}`;
+    const htmlBody = `
+<!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body style="margin: 0; padding: 0; background-color: #f4f7fa; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f4f7fa; padding: 40px 20px;">
+          <tr>
+            <td align="center">
+              <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                
+                <!-- Header -->
+                <tr>
+                  <td style="background: radial-gradient(ellipse at bottom, #86047d, #ff66ff); padding: 32px 40px; text-align: center;">
+                    <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: 600; letter-spacing: -0.5px;">New Job Application</h1>
+                    <p style="margin: 8px 0 0 0; color: #e0e7ff; font-size: 14px; font-weight: 400;">Candidate Profile Review</p>
+                  </td>
+                </tr>
+                
+                <!-- Position Banner -->
+                <tr>
+                  <td style="background-color: #eff6ff; padding: 20px 40px; border-bottom: 1px solid #dbeafe;">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td>
+                          <p style="margin: 0; color: #64748b; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Position Applied</p>
+                          <h2 style="margin: 6px 0 0 0; color: #1e293b; font-size: 20px; font-weight: 600;">${data.ApplyingFor}</h2>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                
+                <!-- Application Details -->
+                <tr>
+                  <td style="padding: 32px 40px;">
+                    <h3 style="margin: 0 0 20px 0; color: #1e293b; font-size: 16px; font-weight: 600;">Candidate Information</h3>
+                    
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <!-- Full Name -->
+                      <tr>
+                        <td style="padding: 16px 0; border-bottom: 1px solid #f1f5f9;">
+                          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                              <td width="140" valign="top">
+                                <p style="margin: 0; color: #64748b; font-size: 14px; font-weight: 500;">Full Name</p>
+                              </td>
+                              <td valign="top">
+                                <p style="margin: 0; color: #1e293b; font-size: 14px; font-weight: 500;">${data.FullName}</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      
+                      <!-- Email -->
+                      <tr>
+                        <td style="padding: 16px 0; border-bottom: 1px solid #f1f5f9;">
+                          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                              <td width="140" valign="top">
+                                <p style="margin: 0; color: #64748b; font-size: 14px; font-weight: 500;">Email Address</p>
+                              </td>
+                              <td valign="top">
+                                <a href="mailto:${data.Email}" style="margin: 0; color: #3b82f6; font-size: 14px; font-weight: 500; text-decoration: none;">${data.Email}</a>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      
+                      <!-- Phone -->
+                      <tr>
+                        <td style="padding: 16px 0; border-bottom: 1px solid #f1f5f9;">
+                          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                              <td width="140" valign="top">
+                                <p style="margin: 0; color: #64748b; font-size: 14px; font-weight: 500;">Phone Number</p>
+                              </td>
+                              <td valign="top">
+                                <p style="margin: 0; color: #1e293b; font-size: 14px; font-weight: 500;">${data.Phone}</p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      
+                      <!-- Resume -->
+                      <tr>
+                        <td style="padding: 16px 0;">
+                          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                              <td width="140" valign="top">
+                                <p style="margin: 0; color: #64748b; font-size: 14px; font-weight: 500;">Resume</p>
+                              </td>
+                              <td valign="top">
+                                <a href="${data.ResumeLink}" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #86047d 0%, #ff66ff 100%); color: #ffffff; padding: 10px 20px; font-size: 14px; font-weight: 500; text-decoration: none; border-radius: 6px; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);">
+                                  View Resume
+                                </a>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                
+                <!-- Footer -->
+                <tr>
+                  <td style="background-color: #f8fafc; padding: 24px 40px; text-align: center; border-top: 1px solid #e2e8f0;">
+                    <p style="margin: 0; color: #94a3b8; font-size: 12px; line-height: 18px;">
+                      <strong style="color: #64748b;">Submitted:</strong> ${data.Timestamp}
+                    </p>
+                    <p style="margin: 12px 0 0 0; color: #94a3b8; font-size: 11px; line-height: 16px;">
+                      This is an automated notification from Urpan Technologies Career Portal
+                    </p>
+                  </td>
+                </tr>
+                
+              </table>
+            </td>
+          </tr>
+        </table>
+      </body>
+      </html>`;
+
+    MailApp.sendEmail({
+      to: RECIPIENT_EMAIL,
+      subject: subject,
+      htmlBody: htmlBody
+    });
+
+    Logger.log(`✅ Notification email sent to ${RECIPIENT_EMAIL}`);
+  } catch (err) {
+    Logger.log(`⚠️ Failed to send notification: ${err.message}`);
+  }
+}
+
+/**
+ * Send error notification email
+ */
+function sendErrorNotificationEmail(data) {
+  try {
+    const subject = `❌ Application Error: ${data.ApplyingFor} (${data.FullName})`;
+    const htmlBody = `
+      <div style="font-family: Arial, sans-serif; color: #721c24; max-width: 600px; margin: 0 auto;">
+        <div style="background: #f8d7da; border: 2px solid #f5c6cb; padding: 20px; border-radius: 10px;">
+          <h2 style="margin-top: 0;">⚠️ Application Submission Error</h2>
+          <p>An error occurred while processing a job application.</p>
+          <table style="width: 100%; margin: 20px 0;">
+            <tr><td><strong>Applicant:</strong></td><td>${data.FullName}</td></tr>
+            <tr><td><strong>Position:</strong></td><td>${data.ApplyingFor}</td></tr>
+            <tr><td><strong>Time:</strong></td><td>${new Date().toLocaleString()}</td></tr>
+          </table>
+          <h3>Error Message:</h3>
+          <pre style="background: #fff; padding: 10px; border: 1px solid #f5c6cb; border-radius: 5px;">${data.ErrorMessage}</pre>
+        </div>
+      </div>`;
+
+    MailApp.sendEmail({
+      to: RECIPIENT_EMAIL,
+      subject: subject,
+      htmlBody: htmlBody
+    });
+
+    Logger.log(`📧 Error notification sent`);
+  } catch (err) {
+    Logger.log(`⚠️ Failed to send error email: ${err.message}`);
+  }
+}
+
+/**
+ * Test configuration
+ */
+function testConfiguration() {
+  try {
+    Logger.log("🧪 Testing configuration...");
+    const doc = SpreadsheetApp.openById(SPREADSHEET_ID);
+    const sheet = doc.getSheetByName(SHEET_NAME);
+    const folder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
+    Logger.log(`✅ Spreadsheet: ${doc.getName()}`);
+    Logger.log(`✅ Sheet: ${sheet.getName()}`);
+    Logger.log(`✅ Folder: ${folder.getName()}`);
+    Logger.log(`✅ Email: ${RECIPIENT_EMAIL}`);
+    Logger.log("🎉 Configuration test passed!");
+    return true;
+  } catch (err) {
+    Logger.log(`❌ Configuration test failed: ${err.message}`);
+    return false;
+  }
+}
