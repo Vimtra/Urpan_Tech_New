@@ -1,7 +1,7 @@
 // === CONFIGURATION (UPDATE THESE VALUES) ===
 const SPREADSHEET_ID = "Spreadsheet ID";
 const DRIVE_FOLDER_ID = "Drive Folder ID";
-const RECIPIENT_EMAIL = "Receiver Mail";
+const RECIPIENT_EMAIL = "Receiver Mail ID";
 const SHEET_NAME = "Sheet1";
 
 /**
