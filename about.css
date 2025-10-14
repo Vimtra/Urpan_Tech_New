@@ -86,7 +86,6 @@ html {
   padding: 0 20px;
 }
 .hero-content h1 {
-
   background-size: 200% 200%;
   font-size: 4.5rem;
   font-family: "Young Serif", serif;
@@ -98,14 +97,12 @@ html {
   position: relative;
   color: #ffffff;
 }
-.hero-content h1:hover{
-  
-    background: linear-gradient(135deg, #ffffff 0%, #931669 50%, #ffffff 100%);
-  animation: textShine 2s linear infinite;
-    -webkit-background-clip: text;
+.hero-content h1:hover {
+  background: linear-gradient(135deg, #ffffff 0%, #931669 50%, #ffffff 100%);
+
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-
 }
 
 .hero-content p {
@@ -333,7 +330,6 @@ h2::after {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
   position: relative;
 }
-
 
 .core-values-section::before {
   content: "";
@@ -605,7 +601,7 @@ h2::after {
 }
 
 .feature-title {
-   font-family: "Alan Sans", sans-serif;
+  font-family: "Alan Sans", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
   color: #1a1a1a;
@@ -714,10 +710,10 @@ h2::after {
   .feature-module {
     height: 400px;
   }
-  .feature-title{
+  .feature-title {
     font-size: 1.4rem;
   }
-  .feature-subtitle{
+  .feature-subtitle {
     font-size: 1.2rem;
   }
 
