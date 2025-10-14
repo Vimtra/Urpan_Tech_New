@@ -48,7 +48,7 @@ html {
 .about-hero .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, #64005d, #d275ca, #64005d, #c22d90);
+  background: linear-gradient(120deg, #c22d90, #d275ca, #64005d, #c22d90);
   background-size: 300% 300%;
   animation: gradientShift 15s ease infinite;
   opacity: 0.5;
@@ -98,7 +98,7 @@ html {
   color: #ffffff;
 }
 .hero-content h1:hover {
-  background: linear-gradient(120deg, #ffffff 0%, #931669 50%, #ffffff 100%);
+  background: linear-gradient(120deg, #ffffff 0%, #db30a2 50%, #ffffff 100%);
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
