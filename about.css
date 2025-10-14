@@ -98,7 +98,7 @@ html {
   color: #ffffff;
 }
 .hero-content h1:hover {
-  background: linear-gradient(135deg, #ffffff 0%, #931669 50%, #ffffff 100%);
+  background: linear-gradient(120deg, #ffffff 0%, #931669 50%, #ffffff 100%);
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
