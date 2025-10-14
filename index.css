@@ -887,7 +887,7 @@ html {
   /* Hero Section Mobile */
   .hero-section {
     padding: 100px 0 50px;
-    min-height: 100vh;
+    min-height: 80vh;
   }
 
   .hero-section .row {
