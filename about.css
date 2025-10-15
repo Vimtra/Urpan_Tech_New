@@ -6,8 +6,8 @@
 }
 :root {
   --accent: #86047d;
-  --accent-2: #c021b6;
-  --accent-3: #ff66ff;
+  --accent-2: #86047d;
+  --accent-3: #86047d;
   --dark-bg: #0a0015;
   --light-bg: #f5f7ff;
   --text-dark: #121212;
@@ -209,7 +209,7 @@ html {
   text-transform: uppercase;
   margin-bottom: 25px;
   letter-spacing: 1px;
-  background: linear-gradient(90deg, #ff6ec4, #420227, #9d50bb);
+  background: linear-gradient(90deg, #86047d, #420227, #9d50bb);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -53,7 +53,7 @@ html {
 .modern-navbar .nav-link:hover,
 .modern-navbar .nav-link.active {
   background-color: transparent !important;
-  color: #86047d !important;
+  color: #8C1B8E !important;
   transform: translateY(-2px);
 }
 
@@ -64,7 +64,7 @@ html {
   left: 50%;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #86047d, #b02ca5);
+  background: linear-gradient(90deg, #8C1B8E, #b02ca5);
   transition: all 0.3s ease;
   transform: translateX(-50%);
 }
@@ -75,7 +75,7 @@ html {
 }
 
 .modern-navbar .nav-item.cta-item .btn-contact {
-  background: linear-gradient(135deg, #86047d, #1e0036);
+  background: linear-gradient(135deg, #86047d, #8C1B8E);
   color: white !important;
   padding: 8px 24px !important;
   border-radius: 20px;
@@ -93,7 +93,7 @@ html {
 .modern-navbar .nav-item.cta-item .btn-contact:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 16px rgba(134, 4, 125, 0.3);
-  background: linear-gradient(135deg, #c021b6, #86047d);
+  background: linear-gradient(135deg, #8C1B8E, #86047d);
 }
 
 .modern-navbar .navbar-toggler {
@@ -121,7 +121,7 @@ html {
 .hero-section .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, #1e0036, #d324b0, #64005d, #2f0036);
+  background: linear-gradient(120deg, #1e0036, #8C1B8E, #64005d, #2f0036);
   background-size: 300% 300%;
   animation: gradientShift 10s ease infinite;
   opacity: 0.7;
@@ -180,7 +180,7 @@ html {
   top: 0;
   left: 0;
   z-index: -1;
-  background: linear-gradient(90deg, #ff8a00, #e52e71, #9d50bb);
+  background: linear-gradient(90deg, #ff8a00, #8C1B8E, #9d50bb);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -266,7 +266,7 @@ html {
 
 .btn-primary {
   background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-  color: #4a148c;
+  color: #8C1B8E;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 0 0 0 rgba(255, 255, 255, 0.5);
   animation: pulse 2.5s infinite;
 }
@@ -292,7 +292,7 @@ html {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(157, 80, 187, 0.3),
+    #8C1B8E
     transparent
   );
   transition: left 0.6s ease;
@@ -321,7 +321,7 @@ html {
 .btn-primary:hover {
   transform: translateY(-6px) scale(1);
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25), 0 0 30px rgba(157, 80, 187, 0.3);
-  color: #1e0036;
+  color: #7f0a81;
   background: linear-gradient(135deg, #ffffff 0%, #e8e8e8 100%);
   padding-right: 50px;
 }
@@ -440,7 +440,7 @@ html {
   font-family: "Questrial", sans-serif;
   font-weight: 700;
   font-size: 2.5rem;
-  color: #6a11cb;
+  color: #8C1B8E;
 }
 
 .services-title .ser {
@@ -489,14 +489,14 @@ html {
 .modern-card:hover {
   transform: translateY(-8px);
   box-shadow: 0px 0px 10px 2px rgba(239, 68, 68, 0.2),
-    0px 0px 20px 8px rgba(239, 68, 68, 0.1);
-  background: linear-gradient(135deg, #dba1d6 0%, #f0f0f0 100%);
+    0px 0px 20px 8px rgba(213, 44, 171, 0.185);
+  background: linear-gradient(135deg, #e369e5 0%, #f0f0f0 100%);
 }
 
 .card-icon {
   font-size: 3rem;
   margin-bottom: 18px;
-  color: #9d50bb;
+  color: #8C1B8E;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -589,7 +589,7 @@ html {
 .stat-icon {
   font-size: 2.8rem;
   margin-bottom: 18px;
-  color: #9d50bb;
+  color: #8C1B8E  ;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -730,7 +730,7 @@ html {
   font-size: 1.35rem;
   font-weight: 700;
   margin-bottom: 1.3rem;
-  color: #ff69eb;
+  color: #8C1B8E;
 }
 
 .footer-main ul {
@@ -774,7 +774,7 @@ html {
 }
 
 .contact-list i {
-  color: #c021b6;
+  color: #8C1B8E;
   font-size: 1.15rem;
   width: 22px;
   flex-shrink: 0;
@@ -1395,7 +1395,7 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #bf12a2 0%, #540a65 100%);
+  background: linear-gradient(135deg, #bf12a2 0%, #8C1B8E 100%);
   z-index: 9999;
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }

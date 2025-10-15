@@ -8,7 +8,7 @@
 :root {
   --accent: #86047d; /* Deep Magenta - Theme Color */
   --accent-2: #c021b6; /* Electric Magenta/Pink */
-  --accent-3: #ff66ff; /* Lighter, brighter Pink for depth */
+  --accent-3: #86047d; /* Lighter, brighter Pink for depth */
   --glass-bg: rgba(255, 255, 255, 0.9);
   --glass-border: rgba(0, 0, 0, 0.08);
   --muted: #5a5a5a;
@@ -136,6 +136,8 @@ html {
 .career-hero {
   padding: 2rem 1rem 2.5rem;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .career-hero h2 {
@@ -146,8 +148,9 @@ html {
   font-size: 2.8rem;
   color: var(--accent);
   font-family: "Questrial", sans-serif;
-
-  /* background: var(--glass-bg); */
+  position: relative;
+  z-index: 2;
+  margin-top: 40px;
 }
 
 /* ===== CAREER SECTION ===== */
@@ -376,7 +379,7 @@ html {
 .btn-primary:hover {
   background: var(--accent-2) !important;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(134, 4, 125, 0.3);
+  box-shadow: 0 5px 15px #86047d;
 }
 
 .btn-outline-secondary {
@@ -398,7 +401,7 @@ html {
 
 .checkmark-circle {
   font-size: 4rem;
-  color: #1e0036;
+  color: #86047d;
   animation: scaleIn 0.5s ease-out;
 }
 
@@ -455,6 +458,7 @@ html {
   }
 
   .career-hero h2 {
+      margin-top: 0;
     font-size: 1.8rem;
   }
 
@@ -480,170 +484,5 @@ html {
   .apply-now-btn {
     width: 100%;
     padding: 0.8rem;
-  }
-}
-/* ===== FOOTER ===== */
-
-.footer-main {
-  background: radial-gradient(ellipse at bottom, #1e0036, #2f0036);
-  padding-top: 40px;
-  padding-bottom: 20px;
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  font-family: "Josefin Sans", sans-serif;
-}
-
-.footer-blur-background {
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(12px);
-  background: rgba(186, 186, 186, 0.05);
-  z-index: 0;
-  pointer-events: none;
-}
-
-.footer-main .container {
-  position: relative;
-  z-index: 2;
-}
-
-.footer-logo {
-  height: 40px;
-  filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
-}
-
-.company-description {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.7);
-  margin-top: 15px;
-  text-align: left;
-}
-
-.footer-main h5 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #ff69eb;
-  text-align: left;
-}
-
-.footer-main ul {
-  list-style: none;
-  padding: 0;
-  text-align: left;
-}
-
-.footer-link {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none !important;
-  display: inline-block;
-  padding: 4px 0;
-  transition: all 0.3s ease-in-out;
-  font-size: 1rem;
-}
-
-.footer-link:hover {
-  color: #fff;
-  transform: translateX(4px);
-}
-
-/* Contact List Specifics - Enhanced Alignment (Desktop) */
-.contact-list li {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.8);
-  display: flex;
-  align-items: flex-start;
-  text-align: left;
-}
-
-.contact-list i {
-  color: #c021b6;
-  font-size: 1.1rem;
-  width: 20px;
-  flex-shrink: 0;
-  margin-right: 15px;
-}
-
-/* Divider line */
-.footer-divider {
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-/* Bottom Bar Styles (Copyright & Social) */
-.copyright-text {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.social-links-combined {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.social-links-combined span {
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.7);
-  line-height: 36px;
-}
-
-.social-icon-footer {
-  color: #fff;
-  font-size: 1rem;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
-  padding: 8px;
-  width: 36px;
-  height: 36px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  transform: scale(1);
-}
-
-.social-icon-footer:hover {
-  background: linear-gradient(135deg, #ff69eb, #86047d);
-  transform: scale(1.2);
-  box-shadow: 0 0 10px rgba(255, 105, 235, 0.5);
-}
-
-/* Footer Mobile Responsiveness (FIXED ALIGNMENT) */
-@media (max-width: 767.98px) {
-  /* Main columns are forced to be centered on mobile via flexbox */
-  .footer-main .row > div {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .company-description {
-    text-align: center;
-  }
-
-  .footer-main h5 {
-    text-align: center; /* Center titles on mobile */
-  }
-
-  /* Contact list items are centered on mobile */
-  .contact-list li {
-    text-align: center;
-    justify-content: center;
-    padding: 0 10px;
-  }
-
-  .social-links-combined {
-    /* Ensure social links are centered on mobile */
-    justify-content: center !important;
-  }
-
-  .social-links-combined span {
-    display: none !important;
   }
 }

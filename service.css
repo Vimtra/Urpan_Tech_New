@@ -60,7 +60,7 @@ body::before {
 
 .particle {
   position: absolute;
-  background: rgba(73, 4, 85, 0.1);
+  background: #86047d;
   border-radius: 50%;
   animation: float 25s infinite;
 }
@@ -124,8 +124,8 @@ html {
   padding: 4rem 2rem;
   background: linear-gradient(
     135deg,
-    rgba(73, 4, 85, 1),
-    rgba(100, 20, 115, 1)
+    #86047d,
+    #86047d
   );
   backdrop-filter: blur(10px);
   border-radius: 0;
@@ -219,7 +219,7 @@ html {
 
 .service-card h2 {
   font-family: "Questrial", sans-serif;
-  color: rgba(73, 4, 85, 1);
+  color: #86047d;
   font-weight: 700;
   margin-bottom: 1rem;
   font-size: 2rem;
@@ -355,7 +355,7 @@ html {
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 1.2rem;
-  color: #ff69eb;
+  color:#86047d;
 }
 
 .footer-main ul {
@@ -398,7 +398,7 @@ html {
 }
 
 .contact-list i {
-  color: #c021b6;
+  color: #86047d;
   font-size: 1.1rem;
   width: 20px;
   flex-shrink: 0;
