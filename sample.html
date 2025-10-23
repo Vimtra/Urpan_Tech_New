@@ -1,388 +1,494 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Core Values - Urpan Technologies</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      rel="stylesheet"
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #fafbfc;
-            color: #1a1a1a;
-            line-height: 1.6;
-        }
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        background: #fafbfc;
+        color: #1a1a1a;
+        line-height: 1.6;
+      }
 
+      .core-values-section {
+        padding: 100px 0;
+        position: relative;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 70px;
+      }
+
+      .section-header h2 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 20px;
+        letter-spacing: -1.5px;
+      }
+
+      .section-header p {
+        font-size: 1.125rem;
+        color: #64748b;
+        max-width: 680px;
+        margin: 0 auto;
+        line-height: 1.8;
+      }
+
+      .divider-line {
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, #86047d, #a805a0);
+        margin: 0 auto 50px;
+        border-radius: 2px;
+      }
+
+      .values-grid {
+        display: flex;
+        gap: 32px;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 20px 0;
+        scroll-behavior: smooth;
+        scrollbar-width: thin;
+        scrollbar-color: #86047d #e2e8f0;
+      }
+
+      .values-grid::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .values-grid::-webkit-scrollbar-track {
+        background: #e2e8f0;
+        border-radius: 4px;
+      }
+
+      .values-grid::-webkit-scrollbar-thumb {
+        background: linear-gradient(90deg, #86047d, #a805a0);
+        border-radius: 4px;
+      }
+
+      .values-grid::-webkit-scrollbar-thumb:hover {
+        background: #86047d;
+      }
+
+      .value-card {
+        position: relative;
+        min-width: 320px;
+        height: 360px;
+        border-radius: 16px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s ease;
+        flex-shrink: 0;
+      }
+
+      .value-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 32px rgba(134, 4, 125, 0.2);
+      }
+
+      .value-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+
+      .value-card:hover .value-image {
+        transform: scale(1.1);
+      }
+
+      .value-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.3) 0%,
+          rgba(134, 4, 125, 0.85) 100%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 32px;
+        text-align: center;
+        transition: all 0.4s ease;
+      }
+
+      .value-card:hover .value-overlay {
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.5) 0%,
+          rgba(134, 4, 125, 0.95) 100%
+        );
+      }
+
+      .value-title {
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 0;
+        line-height: 1.3;
+        text-align: center;
+        transition: all 0.4s ease;
+      }
+
+      .value-card:hover .value-title {
+        margin-bottom: 12px;
+      }
+
+      .value-description {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.6;
+        margin: 0;
+        text-align: center;
+        max-width: 280px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease;
+      }
+
+      .value-card:hover .value-description {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .value-card:hover .value-title {
+        transform: translateY(0);
+      }
+
+      @media (max-width: 992px) {
+        .value-card {
+          min-width: 300px;
+          height: 340px;
+        }
+      }
+
+      @media (max-width: 768px) {
         .core-values-section {
-            padding: 100px 0;
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 70px;
+          padding: 70px 0;
         }
 
         .section-header h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 20px;
-            letter-spacing: -1.5px;
-        }
-
-        .section-header p {
-            font-size: 1.125rem;
-            color: #64748b;
-            max-width: 680px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        .divider-line {
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, #86047d, #a805a0);
-            margin: 0 auto 50px;
-            border-radius: 2px;
+          font-size: 2.25rem;
         }
 
         .values-grid {
-            display: flex;
-            gap: 32px;
-            max-width: 100%;
-            margin: 0 auto;
-            overflow-x: auto;
-            overflow-y: hidden;
-            padding: 20px 0;
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: #86047d #e2e8f0;
-        }
-
-        .values-grid::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .values-grid::-webkit-scrollbar-track {
-            background: #e2e8f0;
-            border-radius: 4px;
-        }
-
-        .values-grid::-webkit-scrollbar-thumb {
-            background: linear-gradient(90deg, #86047d, #a805a0);
-            border-radius: 4px;
-        }
-
-        .values-grid::-webkit-scrollbar-thumb:hover {
-            background: #86047d;
+          flex-direction: column;
+          overflow-x: hidden;
+          overflow-y: visible;
+          gap: 20px;
+          padding: 20px;
         }
 
         .value-card {
-            position: relative;
-            min-width: 320px;
-            height: 360px;
-            border-radius: 16px;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s ease;
-            flex-shrink: 0;
-        }
-
-        .value-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 32px rgba(134, 4, 125, 0.2);
-        }
-
-        .value-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .value-card:hover .value-image {
-            transform: scale(1.1);
+          min-width: 100%;
+          width: 100%;
+          height: 280px;
         }
 
         .value-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.3) 0%, rgba(134, 4, 125, 0.85) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 32px;
-            text-align: center;
-            transition: all 0.4s ease;
-        }
-
-        .value-card:hover .value-overlay {
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(134, 4, 125, 0.95) 100%);
+          background: linear-gradient(
+            180deg,
+            rgba(15, 23, 42, 0.5) 0%,
+            rgba(134, 4, 125, 0.9) 100%
+          );
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          padding: 24px;
         }
 
         .value-title {
-            font-size: 1.375rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 0;
-            line-height: 1.3;
-            text-align: center;
-            transition: all 0.4s ease;
-        }
-
-        .value-card:hover .value-title {
-            margin-bottom: 12px;
+          font-size: 1.25rem;
+          text-align: center;
         }
 
         .value-description {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-            margin: 0;
-            text-align: center;
-            max-width: 280px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s ease;
+          opacity: 1;
+          transform: translateY(0);
+          text-align: center;
+          max-width: 100%;
+          font-size: 0.875rem;
         }
 
         .value-card:hover .value-description {
-            opacity: 1;
-            transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .section-header h2 {
+          font-size: 1.875rem;
         }
 
-        .value-card:hover .value-title {
-            transform: translateY(0);
+        .value-card {
+          height: 260px;
         }
 
-        @media (max-width: 992px) {
-            .value-card {
-                min-width: 300px;
-                height: 340px;
-            }
+        .value-overlay {
+          padding: 20px;
         }
 
-        @media (max-width: 768px) {
-            .core-values-section {
-                padding: 70px 0;
-            }
-
-            .section-header h2 {
-                font-size: 2.25rem;
-            }
-
-            .values-grid {
-                flex-direction: column;
-                overflow-x: hidden;
-                overflow-y: visible;
-                gap: 20px;
-                padding: 20px;
-            }
-
-            .value-card {
-                min-width: 100%;
-                width: 100%;
-                height: 280px;
-            }
-
-            .value-overlay {
-                background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(134, 4, 125, 0.9) 100%);
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-                padding: 24px;
-            }
-
-            .value-title {
-                font-size: 1.25rem;
-                text-align: center;
-            }
-
-            .value-description {
-                opacity: 1;
-                transform: translateY(0);
-                text-align: center;
-                max-width: 100%;
-                font-size: 0.875rem;
-            }
-
-            .value-card:hover .value-description {
-                opacity: 1;
-            }
+        .value-title {
+          font-size: 1.125rem;
         }
 
-        @media (max-width: 576px) {
-            .section-header h2 {
-                font-size: 1.875rem;
-            }
-
-            .value-card {
-                height: 260px;
-            }
-
-            .value-overlay {
-                padding: 20px;
-            }
-
-            .value-title {
-                font-size: 1.125rem;
-            }
-
-            .value-description {
-                font-size: 0.8125rem;
-                line-height: 1.5;
-            }
+        .value-description {
+          font-size: 0.8125rem;
+          line-height: 1.5;
         }
+      }
 
-        @media (prefers-reduced-motion: reduce) {
-            .value-card,
-            .value-image,
-            .value-overlay,
-            .value-title,
-            .value-description {
-                transition: none;
-            }
+      @media (prefers-reduced-motion: reduce) {
+        .value-card,
+        .value-image,
+        .value-overlay,
+        .value-title,
+        .value-description {
+          transition: none;
         }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <section class="core-values-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Core Cultural Values</h2>
-                <div class="divider-line"></div>
-                <p>At Urpan Technologies, our core values define who we are and guide our actions every day. These principles shape our culture and drive our commitment to excellence.</p>
-            </div>
-
-            <div class="values-grid" role="list" aria-label="Core Cultural Values">
-                <div class="value-card" data-aos="fade-up" data-aos-delay="100" role="listitem" tabindex="0">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop" alt="Client-First Commitment" class="value-image">
-                    <div class="value-overlay">
-                        <h3 class="value-title">Client-First Commitment</h3>
-                        <p class="value-description">We prioritize our clients' needs and success above all, ensuring every decision we make serves their best interests.</p>
-                    </div>
-                </div>
-
-                <div class="value-card" data-aos="fade-up" data-aos-delay="150" role="listitem" tabindex="0">
-                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop" alt="Unwavering Passion" class="value-image">
-                    <div class="value-overlay">
-                        <h3 class="value-title">Unwavering Passion</h3>
-                        <p class="value-description">Our team is driven by a passion for excellence and innovation, constantly pushing boundaries to deliver exceptional results.</p>
-                    </div>
-                </div>
-
-                <div class="value-card" data-aos="fade-up" data-aos-delay="200" role="listitem" tabindex="0">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop" alt="Collaborative Spirit" class="value-image">
-                    <div class="value-overlay">
-                        <h3 class="value-title">Collaborative Spirit</h3>
-                        <p class="value-description">We believe in teamwork and open communication to achieve the best results through collective intelligence and shared goals.</p>
-                    </div>
-                </div>
-
-                <div class="value-card" data-aos="fade-up" data-aos-delay="250" role="listitem" tabindex="0">
-                    <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop" alt="Empowerment" class="value-image">
-                    <div class="value-overlay">
-                        <h3 class="value-title">Empowerment</h3>
-                        <p class="value-description">We empower our employees and clients to reach their full potential through support, resources, and growth opportunities.</p>
-                    </div>
-                </div>
-
-                <div class="value-card" data-aos="fade-up" data-aos-delay="300" role="listitem" tabindex="0">
-                    <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&h=600&fit=crop" alt="Transparency" class="value-image">
-                    <div class="value-overlay">
-                        <h3 class="value-title">Transparency</h3>
-                        <p class="value-description">We maintain honesty and openness in all our dealings, fostering trust through clear and authentic communication.</p>
-                    </div>
-                </div>
-
-                <div class="value-card" data-aos="fade-up" data-aos-delay="350" role="listitem" tabindex="0">
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop" alt="Integrity" class="value-image">
-                    <div class="value-overlay">
-                        <h3 class="value-title">Integrity</h3>
-                        <p class="value-description">We uphold the highest ethical standards in everything we do, building lasting relationships on a foundation of trust.</p>
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2>Core Cultural Values</h2>
+          <div class="divider-line"></div>
+          <p>
+            At Urpan Technologies, our core values define who we are and guide
+            our actions every day. These principles shape our culture and drive
+            our commitment to excellence.
+          </p>
         </div>
+
+        <div class="values-grid" role="list" aria-label="Core Cultural Values">
+          <div
+            class="value-card"
+            data-aos="fade-up"
+            data-aos-delay="100"
+            role="listitem"
+            tabindex="0"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop"
+              alt="Client-First Commitment"
+              class="value-image"
+            />
+            <div class="value-overlay">
+              <h3 class="value-title">Client-First Commitment</h3>
+              <p class="value-description">
+                We prioritize our clients' needs and success above all, ensuring
+                every decision we make serves their best interests.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="value-card"
+            data-aos="fade-up"
+            data-aos-delay="150"
+            role="listitem"
+            tabindex="0"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop"
+              alt="Unwavering Passion"
+              class="value-image"
+            />
+            <div class="value-overlay">
+              <h3 class="value-title">Unwavering Passion</h3>
+              <p class="value-description">
+                Our team is driven by a passion for excellence and innovation,
+                constantly pushing boundaries to deliver exceptional results.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="value-card"
+            data-aos="fade-up"
+            data-aos-delay="200"
+            role="listitem"
+            tabindex="0"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop"
+              alt="Collaborative Spirit"
+              class="value-image"
+            />
+            <div class="value-overlay">
+              <h3 class="value-title">Collaborative Spirit</h3>
+              <p class="value-description">
+                We believe in teamwork and open communication to achieve the
+                best results through collective intelligence and shared goals.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="value-card"
+            data-aos="fade-up"
+            data-aos-delay="250"
+            role="listitem"
+            tabindex="0"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop"
+              alt="Empowerment"
+              class="value-image"
+            />
+            <div class="value-overlay">
+              <h3 class="value-title">Empowerment</h3>
+              <p class="value-description">
+                We empower our employees and clients to reach their full
+                potential through support, resources, and growth opportunities.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="value-card"
+            data-aos="fade-up"
+            data-aos-delay="300"
+            role="listitem"
+            tabindex="0"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&h=600&fit=crop"
+              alt="Transparency"
+              class="value-image"
+            />
+            <div class="value-overlay">
+              <h3 class="value-title">Transparency</h3>
+              <p class="value-description">
+                We maintain honesty and openness in all our dealings, fostering
+                trust through clear and authentic communication.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="value-card"
+            data-aos="fade-up"
+            data-aos-delay="350"
+            role="listitem"
+            tabindex="0"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop"
+              alt="Integrity"
+              class="value-image"
+            />
+            <div class="value-overlay">
+              <h3 class="value-title">Integrity</h3>
+              <p class="value-description">
+                We uphold the highest ethical standards in everything we do,
+                building lasting relationships on a foundation of trust.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 700,
-            easing: 'ease-out',
-            once: true,
-            offset: 100
-        });
+      AOS.init({
+        duration: 700,
+        easing: "ease-out",
+        once: true,
+        offset: 100,
+      });
 
-        // Auto-scroll animation for values grid
-        const valuesGrid = document.querySelector('.values-grid');
-        let scrollAmount = 0;
-        let scrollDirection = 1;
-        let scrollSpeed = 0.5;
-        let isHovered = false;
+      // Auto-scroll animation for values grid
+      const valuesGrid = document.querySelector(".values-grid");
+      let scrollAmount = 0;
+      let scrollDirection = 1;
+      let scrollSpeed = 0.5;
+      let isHovered = false;
 
-        function autoScroll() {
-            if (valuesGrid && !isHovered) {
-                const maxScroll = valuesGrid.scrollWidth - valuesGrid.clientWidth;
-                
-                scrollAmount += scrollSpeed * scrollDirection;
-                
-                if (scrollAmount >= maxScroll) {
-                    scrollDirection = -1;
-                } else if (scrollAmount <= 0) {
-                    scrollDirection = 1;
-                }
-                
-                valuesGrid.scrollLeft = scrollAmount;
-            }
-            
-            requestAnimationFrame(autoScroll);
+      function autoScroll() {
+        if (valuesGrid && !isHovered) {
+          const maxScroll = valuesGrid.scrollWidth - valuesGrid.clientWidth;
+
+          scrollAmount += scrollSpeed * scrollDirection;
+
+          if (scrollAmount >= maxScroll) {
+            scrollDirection = -1;
+          } else if (scrollAmount <= 0) {
+            scrollDirection = 1;
+          }
+
+          valuesGrid.scrollLeft = scrollAmount;
         }
 
-        // Start auto-scroll after page loads (desktop only)
-        window.addEventListener('load', () => {
+        requestAnimationFrame(autoScroll);
+      }
+
+      // Start auto-scroll after page loads (desktop only)
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          if (window.innerWidth > 768) {
+            // Center the first card initially
+            const firstCardWidth =
+              valuesGrid.querySelector(".value-card").offsetWidth;
+            const containerWidth = valuesGrid.clientWidth;
+            const initialScroll =
+              firstCardWidth - containerWidth / 2 + firstCardWidth / 2;
+            valuesGrid.scrollLeft = Math.max(
+              0,
+              initialScroll - containerWidth / 2
+            );
+            scrollAmount = valuesGrid.scrollLeft;
+
+            // Start auto-scroll after centering
             setTimeout(() => {
-                if (window.innerWidth > 768) {
-                    // Center the first card initially
-                    const firstCardWidth = valuesGrid.querySelector('.value-card').offsetWidth;
-                    const containerWidth = valuesGrid.clientWidth;
-                    const initialScroll = (firstCardWidth - containerWidth / 2) + (firstCardWidth / 2);
-                    valuesGrid.scrollLeft = Math.max(0, initialScroll - containerWidth / 2);
-                    scrollAmount = valuesGrid.scrollLeft;
-                    
-                    // Start auto-scroll after centering
-                    setTimeout(() => {
-                        autoScroll();
-                    }, 500);
-                }
-            }, 1000);
-        });
+              autoScroll();
+            }, 500);
+          }
+        }, 1000);
+      });
 
-        // Pause on hover
-        valuesGrid.addEventListener('mouseenter', () => {
-            isHovered = true;
-        });
+      // Pause on hover
+      valuesGrid.addEventListener("mouseenter", () => {
+        isHovered = true;
+      });
 
-        valuesGrid.addEventListener('mouseleave', () => {
-            isHovered = false;
-        });
+      valuesGrid.addEventListener("mouseleave", () => {
+        isHovered = false;
+      });
     </script>
-</body>
+  </body>
 </html>
