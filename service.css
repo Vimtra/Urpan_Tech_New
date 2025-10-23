@@ -7,7 +7,6 @@
 :root {
   --bs-theme-color: rgba(73, 4, 85, 1);
   --bs-accent-color: rgba(73, 4, 85, 0.9);
-  --bs-theme-rgb: 73, 4, 85;
 }
 
 body {
@@ -122,17 +121,19 @@ html {
 /* Professional Service Header */
 .service-header {
   padding: 4rem 2rem;
-  background: linear-gradient(
+  /* background: linear-gradient(
     135deg,
     #86047d,
     #86047d
-  );
+  ); */
+  background-color: #86047d;
   backdrop-filter: blur(10px);
   border-radius: 0;
-  margin-bottom: 4rem;
-  box-shadow: 0 4px 20px rgba(218, 122, 235, 0.15);
-  position: relative;
+  /* margin: 4rem 0; */
+box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;  position: relative;
   overflow: hidden;
+  border-radius: 10px;
+
 }
 
 .service-header::before {
@@ -160,16 +161,17 @@ html {
 
 .service-header span {
   /* text-shadow: 2px 2px 4px rgba(58, 13, 13, 0.2); */
-  color: #d1b8d4;
+  color: #cf92d5;
   text-shadow: none;
   /* border-bottom: 3px solid #ffffff; */
   padding-bottom: 5px;
+  letter-spacing: 2px;
 }
 
 .service-header p {
-  font-family: "Questrial", sans-serif;
-  font-size: 1.3rem;
+  font-family: "Josefin Sans", sans-serif;
   font-weight: 400;
+  font-size: 1.3rem;
   color: #f0f0f0;
   position: relative;
   z-index: 1;
@@ -186,7 +188,7 @@ html {
   border: 1px solid rgba(73, 4, 85, 0.1);
   border-left: 4px solid rgba(73, 4, 85, 1);
   border-radius: 8px;
-  padding: 3rem;
+  padding:0 3rem;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
   margin: 20px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -201,7 +203,8 @@ html {
   left: 0;
   width: 4px;
   height: 100%;
-  background: linear-gradient(180deg, rgba(73, 4, 85, 1), rgb(216, 161, 226));
+  background:#86047d;
+  /* background: linear-gradient(180deg, rgba(73, 4, 85, 1), rgb(216, 161, 226)); */
   transition: width 0.4s;
 }
 
@@ -233,7 +236,7 @@ html {
   font-size: 1.05rem;
   color: #4a5568;
   text-align: justify;
-  line-height: 1.8;
+  line-height: 2;
 }
 
 .service-img-wrapper {
@@ -244,17 +247,22 @@ html {
 }
 
 .service-img {
+  /* color: beige; */
   max-width: 50%;
   height: auto;
   border-radius: 8px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
   filter: grayscale(0%);
+  
 }
 
 .service-img:hover {
   transform: scale(1.05);
   /* box-shadow: 0 8px 30px rgba(73, 4, 85, 0.2); */
+    border-bottom: 3px solid #86047d;
+    cursor: pointer;
+
 }
 
 /* AOS Animation Enhancements */
