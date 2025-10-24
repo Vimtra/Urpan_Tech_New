@@ -18,17 +18,7 @@
   --color-bg: #0a0015; /* Very Dark Purple/Black */
 }
 
-body {
-  font-family: "Josefin Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  overflow-x: hidden;
-  position: relative;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--color-bg);
-  color: rgba(255, 255, 255, 0.85);
-  -webkit-overflow-scrolling: touch;
-}
+
 
 html {
   scroll-behavior: smooth;

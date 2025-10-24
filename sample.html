@@ -9,6 +9,10 @@
       rel="stylesheet"
     />
     <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link
       href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
       rel="stylesheet"
     />
@@ -27,265 +31,246 @@
         line-height: 1.6;
       }
 
-      .core-values-section {
-        padding: 100px 0;
-        position: relative;
+      .urpan-values-main {
+        padding: 80px 0;
+        background: #ffffff;
       }
 
-      .section-header {
+      .urpan-hero {
         text-align: center;
         margin-bottom: 70px;
       }
 
-      .section-header h2 {
-        font-size: 3rem;
+      .urpan-hero h2 {
+        font-family: "Rubik", sans-serif;
+
+        font-size: 2.75rem;
         font-weight: 700;
         color: #0f172a;
         margin-bottom: 20px;
         letter-spacing: -1.5px;
       }
 
-      .section-header p {
-        font-size: 1.125rem;
-        color: #64748b;
-        max-width: 680px;
-        margin: 0 auto;
-        line-height: 1.8;
-      }
-
-      .divider-line {
-        width: 60px;
-        height: 4px;
-        background: linear-gradient(90deg, #86047d, #a805a0);
-        margin: 0 auto 50px;
-        border-radius: 2px;
-      }
-
-      .values-grid {
-        display: flex;
-        gap: 32px;
-        max-width: 100%;
-        margin: 0 auto;
-        overflow-x: auto;
-        overflow-y: hidden;
-        padding: 20px 0;
-        scroll-behavior: smooth;
-        scrollbar-width: thin;
-        scrollbar-color: #86047d #e2e8f0;
-      }
-
-      .values-grid::-webkit-scrollbar {
-        height: 8px;
-      }
-
-      .values-grid::-webkit-scrollbar-track {
-        background: #e2e8f0;
-        border-radius: 4px;
-      }
-
-      .values-grid::-webkit-scrollbar-thumb {
-        background: linear-gradient(90deg, #86047d, #a805a0);
-        border-radius: 4px;
-      }
-
-      .values-grid::-webkit-scrollbar-thumb:hover {
+      .urpan-accent-line {
+        width: 100px;
+        height: 3px;
         background: #86047d;
+        margin: 0 auto 30px;
       }
 
-      .value-card {
+      .urpan-hero p {
+        font-family: "Rubik", sans-serif;
+        font-size: 1.25rem;
+        color: #555;
+        max-width: 90vw;
+        margin: 0 auto;
+        line-height: 1.7;
+        /* text-align: justify; */
+      }
+
+      .urpan-timeline {
         position: relative;
-        min-width: 320px;
-        height: 360px;
-        border-radius: 16px;
-        overflow: hidden;
-        cursor: pointer;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        transition: all 0.4s ease;
-        flex-shrink: 0;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
       }
 
-      .value-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 32px rgba(134, 4, 125, 0.2);
-      }
-
-      .value-image {
+      .urpan-timeline::before {
+        content: "";
         position: absolute;
+        left: 50%;
         top: 0;
-        left: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(180deg, #86047d 0%, #e8d4e6 100%);
+        transform: translateX(-50%);
+        z-index: 1;
+      }
+
+      .urpan-timeline-item {
+        position: relative;
+        margin-bottom: 60px;
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s ease;
       }
 
-      .value-card:hover .value-image {
-        transform: scale(1.1);
-      }
-
-      .value-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          180deg,
-          rgba(15, 23, 42, 0.3) 0%,
-          rgba(134, 4, 125, 0.85) 100%
-        );
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 32px;
-        text-align: center;
-        transition: all 0.4s ease;
-      }
-
-      .value-card:hover .value-overlay {
-        background: linear-gradient(
-          180deg,
-          rgba(15, 23, 42, 0.5) 0%,
-          rgba(134, 4, 125, 0.95) 100%
-        );
-      }
-
-      .value-title {
-        font-size: 1.375rem;
-        font-weight: 700;
-        color: white;
+      .urpan-timeline-item:last-child {
         margin-bottom: 0;
-        line-height: 1.3;
-        text-align: center;
+      }
+
+      .urpan-content-box {
+        width: 48%;
+        position: relative;
+        z-index: 2;
+      }
+
+      .urpan-timeline-item:nth-child(odd) .urpan-content-box {
+        margin-left: 0;
+        margin-right: auto;
+        padding-right: 60px;
+        text-align: right;
+      }
+
+      .urpan-timeline-item:nth-child(even) .urpan-content-box {
+        margin-left: auto;
+        margin-right: 0;
+        padding-left: 60px;
+        text-align: left;
+      }
+
+      .urpan-dot {
+        position: absolute;
+        left: 50%;
+        top: 20px;
+        width: 20px;
+        height: 20px;
+        background: #86047d;
+        border: 4px solid #ffffff;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        box-shadow: 0 0 0 8px #e8d4e610;
         transition: all 0.4s ease;
       }
 
-      .value-card:hover .value-title {
-        margin-bottom: 12px;
+      .urpan-timeline-item:hover .urpan-dot {
+        transform: translateX(-50%) scale(1.3);
+        box-shadow: 0 0 0 12px #e8d4e620;
       }
 
-      .value-description {
+      .urpan-value-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #e8d4e6 0%, #f3e5f1 100%);
+        border-radius: 15px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        transition: all 0.4s ease;
+      }
+
+      .urpan-timeline-item:hover .urpan-value-icon {
+        transform: scale(1.08);
+        background: linear-gradient(135deg, #e0c4dd 0%, #eedaec 100%);
+      }
+
+      .urpan-value-icon i {
+        font-size: 28px;
+        color: #86047d;
+      }
+
+      .urpan-value-label {
         font-size: 0.875rem;
-        color: rgba(255, 255, 255, 0.9);
-        line-height: 1.6;
+        font-weight: 600;
+        color: #86047d;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      .urpan-value-heading {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 12px;
+        line-height: 1.3;
+      }
+
+      .urpan-value-description {
+        font-family: "Rubik", sans-serif;
+        font-size: 1.2rem;
+        text-align: justify;
+        line-height: 1.8;
+        color: #555;
+        font-weight: 500;
         margin: 0;
-        text-align: center;
-        max-width: 280px;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.4s ease;
-      }
-
-      .value-card:hover .value-description {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .value-card:hover .value-title {
-        transform: translateY(0);
-      }
-
-      @media (max-width: 992px) {
-        .value-card {
-          min-width: 300px;
-          height: 340px;
-        }
       }
 
       @media (max-width: 768px) {
-        .core-values-section {
-          padding: 70px 0;
+        .urpan-values-main {
+          padding: 60px 0;
         }
 
-        .section-header h2 {
+        .urpan-hero h2 {
           font-size: 2.25rem;
         }
 
-        .values-grid {
-          flex-direction: column;
-          overflow-x: hidden;
-          overflow-y: visible;
-          gap: 20px;
-          padding: 20px;
+        .urpan-hero {
+          margin-bottom: 50px;
         }
 
-        .value-card {
-          min-width: 100%;
-          width: 100%;
-          height: 280px;
+        .urpan-timeline::before {
+          left: 30px;
         }
 
-        .value-overlay {
-          background: linear-gradient(
-            180deg,
-            rgba(15, 23, 42, 0.5) 0%,
-            rgba(134, 4, 125, 0.9) 100%
-          );
-          justify-content: center;
-          align-items: center;
-          text-align: center;
-          padding: 24px;
+        .urpan-timeline-item {
+          margin-bottom: 50px;
         }
 
-        .value-title {
-          font-size: 1.25rem;
-          text-align: center;
+        .urpan-content-box {
+          width: calc(100% - 70px);
+          margin-left: 70px !important;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          text-align: left !important;
         }
 
-        .value-description {
-          opacity: 1;
-          transform: translateY(0);
-          text-align: center;
-          max-width: 100%;
-          font-size: 0.875rem;
+        .urpan-dot {
+          left: 30px;
         }
 
-        .value-card:hover .value-description {
-          opacity: 1;
+        .urpan-timeline-item:hover .urpan-dot {
+          transform: translateX(-50%) scale(1.3);
+        }
+
+        .urpan-value-heading {
+          font-size: 1.35rem;
         }
       }
 
       @media (max-width: 576px) {
-        .section-header h2 {
+        .urpan-hero h2 {
           font-size: 1.875rem;
         }
 
-        .value-card {
-          height: 260px;
+        .urpan-content-box {
+          width: calc(100% - 60px);
+          margin-left: 60px !important;
         }
 
-        .value-overlay {
-          padding: 20px;
+        .urpan-value-icon {
+          width: 54px;
+          height: 54px;
         }
 
-        .value-title {
-          font-size: 1.125rem;
+        .urpan-value-icon i {
+          font-size: 24px;
         }
 
-        .value-description {
-          font-size: 0.8125rem;
-          line-height: 1.5;
+        .urpan-value-heading {
+          font-size: 1.25rem;
+        }
+
+        .urpan-value-description {
+          font-size: 0.875rem;
         }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .value-card,
-        .value-image,
-        .value-overlay,
-        .value-title,
-        .value-description {
+        .urpan-dot,
+        .urpan-value-icon {
           transition: none;
         }
       }
     </style>
   </head>
   <body>
-    <section class="core-values-section">
+    <section class="urpan-values-main">
       <div class="container">
-        <div class="section-header" data-aos="fade-up">
+        <div class="urpan-hero" data-aos="fade-up">
           <h2>Core Cultural Values</h2>
-          <div class="divider-line"></div>
+          <div class="urpan-accent-line"></div>
           <p>
             At Urpan Technologies, our core values define who we are and guide
             our actions every day. These principles shape our culture and drive
@@ -293,132 +278,120 @@
           </p>
         </div>
 
-        <div class="values-grid" role="list" aria-label="Core Cultural Values">
-          <div
-            class="value-card"
-            data-aos="fade-up"
+        <div class="urpan-timeline">
+          <article
+            class="urpan-timeline-item"
+            data-aos="fade-right"
             data-aos-delay="100"
-            role="listitem"
-            tabindex="0"
           >
-            <img
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop"
-              alt="Client-First Commitment"
-              class="value-image"
-            />
-            <div class="value-overlay">
-              <h3 class="value-title">Client-First Commitment</h3>
-              <p class="value-description">
+            <div class="urpan-dot"></div>
+            <div class="urpan-content-box">
+              <div class="urpan-value-icon">
+                <i class="bi bi-bullseye"></i>
+              </div>
+              <!-- <span class="urpan-value-label">Value 01</span> -->
+              <h3 class="urpan-value-heading">Client-First Commitment</h3>
+              <p class="urpan-value-description">
                 We prioritize our clients' needs and success above all, ensuring
                 every decision we make serves their best interests.
               </p>
             </div>
-          </div>
+          </article>
 
-          <div
-            class="value-card"
-            data-aos="fade-up"
+          <article
+            class="urpan-timeline-item"
+            data-aos="fade-left"
             data-aos-delay="150"
-            role="listitem"
-            tabindex="0"
           >
-            <img
-              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop"
-              alt="Unwavering Passion"
-              class="value-image"
-            />
-            <div class="value-overlay">
-              <h3 class="value-title">Unwavering Passion</h3>
-              <p class="value-description">
+            <div class="urpan-dot"></div>
+            <div class="urpan-content-box">
+              <div class="urpan-value-icon">
+                <i class="bi bi-lightning-charge-fill"></i>
+              </div>
+              <!-- <span class="urpan-value-label">Value 02</span> -->
+              <h3 class="urpan-value-heading">Unwavering Passion</h3>
+              <p class="urpan-value-description">
                 Our team is driven by a passion for excellence and innovation,
                 constantly pushing boundaries to deliver exceptional results.
               </p>
             </div>
-          </div>
+          </article>
 
-          <div
-            class="value-card"
-            data-aos="fade-up"
+          <article
+            class="urpan-timeline-item"
+            data-aos="fade-right"
             data-aos-delay="200"
-            role="listitem"
-            tabindex="0"
           >
-            <img
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop"
-              alt="Collaborative Spirit"
-              class="value-image"
-            />
-            <div class="value-overlay">
-              <h3 class="value-title">Collaborative Spirit</h3>
-              <p class="value-description">
+            <div class="urpan-dot"></div>
+            <div class="urpan-content-box">
+              <div class="urpan-value-icon">
+                <i class="bi bi-people-fill"></i>
+              </div>
+              <!-- <span class="urpan-value-label">Value 03</span> -->
+              <h3 class="urpan-value-heading">Collaborative Spirit</h3>
+              <p class="urpan-value-description">
                 We believe in teamwork and open communication to achieve the
                 best results through collective intelligence and shared goals.
               </p>
             </div>
-          </div>
+          </article>
 
-          <div
-            class="value-card"
-            data-aos="fade-up"
+          <article
+            class="urpan-timeline-item"
+            data-aos="fade-left"
             data-aos-delay="250"
-            role="listitem"
-            tabindex="0"
           >
-            <img
-              src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop"
-              alt="Empowerment"
-              class="value-image"
-            />
-            <div class="value-overlay">
-              <h3 class="value-title">Empowerment</h3>
-              <p class="value-description">
+            <div class="urpan-dot"></div>
+            <div class="urpan-content-box">
+              <div class="urpan-value-icon">
+                <i class="bi bi-rocket-takeoff-fill"></i>
+              </div>
+              <!-- <span class="urpan-value-label">Value 04</span> -->
+              <h3 class="urpan-value-heading">Empowerment</h3>
+              <p class="urpan-value-description">
                 We empower our employees and clients to reach their full
                 potential through support, resources, and growth opportunities.
               </p>
             </div>
-          </div>
+          </article>
 
-          <div
-            class="value-card"
-            data-aos="fade-up"
+          <article
+            class="urpan-timeline-item"
+            data-aos="fade-right"
             data-aos-delay="300"
-            role="listitem"
-            tabindex="0"
           >
-            <img
-              src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&h=600&fit=crop"
-              alt="Transparency"
-              class="value-image"
-            />
-            <div class="value-overlay">
-              <h3 class="value-title">Transparency</h3>
-              <p class="value-description">
+            <div class="urpan-dot"></div>
+            <div class="urpan-content-box">
+              <div class="urpan-value-icon">
+                <i class="bi bi-transparency"></i>
+              </div>
+              <!-- <span class="urpan-value-label">Value 05</span> -->
+              <h3 class="urpan-value-heading">Transparency</h3>
+              <p class="urpan-value-description">
                 We maintain honesty and openness in all our dealings, fostering
                 trust through clear and authentic communication.
               </p>
             </div>
-          </div>
+          </article>
 
-          <div
-            class="value-card"
-            data-aos="fade-up"
+          <article
+            class="urpan-timeline-item"
+            data-aos="fade-left"
             data-aos-delay="350"
-            role="listitem"
-            tabindex="0"
           >
-            <img
-              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop"
-              alt="Integrity"
-              class="value-image"
-            />
-            <div class="value-overlay">
-              <h3 class="value-title">Integrity</h3>
-              <p class="value-description">
+            <div class="urpan-dot"></div>
+            <div class="urpan-content-box">
+              <div class="urpan-value-icon">
+                <i class="bi bi-award-fill"></i>
+              </div>
+              <!-- <span class="urpan-value-label">Value 06</span> -->
+              <h3 class="urpan-value-heading">Integrity</h3>
+              <p class="urpan-value-description">
                 We uphold the highest ethical standards in everything we do,
                 building lasting relationships on a foundation of trust.
               </p>
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>
@@ -430,64 +403,6 @@
         easing: "ease-out",
         once: true,
         offset: 100,
-      });
-
-      // Auto-scroll animation for values grid
-      const valuesGrid = document.querySelector(".values-grid");
-      let scrollAmount = 0;
-      let scrollDirection = 1;
-      let scrollSpeed = 0.5;
-      let isHovered = false;
-
-      function autoScroll() {
-        if (valuesGrid && !isHovered) {
-          const maxScroll = valuesGrid.scrollWidth - valuesGrid.clientWidth;
-
-          scrollAmount += scrollSpeed * scrollDirection;
-
-          if (scrollAmount >= maxScroll) {
-            scrollDirection = -1;
-          } else if (scrollAmount <= 0) {
-            scrollDirection = 1;
-          }
-
-          valuesGrid.scrollLeft = scrollAmount;
-        }
-
-        requestAnimationFrame(autoScroll);
-      }
-
-      // Start auto-scroll after page loads (desktop only)
-      window.addEventListener("load", () => {
-        setTimeout(() => {
-          if (window.innerWidth > 768) {
-            // Center the first card initially
-            const firstCardWidth =
-              valuesGrid.querySelector(".value-card").offsetWidth;
-            const containerWidth = valuesGrid.clientWidth;
-            const initialScroll =
-              firstCardWidth - containerWidth / 2 + firstCardWidth / 2;
-            valuesGrid.scrollLeft = Math.max(
-              0,
-              initialScroll - containerWidth / 2
-            );
-            scrollAmount = valuesGrid.scrollLeft;
-
-            // Start auto-scroll after centering
-            setTimeout(() => {
-              autoScroll();
-            }, 500);
-          }
-        }, 1000);
-      });
-
-      // Pause on hover
-      valuesGrid.addEventListener("mouseenter", () => {
-        isHovered = true;
-      });
-
-      valuesGrid.addEventListener("mouseleave", () => {
-        isHovered = false;
       });
     </script>
   </body>
