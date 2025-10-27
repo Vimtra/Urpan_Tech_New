@@ -493,19 +493,25 @@ body {
   padding: 20px;
 }
 
+/* 🛑 REPLACING 3D FLIP EFFECT WITH PROFESSIONAL ELEVATION EFFECT 🛑 */
 .feature-module {
   position: relative;
-  height: 350px;
-  transform-style: preserve-3d;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  height: auto; /* Changed from fixed 350px to auto */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Faster, smoother transition */
   opacity: 0;
-  transform: translateY(100px) rotateX(15deg);
+  transform: translateY(30px); /* Simplified initial animation */
+  /* Removed 3D transform styles */
 }
 
 .feature-module.visible {
   opacity: 1;
-  transform: translateY(0) rotateX(0deg);
+  transform: translateY(0);
 }
+
+/* Removing hover for the whole module since we focus on the face now */
+/* .feature-module:hover .module-wrapper {
+  transform: none; 
+} */
 
 .feature-module:nth-child(1) {
   transition-delay: 0.1s;
@@ -521,26 +527,40 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Removed transform-style: preserve-3d; */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Keep wrapper for lift effect */
   cursor: pointer;
 }
 
-.feature-module:hover .module-wrapper {
-  transform: rotateY(180deg);
+/* Professional Hover Effect: subtle lift and shadow on wrapper */
+.module-wrapper:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
 }
 
+
+/* Combined Front and Back Face Styles into a single Card style */
 .module-face {
-  position: absolute;
+  position: relative; /* Changed from absolute */
   width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 25px;
+  height: auto;
+  backface-visibility: hidden; /* Kept for compatibility but not strictly needed */
+  border-radius: 15px; /* Slightly smaller radius for professional look */
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08); /* Lighter default shadow */
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  border: 1px solid #e5e7eb;
+  /* Removed transform: rotateY(180deg); from face-back */
 }
+
 
 .face-front {
+  /* This is now the main card style */
   background: #ffffff;
   display: flex;
   flex-direction: column;
@@ -550,131 +570,68 @@ body {
   border: 1px solid #e5e7eb;
 }
 
+/* 🛑 REMOVED FACE-BACK STYLES 🛑 */
 .face-back {
-  transform: rotateY(180deg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  color: rgb(0, 0, 0);
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  display: none; /* Hide the back face in CSS now that we removed it from HTML */
 }
 
 .icon-container {
-  width: 160px;
-  height: 160px;
-  margin-bottom: 30px;
+  width: 100px; /* Reduced icon size */
+  height: 100px;
+  margin-bottom: 20px;
   position: relative;
   transition: transform 0.6s ease;
 }
 
-.feature-module:hover .icon-container {
-  transform: scale(1.1) rotateZ(5deg);
+/* New Hover Effect for Icon */
+.module-wrapper:hover .icon-container {
+  transform: scale(1.1) rotateZ(-3deg);
 }
 
 .icon-container img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
 }
 
 .feature-title {
   font-family: "Rubik", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 1.8rem; /* Increased size for focus */
+  font-weight: 600; /* Bolder for professional look */
   color: #1a1a1a;
   text-align: center;
-  /* margin-bottom: 12px; */
+  margin-bottom: 12px;
   text-transform: capitalize;
-  /* letter-spacing: 0.5px; */
 }
 
 .feature-subtitle {
   font-family: "Rubik", sans-serif;
-  font-size: 1.2rem;
+  font-size: 1rem; /* Reduced size for more concise description */
   color: #666;
   text-align: center;
   line-height: 1.6;
 }
 
-.back-title {
-  font-family: "Rubik", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  text-align: center;
-  text-transform: capitalize;
-}
+/* 🛑 REMOVED BACK FACE STYLES (now contained in front face) 🛑 */
+/* .back-title { ... } */
+/* .back-description { ... } */
 
-.back-description {
-  font-family: "Rubik", sans-serif;
-  font-size: 1.2rem;
-  line-height: 1.7;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.95);
-  font-weight: 300;
-}
 
+/* 🛑 REMOVING FLOATING BACKGROUND CIRCLES 🛑 */
 .floating-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: -1;
+  display: none;
 }
 
 .floating-circle {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(134, 4, 125, 0.04);
-  animation: float 20s infinite ease-in-out;
-  border: 1px solid rgba(134, 4, 125, 0.08);
-}
-
-.circle-1 {
-  width: 300px;
-  height: 300px;
-  top: 10%;
-  left: 5%;
-  animation-delay: 0s;
-}
-
-.circle-2 {
-  width: 200px;
-  height: 200px;
-  top: 60%;
-  right: 10%;
-  animation-delay: 3s;
-}
-
-.circle-3 {
-  width: 150px;
-  height: 150px;
-  bottom: 15%;
-  left: 50%;
-  animation-delay: 6s;
+  display: none;
 }
 
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0) translateX(0) scale(1);
-  }
-  33% {
-    transform: translateY(-30px) translateX(20px) scale(1.1);
-  }
-  66% {
-    transform: translateY(20px) translateX(-20px) scale(0.9);
-  }
+  /* Removed keyframe animation */
 }
+/* 🛑 END REMOVAL 🛑 */
+
 
 .scroll-indicator {
   display: none;
@@ -695,23 +652,23 @@ body {
   }
 
   .feature-module {
-    height: 400px;
+    height: auto; /* Ensure it remains auto */
   }
   .feature-title {
-    font-size: 1.4rem;
+    font-size: 1.6rem; /* Adjusted for tablet */
   }
   .feature-subtitle {
-    font-size: 1.2rem;
+    font-size: 1rem; /* Adjusted for tablet */
   }
 
-  .back-title {
+  /* .back-title {
     font-size: 1.9rem;
   }
 
   .back-description {
     font-size: 0.95rem;
     text-align: justify;
-  }
+  } */
 
   .value-proposition-section {
     padding: 60px 20px;
@@ -983,6 +940,7 @@ body {
 }
 
 .image-wrapper img {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   width: 500px;
   height: 250px;
   display: block;

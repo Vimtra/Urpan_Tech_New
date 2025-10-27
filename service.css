@@ -11,105 +11,12 @@
 
 body {
   overflow-x: hidden;
-  padding-top: 70px;
+  /* padding-top: 70px; */
   position: relative;
   min-height: 100vh;
   background: #f8f9fa;
 }
 
-/* Subtle Animated Gradient Background */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background: linear-gradient(-45deg, #f8f9fa, #e9ecef, #f1f3f5, #ffffff);
-  background-size: 400% 400%;
-  animation: gradientShift 20s ease infinite;
-}
-
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Floating Particles Animation - Subtle */
-.particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.3;
-}
-
-.particle {
-  position: absolute;
-  background: #86047d;
-  border-radius: 50%;
-  animation: float 25s infinite;
-}
-
-.particle:nth-child(1) {
-  width: 80px;
-  height: 80px;
-  left: 10%;
-  animation-delay: 0s;
-}
-.particle:nth-child(2) {
-  width: 60px;
-  height: 60px;
-  left: 20%;
-  animation-delay: 2s;
-}
-.particle:nth-child(3) {
-  width: 100px;
-  height: 100px;
-  left: 30%;
-  animation-delay: 4s;
-}
-.particle:nth-child(4) {
-  width: 50px;
-  height: 50px;
-  left: 50%;
-  animation-delay: 6s;
-}
-.particle:nth-child(5) {
-  width: 90px;
-  height: 90px;
-  left: 70%;
-  animation-delay: 8s;
-}
-.particle:nth-child(6) {
-  width: 70px;
-  height: 70px;
-  left: 85%;
-  animation-delay: 10s;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0.5;
-  }
-  50% {
-    transform: translateY(-100vh) rotate(360deg);
-    opacity: 0;
-  }
-}
 
 html {
   scroll-behavior: smooth;
@@ -124,13 +31,14 @@ html {
     #86047d,
     #86047d
   ); */
-  background-color: #86047d;
+  background-color: #5a0754;
   backdrop-filter: blur(10px);
   border-radius: 0;
   /* margin: 4rem 0; */
 box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;  position: relative;
   overflow: hidden;
   border-radius: 10px;
+  margin-top: 30px;
 
 }
 
