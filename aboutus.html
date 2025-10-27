@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="about.css" />
+    <link rel="stylesheet" href="aboutus.css" />
     <link rel="stylesheet" href="index.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,7 +40,6 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
   </head>
-
   <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top modern-navbar">
       <div class="container">
@@ -72,7 +71,7 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="./about.html" data-aos="zoom-in"
+              <a class="nav-link active" href="./aboutus.html" data-aos="zoom-in"
                 >About Us</a
               >
             </li>
@@ -95,8 +94,7 @@
         </div>
       </div>
     </nav>
-
-    <div class="about-hero">
+    <section class="about-hero">
       <div class="overlay"></div>
       <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
         <h1 class="hero-h1" data-aos="fade-up" data-aos-delay="200">
@@ -106,8 +104,7 @@
           Learn more about who we are and what drives us.
         </p>
       </div>
-    </div>
-
+    </section>
     <section class="who-we-are" id="who-we-are">
       <div class="container">
         <div class="row align-items-center">
@@ -116,20 +113,20 @@
             data-aos="fade-right"
             data-aos-duration="3000"
           >
+            <h1 class="section-title">Read What We Do</h1>
             <p class="who-we-are-section text-block">
-              Urpan Technologies Inc. (Urpantech), headquartered in the Bay
-              Area, is a trusted leader in **talent acquisition, executive
-              search, IT consulting**, and **business process outsourcing** for
-              over 25 years. With a dedicated team of 500+ IT professionals
-              across the nation, we specialize in delivering customized
-              recruiting solutions, leadership hiring, and contingent staffing
-              tailored to each client's unique needs. Our expertise spans
-              Information Technology, Sales, HR, and Business Development,
-              enabling us to quickly deploy top-tier consultants across diverse
-              sectors. By leveraging deep industry knowledge, advanced
-              technology, and innovative business processes, Urpantech partners
-              with enterprises to strengthen operations, drive efficiency, and
-              achieve long-term growth.
+              Urpan Technologies, headquartered in the Bay Area, is a trusted
+              leader in talent acquisition, executive search, IT consulting, and
+              business process outsourcing for over 25 years. With a dedicated
+              team of 500+ IT professionals across the nation, we specialize in
+              delivering customized recruiting solutions, leadership hiring, and
+              contingent staffing tailored to each client's unique needs. Our
+              expertise spans Information Technology, Sales, HR, and Business
+              Development, enabling us to quickly deploy top-tier consultants
+              across diverse sectors. By leveraging deep industry knowledge,
+              advanced technology, and innovative business processes, Urpantech
+              partners with enterprises to strengthen operations, drive
+              efficiency, and achieve long-term growth.
             </p>
           </div>
 
@@ -143,7 +140,7 @@
         </div>
       </div>
     </section>
-
+    <hr />
     <section class="urpan-values-main">
       <div class="container">
         <div class="urpan-hero" data-aos="fade-up">
@@ -267,7 +264,7 @@
         </div>
       </div>
     </section>
-
+    <hr />
     <section class="value-proposition-section">
       <div class="floating-bg">
         <div class="floating-circle circle-1"></div>
@@ -365,11 +362,14 @@
 
     <section class="sectors-serve-section py-5">
       <div class="container">
-        <h2 class="text-center mb-5">Sectors We Serve</h2>
-        <p class="text-center lead mb-5">
-          A client-focused go-to-market strategy tailored by industry verticals,
-          including:
-        </p>
+        <div class="section-header">
+          <h2 class="section-header">Sectors We Serve</h2>
+          <p>
+            A client-focused go-to-market strategy tailored by industry
+            verticals, including:
+          </p>
+        </div>
+
         <div class="row justify-content-center">
           <div class="col-lg-12 col-md-10">
             <div class="row">
@@ -462,7 +462,14 @@
                       class="bi bi-check-circle-fill me-2"
                       aria-hidden="true"
                     ></i>
-                    Manufacturing & Logistics
+                    Manufacturing
+                  </li>
+                  <li tabindex="0">
+                    <i
+                      class="bi bi-check-circle-fill me-2"
+                      aria-hidden="true"
+                    ></i>
+                    Logistics
                   </li>
                 </ul>
               </div>
@@ -471,10 +478,11 @@
         </div>
       </div>
     </section>
-
+    <hr />
     <section class="certifications-section py-5">
       <div class="container">
-        <h2 class="text-center mb-5">Certifications</h2>
+        <div class="section-header"><h2>Certifications</h2></div>
+
         <div class="row justify-content-center text-center">
           <div class="col-6 col-md-3 mb-4">
             <div
@@ -523,13 +531,14 @@
         </div>
       </div>
     </section>
-
+    <hr />
     <section class="track-record-section">
       <div class="container">
         <div class="deco-circle deco-1"></div>
         <div class="deco-circle deco-2"></div>
+        <div class="section-header">        <h2 data-scroll>Our Track Record</h2>
+    </div>
 
-        <h2 class="section-title" data-scroll>Our Track Record</h2>
 
         <div class="stats-grid">
           <div class="stat-card" data-scroll data-delay="100">
@@ -591,8 +600,8 @@
         <div class="row d-flex justify-content-between align-items-start">
           <div class="col-lg-4 col-md-6 mb-4 text-md-start">
             <img
-              src="./logo/logo-white.png"
-              alt="Urpan Logo"
+              src="./logo/logo-black.png"
+              alt="Logo"
               class="footer-logo mb-3"
             />
             <p class="company-description">
@@ -607,12 +616,16 @@
             <h5>Quick Links</h5>
             <ul class="list-unstyled">
               <li><a href="./index.html" class="footer-link">Home</a></li>
-              <li><a href="./about.html" class="footer-link">About Us</a></li>
-              <li><a href="./service.html" class="footer-link">Services</a></li>
+              <li><a href="./aboutus.html" class="footer-link">About Us</a></li>
+              <li>
+                <a href="./service.html" class="footer-link">Services</a>
+              </li>
               <li>
                 <a href="./careerForm.html" class="footer-link">Career</a>
               </li>
-              <li><a href="./contact.html" class="footer-link">Contact</a></li>
+              <li>
+                <a href="./contact.html" class="footer-link">Contact</a>
+              </li>
             </ul>
           </div>
 
@@ -631,13 +644,13 @@
                 </a>
               </li>
               <li class="d-flex mb-2">
-                <i class="fa fa-envelope me-3 mt-1"></i>
+                <i class="fas fa-envelope me-3 mt-1"></i>
                 <a href="mailto:info@urpantech.com" class="footer-link p-0"
                   >info@urpantech.com</a
                 >
               </li>
               <li class="d-flex">
-                <i class="fa fa-phone me-3 mt-1"></i>
+                <i class="fas fa-phone-alt me-3 mt-1"></i>
                 <a href="tel:+14087446750" class="footer-link p-0"
                   >+1 408-744-6750</a
                 >
@@ -649,11 +662,12 @@
         <hr class="footer-divider my-4" />
 
         <div class="row align-items-center justify-content-between pt-2">
-          <div class="col-md-6 text-center text-md-start mb-2">
+          <div class="col-md-6 text-md-start mb-2">
             <p class="copyright-text mb-0">
               © 2025 Urpan Technologies. All Rights Reserved.
             </p>
           </div>
+
           <div class="col-md-6 text-center text-md-end">
             <div
               class="social-links-combined d-flex justify-content-center justify-content-md-end"
@@ -688,135 +702,15 @@
         </div>
       </div>
     </footer>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-      // Add active class to current page
-      $(document).ready(function () {
-        var currentPage = window.location.pathname.split("/").pop();
-        $(".navbar-nav .nav-item").removeClass("active");
-        $(".navbar-nav .nav-link").each(function () {
-          var href = $(this).attr("href").replace("./", "");
-          if (
-            href === currentPage ||
-            (currentPage === "" && href === "index.html")
-          ) {
-            $(this).addClass("active");
-            $(this).parent().addClass("active");
-          }
-        });
+      AOS.init({
+        duration: 300,
+        once: false,
+        offset: 100,
+        easing: "ease-out",
       });
     </script>
-
-    <script>
-      // Intersection Observer for scroll animations
-      const observerOptions1 = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -100px 0px",
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (entry.target.classList.contains("list-item")) {
-              entry.target.classList.add("animate-in");
-            }
-            if (
-              entry.target.tagName === "LI" &&
-              entry.target.parentElement.classList.contains("sectors-list")
-            ) {
-              entry.target.classList.add("animate-in");
-            }
-            if (entry.target.classList.contains("certification-card")) {
-              entry.target.classList.add("animate-in");
-            }
-          }
-        });
-      }, observerOptions1);
-
-      // Observe all animated elements
-      document
-        .querySelectorAll(".list-item")
-        .forEach((item) => observer.observe(item));
-      document
-        .querySelectorAll(".sectors-list li")
-        .forEach((item) => observer.observe(item));
-      document
-        .querySelectorAll(".certification-card")
-        .forEach((card) => observer.observe(card));
-
-      // Add staggered animation delays for sectors
-      document.querySelectorAll(".sectors-list li").forEach((item, idx) => {
-        item.style.transitionDelay = `${idx * 0.1}s`;
-      });
-
-      // Add staggered animation delays for certifications
-      document.querySelectorAll(".certification-card").forEach((card, idx) => {
-        card.style.transitionDelay = `${idx * 0.15}s`;
-      });
-
-      // 3D tilt effect on certification cards
-      document.querySelectorAll(".certification-card").forEach((card) => {
-        card.addEventListener("mousemove", function (e) {
-          const rect = this.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-
-          const rotateX = (y - centerY) / 10;
-          const rotateY = (centerX - x) / 10;
-
-          this.style.transform = `translateY(-15px) scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
-
-        card.addEventListener("mouseleave", function () {
-          this.style.transform = "";
-        });
-      });
-
-      // Sparkle effect on hover
-      document
-        .querySelectorAll(".list-item, .sectors-list li, .certification-card")
-        .forEach((el) => {
-          el.addEventListener("mouseenter", function () {
-            for (let i = 0; i < 5; i++) {
-              setTimeout(() => {
-                const sparkle = document.createElement("div");
-                sparkle.style.cssText = `
-              position: absolute;
-              width: 4px;
-              height: 4px;
-              background: #ff69eb;
-              border-radius: 50%;
-              pointer-events: none;
-              left: ${Math.random() * 100}%;
-              top: ${Math.random() * 100}%;
-              animation: sparkleAnim 1s ease-out forwards;
-              box-shadow: 0 0 10px #ff69eb;
-            `;
-                this.appendChild(sparkle);
-                setTimeout(() => sparkle.remove(), 1000);
-              }, i * 100);
-            }
-          });
-        });
-
-      // Add sparkle animation keyframes
-      const style = document.createElement("style");
-      style.textContent = `
-      @keyframes sparkleAnim {
-        0% { opacity: 0; transform: scale(0) rotate(0deg); }
-        50% { opacity: 1; transform: scale(1.5) rotate(180deg); }
-        100% { opacity: 0; transform: scale(0) rotate(360deg); }
-      }
-    `;
-      document.head.appendChild(style);
-    </script>
-
     <script>
       // Smooth scroll behavior
       document.documentElement.style.scrollBehavior = "smooth";
@@ -914,8 +808,75 @@
         document.querySelector(".section-header").classList.add("active");
       }, 300);
     </script>
-
     <script>
+      // Intersection Observer for scroll animations
+      const observerOptions1 = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target.classList.contains("list-item")) {
+              entry.target.classList.add("animate-in");
+            }
+            if (
+              entry.target.tagName === "LI" &&
+              entry.target.parentElement.classList.contains("sectors-list")
+            ) {
+              entry.target.classList.add("animate-in");
+            }
+            if (entry.target.classList.contains("certification-card")) {
+              entry.target.classList.add("animate-in");
+            }
+          }
+        });
+      }, observerOptions1);
+
+      // Observe all animated elements
+      document
+        .querySelectorAll(".list-item")
+        .forEach((item) => observer.observe(item));
+      document
+        .querySelectorAll(".sectors-list li")
+        .forEach((item) => observer.observe(item));
+      document
+        .querySelectorAll(".certification-card")
+        .forEach((card) => observer.observe(card));
+
+      // Add staggered animation delays for sectors
+      document.querySelectorAll(".sectors-list li").forEach((item, idx) => {
+        item.style.transitionDelay = `${idx * 0.1}s`;
+      });
+
+      // Add staggered animation delays for certifications
+      document.querySelectorAll(".certification-card").forEach((card, idx) => {
+        card.style.transitionDelay = `${idx * 0.15}s`;
+      });
+
+      // 3D tilt effect on certification cards
+      document.querySelectorAll(".certification-card").forEach((card) => {
+        card.addEventListener("mousemove", function (e) {
+          const rect = this.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = (y - centerY) / 10;
+          const rotateY = (centerX - x) / 10;
+
+          this.style.transform = `translateY(-15px) scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "";
+        });
+      });
+    </script>
+        <script>
       // Real-time Scroll 3D Animation for Track Record
       const trackObserverOptions = {
         threshold: 0.1,
@@ -963,7 +924,7 @@
         });
       }
 
-      // Smooth scroll reveal animation (Floating Shapes - currently no .floating-shape elements)
+      // Smooth scroll reveal animation
       window.addEventListener("scroll", () => {
         const scrolled = window.pageYOffset;
         const shapes = document.querySelectorAll(".floating-shape");
@@ -972,16 +933,6 @@
           const speed = (index + 1) * 0.05;
           shape.style.transform = `translateY(${scrolled * speed}px)`;
         });
-      });
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        duration: 300,
-        once: false,
-        offset: 100,
-        easing: "ease-out",
       });
     </script>
   </body>

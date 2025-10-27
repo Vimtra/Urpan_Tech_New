@@ -19,109 +19,6 @@
 }
 
 
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 70px;
-}
-
-/* ===== 3D GRADIENT ANIMATED BACKGROUND ===== */
-.animated-gradient-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  overflow: hidden;
-  pointer-events: none;
-  background-color: #f0f0f5;
-}
-
-.gradient-blob {
-  position: absolute;
-  width: 60vmax;
-  height: 60vmax;
-  border-radius: 50%;
-  filter: blur(80px) saturate(150%);
-  opacity: 0.6;
-  mix-blend-mode: multiply;
-  will-change: transform, opacity;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
-.blob-1 {
-  background: radial-gradient(
-    circle at 50% 50%,
-    var(--accent),
-    transparent 70%
-  );
-  top: -10%;
-  left: -10%;
-  animation: blobMovement1 25s alternate;
-}
-
-.blob-2 {
-  background: radial-gradient(
-    circle at 50% 50%,
-    var(--accent-3),
-    transparent 70%
-  );
-  bottom: -20%;
-  right: -15%;
-  animation: blobMovement2 20s alternate-reverse;
-}
-
-.blob-3 {
-  background: radial-gradient(
-    circle at 50% 50%,
-    var(--accent-2),
-    transparent 70%
-  );
-  top: 40%;
-  left: 30%;
-  width: 40vmax;
-  height: 40vmax;
-  animation: blobMovement3 30s alternate;
-}
-
-@keyframes blobMovement1 {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(15vw, 10vh) scale(1.1);
-  }
-  66% {
-    transform: translate(-10vw, 25vh) scale(0.9);
-  }
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-}
-
-@keyframes blobMovement2 {
-  0% {
-    transform: translate(0, 0) scale(1.2);
-  }
-  50% {
-    transform: translate(-15vw, 15vh) scale(1.05);
-  }
-  100% {
-    transform: translate(0, 0) scale(1.2);
-  }
-}
-
-@keyframes blobMovement3 {
-  0% {
-    transform: translate(0, 0) scale(0.9);
-  }
-  40% {
-    transform: translate(20vw, -10vh) scale(1.2);
-  }
-  100% {
-    transform: translate(0, 0) scale(0.9);
-  }
-}
-
 /* ===== CAREER HERO ===== */
 .career-hero {
   padding: 2rem 1rem 2.5rem;
@@ -130,17 +27,29 @@ html {
   z-index: 1;
 }
 
-.career-hero h2 {
-  display: inline-block;
-  padding: 0.9rem 1.4rem;
-  border-radius: 12px;
-  font-weight: 800;
+
+.section-header h2 {
+  font-family: "Rubik", sans-serif;
   font-size: 2.8rem;
-  color: var(--accent);
-  font-family: "Questrial", sans-serif;
+  color: #1a1a1a;
+  font-weight: 700;
+  margin-top: 70px;
+  /* margin-bottom: 10px; */
+  letter-spacing: -0.5px;
   position: relative;
-  z-index: 2;
-  margin-top: 40px;
+  display: inline-block;
+}
+
+.section-header h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #86047d, #a01592);
+  border-radius: 2px;
 }
 
 /* ===== CAREER SECTION ===== */

@@ -10,8 +10,6 @@
 }
 
 body {
-  font-family: "Josefin Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
   overflow-x: hidden;
   padding-top: 70px; /* Space for the navbar */
 }
@@ -53,7 +51,7 @@ html {
 
 /* Hero Content (Over the blur) */
 .hero-content {
-  font-family: "Young Serif", serif;
+  font-family: "Rubik", sans-serif;
   position: relative;
   z-index: 2;
   text-align: center;
@@ -68,7 +66,7 @@ html {
 }
 
 .hero-content p {
-  font-family: "Questrial", sans-serif;
+  font-family: "Rubik", sans-serif;
   font-size: 1.5rem;
   font-weight: 400;
   opacity: 0.9;
@@ -86,13 +84,13 @@ html {
 }
 .contact-section h3 {
     text-align: center;
-  font-family: "Young Serif", serif;
+  font-family: "Rubik", sans-serif;
   color: var(--bs-theme-color);
   font-size: 1.5rem;
 }
 .contact-section h2 {
   text-align: center;
-  font-family: "Young Serif", serif;
+  font-family: "Rubik", sans-serif;
   color: var(--bs-theme-color);
   font-size: 2.5rem;
 }
