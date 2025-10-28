@@ -21,7 +21,7 @@
     />
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Dancing+Script:wght@400..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Krona+One&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Questrial&family=Young+Serif&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
       rel="stylesheet"
     />
 
@@ -71,7 +71,10 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="./aboutus.html" data-aos="zoom-in"
+              <a
+                class="nav-link active"
+                href="./aboutus.html"
+                data-aos="zoom-in"
                 >About Us</a
               >
             </li>
@@ -274,7 +277,7 @@
 
       <div class="proposition-container">
         <div class="section-header">
-          <h2>Why Choose UrbanTech</h2>
+          <h2>Why Choose UrpanTech</h2>
           <p>Excellence Through Innovation and Dedication</p>
         </div>
 
@@ -304,7 +307,6 @@
               </div>
             </div>
           </div>
-
           <div class="feature-module">
             <div class="module-wrapper">
               <div class="module-face face-front">
@@ -312,7 +314,7 @@
                   <img
                     src="images/RESOURCEFUL TEAM.png"
                     alt="Resourceful Team"
-                    onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Ccircle cx=%22100%22 cy=%2280%22 r=%2230%22 fill=%22%2350C878%22/%3E%3Ccircle cx=%2270%22 cy=%22120%22 r=%2220%22 fill=%22%2350C878%22/%3E%3Ccircle cx=%22130%22 cy=%22120%22 r=%2220%22 fill=%22%2350C878%22/%3E%3C/svg%3E'"
+                    onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Cpolygon points=%22100,30 130,90 190,90 140,130 160,190 100,150 40,190 60,130 10,90 70,90%22 fill=%22%23FFD700%22/%3E%3C/svg%3E'"
                   />
                 </div>
                 <h3 class="feature-title">Resourceful Team</h3>
@@ -330,7 +332,6 @@
               </div>
             </div>
           </div>
-
           <div class="feature-module">
             <div class="module-wrapper">
               <div class="module-face face-front">
@@ -536,9 +537,7 @@
       <div class="container">
         <div class="deco-circle deco-1"></div>
         <div class="deco-circle deco-2"></div>
-        <div class="section-header">        <h2 data-scroll>Our Track Record</h2>
-    </div>
-
+        <div class="section-header"><h2 data-scroll>Our Track Record</h2></div>
 
         <div class="stats-grid">
           <div class="stat-card" data-scroll data-delay="100">
@@ -582,13 +581,13 @@
 
         <div class="achievements">
           <div class="achievement-badge" data-scroll data-delay="100">
-            ✓ Industry Leader Since 2000
+            âœ“ Industry Leader Since 2000
           </div>
           <div class="achievement-badge" data-scroll data-delay="200">
-            ✓ ISO Certified
+            âœ“ ISO Certified
           </div>
           <div class="achievement-badge" data-scroll data-delay="300">
-            ✓ Award Winning Team
+            âœ“ Award Winning Team
           </div>
         </div>
       </div>
@@ -664,7 +663,7 @@
         <div class="row align-items-center justify-content-between pt-2">
           <div class="col-md-6 text-md-start mb-2">
             <p class="copyright-text mb-0">
-              © 2025 Urpan Technologies. All Rights Reserved.
+              Â© 2025 Urpan Technologies. All Rights Reserved.
             </p>
           </div>
 
@@ -761,9 +760,8 @@
 
           if (scrollPercent > 0 && scrollPercent < 1) {
             const offset = (scrollPercent - 0.5) * 30;
-            module.style.transform = `translateY(${offset}px) translateZ(${
-              scrollPercent * 50
-            }px)`;
+            // Removed 3D transform for parallax as it conflicts with hover flip
+            // module.style.transform = `translateY(${offset}px) translateZ(${scrollPercent * 50}px)`;
           }
         });
 
@@ -781,27 +779,7 @@
         }
       });
 
-      // 3D tilt effect on mouse move
-      document.querySelectorAll(".feature-module").forEach((module) => {
-        module.addEventListener("mousemove", (e) => {
-          const rect = module.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-
-          const rotateX = (y - centerY) / 20;
-          const rotateY = (centerX - x) / 20;
-
-          module.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-        });
-
-        module.addEventListener("mouseleave", () => {
-          module.style.transform =
-            "perspective(1000px) rotateX(0) rotateY(0) scale(1)";
-        });
-      });
+      // Removed 3D tilt effect on mouse move as it conflicts with the CSS flip effect
 
       // Initial animation trigger
       setTimeout(() => {
@@ -876,7 +854,7 @@
         });
       });
     </script>
-        <script>
+    <script>
       // Real-time Scroll 3D Animation for Track Record
       const trackObserverOptions = {
         threshold: 0.1,

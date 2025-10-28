@@ -493,25 +493,19 @@ body {
   padding: 20px;
 }
 
-/* 🛑 REPLACING 3D FLIP EFFECT WITH PROFESSIONAL ELEVATION EFFECT 🛑 */
+/* ðŸ”» RESTORING 3D FLIP EFFECT ðŸ”» */
 .feature-module {
   position: relative;
-  height: auto; /* Changed from fixed 350px to auto */
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Faster, smoother transition */
+  height: 350px; /* Set fixed height for proper flip geometry */
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   opacity: 0;
-  transform: translateY(30px); /* Simplified initial animation */
-  /* Removed 3D transform styles */
+  transform: translateY(30px);
 }
 
 .feature-module.visible {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* Removing hover for the whole module since we focus on the face now */
-/* .feature-module:hover .module-wrapper {
-  transform: none; 
-} */
 
 .feature-module:nth-child(1) {
   transition-delay: 0.1s;
@@ -527,27 +521,26 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  /* Removed transform-style: preserve-3d; */
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Keep wrapper for lift effect */
+  transform-style: preserve-3d; /* RESTORED 3D */
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); /* Flip transition */
   cursor: pointer;
 }
 
-/* Professional Hover Effect: subtle lift and shadow on wrapper */
+/* FLIP ON HOVER */
 .module-wrapper:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+  transform: rotateY(180deg);
 }
 
 
 /* Combined Front and Back Face Styles into a single Card style */
 .module-face {
-  position: relative; /* Changed from absolute */
+  position: absolute; /* RESTORED ABSOLUTE */
   width: 100%;
-  height: auto;
-  backface-visibility: hidden; /* Kept for compatibility but not strictly needed */
-  border-radius: 15px; /* Slightly smaller radius for professional look */
+  height: 100%; /* RESTORED 100% HEIGHT */
+  backface-visibility: hidden; 
+  border-radius: 15px; 
   overflow: hidden;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08); /* Lighter default shadow */
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08); 
   background: #ffffff;
   display: flex;
   flex-direction: column;
@@ -555,38 +548,28 @@ body {
   justify-content: center;
   padding: 40px;
   border: 1px solid #e5e7eb;
-  /* Removed transform: rotateY(180deg); from face-back */
 }
 
 
 .face-front {
-  /* This is now the main card style */
-  background: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  border: 1px solid #e5e7eb;
+  /* No special transforms needed for front face */
 }
 
-/* 🛑 REMOVED FACE-BACK STYLES 🛑 */
 .face-back {
-  display: none; /* Hide the back face in CSS now that we removed it from HTML */
+  /* REMOVED display: none; */
+  transform: rotateY(180deg); /* ROTATE TO HIDE BACK FACE INITIALLY */
+  text-align: center; /* Ensure text is centered on the back */
 }
 
 .icon-container {
-  width: 100px; /* Reduced icon size */
+  width: 100px; 
   height: 100px;
   margin-bottom: 20px;
   position: relative;
   transition: transform 0.6s ease;
 }
 
-/* New Hover Effect for Icon */
-.module-wrapper:hover .icon-container {
-  transform: scale(1.1) rotateZ(-3deg);
-}
+/* Removed icon hover effect as it conflicts with 3D rotation */
 
 .icon-container img {
   width: 100%;
@@ -597,8 +580,8 @@ body {
 
 .feature-title {
   font-family: "Rubik", sans-serif;
-  font-size: 1.8rem; /* Increased size for focus */
-  font-weight: 600; /* Bolder for professional look */
+  font-size: 1.8rem; 
+  font-weight: 600; 
   color: #1a1a1a;
   text-align: center;
   margin-bottom: 12px;
@@ -607,18 +590,29 @@ body {
 
 .feature-subtitle {
   font-family: "Rubik", sans-serif;
-  font-size: 1rem; /* Reduced size for more concise description */
+  font-size: 1rem; 
   color: #666;
   text-align: center;
   line-height: 1.6;
 }
 
-/* 🛑 REMOVED BACK FACE STYLES (now contained in front face) 🛑 */
-/* .back-title { ... } */
-/* .back-description { ... } */
+.back-title {
+  font-family: "Rubik", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 15px;
+}
+
+.back-description {
+  font-family: "Rubik", sans-serif;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
 
 
-/* 🛑 REMOVING FLOATING BACKGROUND CIRCLES 🛑 */
+/* ðŸ›‘ REMOVING FLOATING BACKGROUND CIRCLES ðŸ›‘ */
 .floating-bg {
   display: none;
 }
@@ -630,7 +624,7 @@ body {
 @keyframes float {
   /* Removed keyframe animation */
 }
-/* 🛑 END REMOVAL 🛑 */
+/* ðŸ›‘ END REMOVAL ðŸ›‘ */
 
 
 .scroll-indicator {
@@ -652,7 +646,7 @@ body {
   }
 
   .feature-module {
-    height: auto; /* Ensure it remains auto */
+    height: 300px; /* Adjusted height for mobile */
   }
   .feature-title {
     font-size: 1.6rem; /* Adjusted for tablet */
@@ -661,14 +655,14 @@ body {
     font-size: 1rem; /* Adjusted for tablet */
   }
 
-  /* .back-title {
+  .back-title {
     font-size: 1.9rem;
   }
 
   .back-description {
     font-size: 0.95rem;
     text-align: justify;
-  } */
+  }
 
   .value-proposition-section {
     padding: 60px 20px;
