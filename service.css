@@ -17,7 +17,6 @@ body {
   background: #f8f9fa;
 }
 
-
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
@@ -35,11 +34,12 @@ html {
   background-image: url("./images/abstract-networking-concept-still-life-arrangement.jpg");
   border-radius: 0;
   /* margin: 4rem 0; */
-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  position: relative;
   overflow: hidden;
   border-radius: 10px;
   margin-top: 30px;
-
 }
 
 .service-header::before {
@@ -67,7 +67,7 @@ box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 
 .service-header span {
   /* text-shadow: 2px 2px 4px rgba(58, 13, 13, 0.2); */
-  color:#86047d;
+  color: #86047d;
   text-shadow: none;
   /* border-bottom: 3px solid #ffffff; */
   padding-bottom: 5px;
@@ -94,7 +94,7 @@ box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   border: 1px solid rgba(73, 4, 85, 0.1);
   /* border-left: 4px solid rgba(73, 4, 85, 1); */
   border-radius: 8px;
-  padding:0 3rem;
+  padding: 0 3rem;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
   margin: 20px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -109,7 +109,7 @@ box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   left: 0;
   width: 4px;
   height: 100%;
-  background:#86047d;
+  background: #86047d;
   /* background: linear-gradient(180deg, rgba(73, 4, 85, 1), rgb(216, 161, 226)); */
   transition: width 0.4s;
 }
@@ -160,15 +160,13 @@ box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
   filter: grayscale(0%);
-  
 }
 
 .service-img:hover {
   transform: scale(1.05);
   /* box-shadow: 0 8px 30px rgba(73, 4, 85, 0.2); */
-    border-bottom: 3px solid #86047d;
-    cursor: pointer;
-
+  border-bottom: 3px solid #86047d;
+  cursor: pointer;
 }
 
 /* AOS Animation Enhancements */
