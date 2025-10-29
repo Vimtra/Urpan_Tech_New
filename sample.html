@@ -1,409 +1,676 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Core Values - Urpan Technologies</title>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
-      rel="stylesheet"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, sans-serif;
-        background: #fafbfc;
-        color: #1a1a1a;
-        line-height: 1.6;
-      }
-
-      .urpan-values-main {
-        padding: 80px 0;
-        background: #ffffff;
-      }
-
-      .urpan-hero {
-        text-align: center;
-        margin-bottom: 70px;
-      }
-
-      .urpan-hero h2 {
-        font-family: "Rubik", sans-serif;
-
-        font-size: 2.75rem;
-        font-weight: 700;
-        color: #0f172a;
-        margin-bottom: 20px;
-        letter-spacing: -1.5px;
-      }
-
-      .urpan-accent-line {
-        width: 100px;
-        height: 3px;
-        background: #86047d;
-        margin: 0 auto 30px;
-      }
-
-      .urpan-hero p {
-        font-family: "Rubik", sans-serif;
-        font-size: 1.25rem;
-        color: #555;
-        max-width: 90vw;
-        margin: 0 auto;
-        line-height: 1.7;
-        /* text-align: justify; */
-      }
-
-      .urpan-timeline {
-        position: relative;
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      .urpan-timeline::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 0;
-        bottom: 0;
-        width: 3px;
-        background: linear-gradient(180deg, #86047d 0%, #e8d4e6 100%);
-        transform: translateX(-50%);
-        z-index: 1;
-      }
-
-      .urpan-timeline-item {
-        position: relative;
-        margin-bottom: 60px;
-        width: 100%;
-      }
-
-      .urpan-timeline-item:last-child {
-        margin-bottom: 0;
-      }
-
-      .urpan-content-box {
-        width: 48%;
-        position: relative;
-        z-index: 2;
-      }
-
-      .urpan-timeline-item:nth-child(odd) .urpan-content-box {
-        margin-left: 0;
-        margin-right: auto;
-        padding-right: 60px;
-        text-align: right;
-      }
-
-      .urpan-timeline-item:nth-child(even) .urpan-content-box {
-        margin-left: auto;
-        margin-right: 0;
-        padding-left: 60px;
-        text-align: left;
-      }
-
-      .urpan-dot {
-        position: absolute;
-        left: 50%;
-        top: 20px;
-        width: 20px;
-        height: 20px;
-        background: #86047d;
-        border: 4px solid #ffffff;
-        border-radius: 50%;
-        transform: translateX(-50%);
-        z-index: 3;
-        box-shadow: 0 0 0 8px #e8d4e610;
-        transition: all 0.4s ease;
-      }
-
-      .urpan-timeline-item:hover .urpan-dot {
-        transform: translateX(-50%) scale(1.3);
-        box-shadow: 0 0 0 12px #e8d4e620;
-      }
-
-      .urpan-value-icon {
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #e8d4e6 0%, #f3e5f1 100%);
-        border-radius: 15px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 16px;
-        transition: all 0.4s ease;
-      }
-
-      .urpan-timeline-item:hover .urpan-value-icon {
-        transform: scale(1.08);
-        background: linear-gradient(135deg, #e0c4dd 0%, #eedaec 100%);
-      }
-
-      .urpan-value-icon i {
-        font-size: 28px;
-        color: #86047d;
-      }
-
-      .urpan-value-label {
-        font-size: 0.875rem;
-        font-weight: 600;
-        color: #86047d;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 8px;
-        display: block;
-      }
-
-      .urpan-value-heading {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #0f172a;
-        margin-bottom: 12px;
-        line-height: 1.3;
-      }
-
-      .urpan-value-description {
-        font-family: "Rubik", sans-serif;
-        font-size: 1.2rem;
-        text-align: justify;
-        line-height: 1.8;
-        color: #555;
-        font-weight: 500;
-        margin: 0;
-      }
-
-      @media (max-width: 768px) {
-        .urpan-values-main {
-          padding: 60px 0;
+        :root {
+            --bs-theme-color: #86047d;
+            --bs-accent-color: #45073c;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
         }
 
-        .urpan-hero h2 {
-          font-size: 2.25rem;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .urpan-hero {
-          margin-bottom: 50px;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .urpan-timeline::before {
-          left: 30px;
+        .hero-section {
+            background: linear-gradient(135deg, var(--bs-accent-color) 0%, var(--bs-theme-color) 100%);
+            padding: 100px 20px 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
 
-        .urpan-timeline-item {
-          margin-bottom: 50px;
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="2" x="0" y="0" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
         }
 
-        .urpan-content-box {
-          width: calc(100% - 70px);
-          margin-left: 70px !important;
-          padding-left: 0 !important;
-          padding-right: 0 !important;
-          text-align: left !important;
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .urpan-dot {
-          left: 30px;
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
         }
 
-        .urpan-timeline-item:hover .urpan-dot {
-          transform: translateX(-50%) scale(1.3);
+        .hero-section p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .urpan-value-heading {
-          font-size: 1.35rem;
-        }
-      }
-
-      @media (max-width: 576px) {
-        .urpan-hero h2 {
-          font-size: 1.875rem;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
         }
 
-        .urpan-content-box {
-          width: calc(100% - 60px);
-          margin-left: 60px !important;
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: start;
         }
 
-        .urpan-value-icon {
-          width: 54px;
-          height: 54px;
+        .contact-info {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
         }
 
-        .urpan-value-icon i {
-          font-size: 24px;
+        .contact-info h2 {
+            font-size: 2rem;
+            color: var(--bs-theme-color);
+            margin-bottom: 30px;
+            font-weight: 700;
         }
 
-        .urpan-value-heading {
-          font-size: 1.25rem;
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .urpan-value-description {
-          font-size: 0.875rem;
+        .info-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(134, 4, 125, 0.15);
         }
-      }
 
-      @media (prefers-reduced-motion: reduce) {
-        .urpan-dot,
-        .urpan-value-icon {
-          transition: none;
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--bs-theme-color), var(--bs-accent-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            margin-right: 20px;
+            flex-shrink: 0;
         }
-      }
+
+        .info-content h3 {
+            font-size: 1.1rem;
+            color: var(--bs-theme-color);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .info-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .contact-form h2 {
+            font-size: 2rem;
+            color: var(--bs-theme-color);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .form-subtitle {
+            color: var(--text-light);
+            margin-bottom: 40px;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--bg-light);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--bs-theme-color);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(134, 4, 125, 0.1);
+        }
+
+        .form-group input.is-invalid,
+        .form-group textarea.is-invalid {
+            border-color: #dc3545;
+            background: #fff5f5;
+        }
+
+        .form-group input.is-valid,
+        .form-group textarea.is-valid {
+            border-color: #28a745;
+            background: #f0fff4;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .invalid-feedback {
+            display: block;
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--bs-theme-color), var(--bs-accent-color));
+            color: white;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(134, 4, 125, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: var(--bg-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bs-theme-color);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: var(--bs-theme-color);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .thank-you-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .thank-you-message i {
+            font-size: 4rem;
+            color: var(--bs-theme-color);
+            margin-bottom: 20px;
+        }
+
+        .thank-you-message h3 {
+            font-size: 2rem;
+            color: var(--bs-theme-color);
+            margin-bottom: 15px;
+        }
+
+        .thank-you-message p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .d-none {
+            display: none !important;
+        }
+
+        @media (max-width: 968px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 35px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-section {
+                padding: 60px 20px 50px;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .hero-section p {
+                font-size: 1rem;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 25px;
+            }
+
+            .info-item {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 50px 20px;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <section class="urpan-values-main">
-      <div class="container">
-        <div class="urpan-hero" data-aos="fade-up">
-          <h2>Core Cultural Values</h2>
-          <div class="urpan-accent-line"></div>
-          <p>
-            At Urpan Technologies, our core values define who we are and guide
-            our actions every day. These principles shape our culture and drive
-            our commitment to excellence.
-          </p>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-content" data-aos="fade-down">
+            <h1>Get In Touch</h1>
+            <p>Have a question or want to work together? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
         </div>
+    </div>
 
-        <div class="urpan-timeline">
-          <article
-            class="urpan-timeline-item"
-            data-aos="fade-right"
-            data-aos-delay="100"
-          >
-            <div class="urpan-dot"></div>
-            <div class="urpan-content-box">
-              <div class="urpan-value-icon">
-                <i class="bi bi-bullseye"></i>
-              </div>
-              <!-- <span class="urpan-value-label">Value 01</span> -->
-              <h3 class="urpan-value-heading">Client-First Commitment</h3>
-              <p class="urpan-value-description">
-                We prioritize our clients' needs and success above all, ensuring
-                every decision we make serves their best interests.
-              </p>
-            </div>
-          </article>
+    <div class="container">
+        <div class="contact-wrapper">
+            <div class="contact-info" data-aos="fade-right">
+                <h2>Contact Information</h2>
+                
+                <div class="info-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Visit Us</h3>
+                        <p>123 Business Avenue<br>Corporate District, City 10001</p>
+                    </div>
+                </div>
 
-          <article
-            class="urpan-timeline-item"
-            data-aos="fade-left"
-            data-aos-delay="150"
-          >
-            <div class="urpan-dot"></div>
-            <div class="urpan-content-box">
-              <div class="urpan-value-icon">
-                <i class="bi bi-lightning-charge-fill"></i>
-              </div>
-              <!-- <span class="urpan-value-label">Value 02</span> -->
-              <h3 class="urpan-value-heading">Unwavering Passion</h3>
-              <p class="urpan-value-description">
-                Our team is driven by a passion for excellence and innovation,
-                constantly pushing boundaries to deliver exceptional results.
-              </p>
-            </div>
-          </article>
+                <div class="info-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Call Us</h3>
+                        <p>+1 (555) 123-4567<br>Mon-Fri 9am-6pm</p>
+                    </div>
+                </div>
 
-          <article
-            class="urpan-timeline-item"
-            data-aos="fade-right"
-            data-aos-delay="200"
-          >
-            <div class="urpan-dot"></div>
-            <div class="urpan-content-box">
-              <div class="urpan-value-icon">
-                <i class="bi bi-people-fill"></i>
-              </div>
-              <!-- <span class="urpan-value-label">Value 03</span> -->
-              <h3 class="urpan-value-heading">Collaborative Spirit</h3>
-              <p class="urpan-value-description">
-                We believe in teamwork and open communication to achieve the
-                best results through collective intelligence and shared goals.
-              </p>
-            </div>
-          </article>
+                <div class="info-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Email Us</h3>
+                        <p>info@company.com<br>support@company.com</p>
+                    </div>
+                </div>
 
-          <article
-            class="urpan-timeline-item"
-            data-aos="fade-left"
-            data-aos-delay="250"
-          >
-            <div class="urpan-dot"></div>
-            <div class="urpan-content-box">
-              <div class="urpan-value-icon">
-                <i class="bi bi-rocket-takeoff-fill"></i>
-              </div>
-              <!-- <span class="urpan-value-label">Value 04</span> -->
-              <h3 class="urpan-value-heading">Empowerment</h3>
-              <p class="urpan-value-description">
-                We empower our employees and clients to reach their full
-                potential through support, resources, and growth opportunities.
-              </p>
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h3 style="margin-top: 40px; margin-bottom: 15px; color: var(--bs-theme-color);">Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
             </div>
-          </article>
 
-          <article
-            class="urpan-timeline-item"
-            data-aos="fade-right"
-            data-aos-delay="300"
-          >
-            <div class="urpan-dot"></div>
-            <div class="urpan-content-box">
-              <div class="urpan-value-icon">
-                <i class="bi bi-transparency"></i>
-              </div>
-              <!-- <span class="urpan-value-label">Value 05</span> -->
-              <h3 class="urpan-value-heading">Transparency</h3>
-              <p class="urpan-value-description">
-                We maintain honesty and openness in all our dealings, fostering
-                trust through clear and authentic communication.
-              </p>
-            </div>
-          </article>
+            <div class="contact-form" data-aos="fade-left">
+                <form id="contactForm">
+                    <h2>Send Us a Message</h2>
+                    <p class="form-subtitle">Fill out the form below and we'll get back to you shortly</p>
+                    
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="100">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe">
+                    </div>
 
-          <article
-            class="urpan-timeline-item"
-            data-aos="fade-left"
-            data-aos-delay="350"
-          >
-            <div class="urpan-dot"></div>
-            <div class="urpan-content-box">
-              <div class="urpan-value-icon">
-                <i class="bi bi-award-fill"></i>
-              </div>
-              <!-- <span class="urpan-value-label">Value 06</span> -->
-              <h3 class="urpan-value-heading">Integrity</h3>
-              <p class="urpan-value-description">
-                We uphold the highest ethical standards in everything we do,
-                building lasting relationships on a foundation of trust.
-              </p>
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="200">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="john@example.com">
+                    </div>
+
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="300">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="1234567890">
+                    </div>
+
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="400">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us about your project or inquiry..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" data-aos="fade-up" data-aos-delay="500">
+                        Send Message
+                    </button>
+                </form>
+
+                <div id="thankYouMessage" class="thank-you-message d-none">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Thank You!</h3>
+                    <p>Your message has been sent successfully. We'll get back to you soon!</p>
+                </div>
             </div>
-          </article>
         </div>
-      </div>
-    </section>
+    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      AOS.init({
-        duration: 700,
-        easing: "ease-out",
-        once: true,
-        offset: 100,
-      });
+        // ============================================
+        // 🔥 REPLACE WITH YOUR GOOGLE APPS SCRIPT URL
+        // ============================================
+        const SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+
+        // ============================================
+        // FORM VALIDATION
+        // ============================================
+        const validationRules = {
+            name: {
+                pattern: /^[a-zA-Z\s]{2,50}$/,
+                message: "Name must be 2-50 characters and contain only letters and spaces"
+            },
+            email: {
+                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Please enter a valid email address"
+            },
+            phone: {
+                pattern: /^[0-9]{10}$/,
+                message: "Please enter a valid 10-digit phone number (e.g., 1234567890)"
+            }
+        };
+
+        // Show error message
+        function showError(inputElement, message) {
+            removeError(inputElement);
+            inputElement.classList.add("is-invalid");
+
+            const errorDiv = document.createElement("div");
+            errorDiv.className = "invalid-feedback";
+            errorDiv.textContent = message;
+            errorDiv.setAttribute("data-error-for", inputElement.id);
+
+            inputElement.parentElement.appendChild(errorDiv);
+        }
+
+        // Remove error message
+        function removeError(inputElement) {
+            inputElement.classList.remove("is-invalid");
+            inputElement.classList.add("is-valid");
+
+            const existingError = inputElement.parentElement.querySelector(
+                `[data-error-for="${inputElement.id}"]`
+            );
+            if (existingError) {
+                existingError.remove();
+            }
+        }
+
+        // Clear all validation states
+        function clearAllValidation() {
+            const inputs = document.querySelectorAll('#contactForm input, #contactForm textarea');
+            inputs.forEach((input) => {
+                input.classList.remove("is-invalid", "is-valid");
+                const error = input.parentElement.querySelector(
+                    `[data-error-for="${input.id}"]`
+                );
+                if (error) error.remove();
+            });
+        }
+
+        // Validate single field
+        function validateField(inputElement) {
+            const fieldName = inputElement.name;
+            const value = inputElement.value.trim();
+
+            if (!value) {
+                showError(inputElement, `${inputElement.labels[0].textContent.replace(' *', '')} is required`);
+                return false;
+            }
+
+            if (validationRules[fieldName]) {
+                const rule = validationRules[fieldName];
+                if (!rule.pattern.test(value)) {
+                    showError(inputElement, rule.message);
+                    return false;
+                }
+            }
+
+            removeError(inputElement);
+            return true;
+        }
+
+        // Validate all fields
+        function validateAllFields() {
+            const nameInput = document.getElementById("name");
+            const emailInput = document.getElementById("email");
+            const phoneInput = document.getElementById("phone");
+            const messageInput = document.getElementById("message");
+
+            const isNameValid = validateField(nameInput);
+            const isEmailValid = validateField(emailInput);
+            const isPhoneValid = validateField(phoneInput);
+            const isMessageValid = validateField(messageInput);
+
+            return isNameValid && isEmailValid && isPhoneValid && isMessageValid;
+        }
+
+        // Real-time validation on blur
+        function setupRealtimeValidation() {
+            const inputs = document.querySelectorAll('#contactForm input, #contactForm textarea');
+
+            inputs.forEach((input) => {
+                input.addEventListener("blur", function () {
+                    if (this.value.trim()) {
+                        validateField(this);
+                    }
+                });
+
+                input.addEventListener("input", function () {
+                    if (this.classList.contains("is-invalid")) {
+                        removeError(this);
+                    }
+                });
+            });
+        }
+
+        // Format phone number as user types (no dashes)
+        function setupPhoneFormatting() {
+            const phoneInput = document.getElementById("phone");
+
+            phoneInput.addEventListener("input", function (e) {
+                this.value = this.value.replace(/\D/g, "");
+            });
+        }
+
+        // Prevent spaces in email
+        function setupEmailValidation() {
+            const emailInput = document.getElementById("email");
+
+            emailInput.addEventListener("input", function () {
+                this.value = this.value.replace(/\s/g, "");
+            });
+        }
+
+        // Capitalize name automatically
+        function setupNameFormatting() {
+            const nameInput = document.getElementById("name");
+
+            nameInput.addEventListener("blur", function () {
+                const words = this.value.trim().split(" ");
+                const capitalized = words
+                    .map((word) => {
+                        if (word.length > 0) {
+                            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                        }
+                        return word;
+                    })
+                    .join(" ");
+                this.value = capitalized;
+            });
+        }
+
+        // ============================================
+        // FORM SUBMISSION
+        // ============================================
+        const contactForm = document.getElementById("contactForm");
+        const thankYouMessage = document.getElementById("thankYouMessage");
+
+        contactForm.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            // Validate all fields first
+            if (!validateAllFields()) {
+                const firstError = this.querySelector(".is-invalid");
+                if (firstError) {
+                    firstError.focus();
+                    firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+                return;
+            }
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Sending...";
+
+            try {
+                // Prepare form data
+                const formData = {
+                    name: document.getElementById("name").value,
+                    email: document.getElementById("email").value,
+                    phone: document.getElementById("phone").value,
+                    message: document.getElementById("message").value
+                };
+
+                console.log("📤 Sending contact form data:", formData);
+
+                // Send to Google Apps Script
+                const response = await fetch(SCRIPT_URL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: new URLSearchParams(formData),
+                });
+
+                console.log("✅ Message sent successfully!");
+
+                // Show thank you message
+                contactForm.classList.add("d-none");
+                thankYouMessage.classList.remove("d-none");
+
+                // Reset form after 3 seconds
+                setTimeout(() => {
+                    contactForm.reset();
+                    contactForm.classList.remove("d-none");
+                    thankYouMessage.classList.add("d-none");
+                    clearAllValidation();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                }, 3000);
+
+            } catch (error) {
+                console.error("❌ Submission error:", error);
+                alert("An error occurred. Please try again later.");
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
+            }
+        });
+
+        // ============================================
+        // INITIALIZE
+        // ============================================
+        document.addEventListener("DOMContentLoaded", () => {
+            setupRealtimeValidation();
+            setupPhoneFormatting();
+            setupEmailValidation();
+            setupNameFormatting();
+
+            if (typeof AOS !== "undefined") {
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                });
+            }
+        });
     </script>
-  </body>
+</body>
 </html>

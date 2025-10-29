@@ -29,7 +29,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: url("./images/business-concept-with-team-close-up.jpg") no-repeat
+  background: url("./images/business-partners-handshake-global-corporate-with-technology-concept.jpg") no-repeat
     center bottom/cover;
   overflow: hidden;
   background-attachment: fixed;
@@ -38,10 +38,10 @@ body {
 .about-hero .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, #c22d90, #d275ca, #64005d, #c22d90);
+  background: linear-gradient(120deg, #70094e, #d275ca, #64005d, #c22d90);
   background-size: 300% 300%;
   animation: gradientShift 5s ease infinite;
-  opacity: 0.3;
+  opacity: 0.2;
   z-index: 1;
 }
 
@@ -77,10 +77,9 @@ body {
 }
 .hero-content h1 {
   background-size: 200% 200%;
-  font-size: 4.5rem;
-  font-family: "Lato", sans-serif;
-  letter-spacing: 1rem;
-  font-weight: 500;
+  font-size: 7.5rem;
+  font-family: "Righteous", sans-serif;
+  font-weight: 400;
   text-transform: uppercase;
   display: inline-block;
   position: relative;
@@ -145,7 +144,7 @@ body {
 }
 
 .who-we-are .section-title {
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   margin-bottom: 15px;
 }
 

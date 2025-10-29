@@ -31,7 +31,12 @@ html {
     #86047d
   ); */
   /* background-color: #5a0754; */
-  background-image: url("./images/abstract-networking-concept-still-life-arrangement.jpg");
+  /* background-image: url("./images/"); */
+  
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(134, 4, 125, 0.3);
+
   border-radius: 0;
   /* margin: 4rem 0; */
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
