@@ -817,6 +817,16 @@ body {
   border-color: rgba(255, 105, 235, 0.8);
   box-shadow: 0 10px 30px rgba(255, 105, 235, 0.4);
 }
+
+/* Certifications Section Mobile Fix: Adjusting image size on phone UI for better visibility */
+@media (max-width: 576px) {
+  .certification-card img {
+    /* Set a larger size that fills the card better on small screens */
+    width: 100px !important;
+    height: 100px !important;
+  }
+}
+
 /* Track Record Section (REDUCED SPACING) */
 .track-record-section {
   padding: 60px 0;
