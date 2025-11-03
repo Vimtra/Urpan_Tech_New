@@ -25,43 +25,31 @@ html {
 /* Professional Service Header */
 .service-header {
   padding: 4rem 2rem;
-  background-image: url("./images/silhouettes-employees-working-together.jpg");
+  /* background-image: url("./images/logo_make_11_06_2023_388.jpg"); */
   background-size: cover;
   background-position: center;
-  height: 75vh;
+  background-attachment: fixed;
+  height: 40vh;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  border-radius: 10px;
-  margin-top: 30px;
+  /* border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-    rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  position: relative;
+    rgba(0, 0, 0, 0.22) 0px 15px 12px; */
+  position: relative; /* ✅ Re-enable to keep overlay inside the header */
   overflow: hidden;
+    /* background: rgba(  134, 4, 125, 0.2); */
+
 }
 
-/* Add overlay for color tint and better text readability */
-.service-header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(134, 4, 125, 0.2); /* Purple overlay */
-  z-index: 1;
-}
 
-/* Ensure content appears above overlay */
-.service-header > * {
-  position: relative;
-  z-index: 2;
-}
+
 .service-header h1 {
-  font-family: "Lato", sans-serif;
+  margin-top: 100px;
+  font-family: "Righteous", sans-serif;
   font-weight: 400;
-  color: #fff;
+  color: #86047d;
   position: relative;
   z-index: 1;
 }
@@ -78,8 +66,8 @@ html {
 .service-header p {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  font-size: 1.3rem;
-  color: #f0f0f0;
+  font-size: 1.8rem;
+  color: #4a5568;
   position: relative;
   z-index: 1;
 }
@@ -97,27 +85,10 @@ html {
   border-radius: 8px;
   padding: 0 3rem;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-  margin: 20px;
+  margin: 0 20px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-}
-
-.service-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: #86047d;
-  /* background: linear-gradient(180deg, rgba(73, 4, 85, 1), rgb(216, 161, 226)); */
-  transition: width 0.4s;
-}
-
-.service-card:hover::before {
-  width: 100%;
-  opacity: 0.03;
 }
 
 .service-card:hover {
@@ -193,12 +164,21 @@ html {
 /* Responsive */
 @media (max-width: 767.98px) {
   .service-header {
-    padding: 3rem 1.5rem;
+    padding: 6rem 1.5rem 3rem;
+    text-align: center;
+  }
+  .service-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .service-header p {
+    font-size: 1rem;
   }
 
   .service-card {
-    padding: 2rem;
+    padding: 1rem;
     margin: 15px 0;
+      
   }
 
   .service-card h2 {
@@ -208,11 +188,11 @@ html {
 
   .service-card p {
     font-size: 0.95rem;
-    text-align: left;
+    text-align:justify;
   }
 
   .service-img {
-    max-width: 70%;
+    max-width: 100%;
   }
 
   .service-content-block {
@@ -220,6 +200,14 @@ html {
   }
 
   .service-content-block p {
-    text-align: left;
+    text-align: justify;
   }
+}
+@media (max-width: 490px) {
+.service-header{
+    height: 30vh;
+  margin-top: 0;
+  padding:2rem 1rem;
+}
+
 }

@@ -29,7 +29,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: url("./images/business-partners-handshake-global-corporate-with-technology-concept.jpg") no-repeat
+  background: url("./images/logo_make_11_06_2023_388.jpg") no-repeat
     center bottom/cover;
   overflow: hidden;
   background-attachment: fixed;
@@ -80,10 +80,10 @@ body {
   font-size: 7.5rem;
   font-family: "Righteous", sans-serif;
   font-weight: 400;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   display: inline-block;
   position: relative;
-  color: #ffffff;
+  color:#ffffff;
 }
 .hero-content h1:hover {
   background: linear-gradient(120deg, #ffffff 0%, #db30a2 50%, #ffffff 100%);
@@ -96,7 +96,7 @@ body {
   font-family: "Lato", sans-serif;
   font-size: 3.2rem;
   line-height: 1.7;
-  color: #ffffff;
+  color:#ffffff;
 }
 
 /* Responsive */
@@ -117,8 +117,9 @@ body {
 /* DEFINITIVE FIXES FOR MOBILE(Overlap, Font Size, Image Size) */
 @media (max-width: 576px) {
   .about-hero {
-    height: 50vh;
-    align-items: flex-start;
+    margin-top: 16px;
+    height: 25vh;
+    align-items:center;
   }
 
   .hero-content {
@@ -126,7 +127,7 @@ body {
   }
 
   .hero-content .hero-h1 {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     letter-spacing: 0.5rem;
     margin-top: 0;
   }

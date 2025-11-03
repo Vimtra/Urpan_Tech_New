@@ -52,7 +52,6 @@ html {
 
 /* Hero Content (Over the blur) */
 .hero-content {
-  font-family: "Lato", sans-serif;
   position: relative;
   z-index: 2;
   text-align: center;
@@ -61,6 +60,7 @@ html {
 }
 
 .hero-content h2 {
+  font-family: "Righteous", sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
