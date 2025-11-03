@@ -1,676 +1,384 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --bs-theme-color: #86047d;
-            --bs-accent-color: #45073c;
-            --text-dark: #1a1a1a;
-            --text-light: #666;
-            --bg-light: #f8f9fa;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Service Header</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- AOS Animation Library -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    body {
+      font-family: "Lato", sans-serif;
+      overflow-x: hidden;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    /* Professional Service Header - Split Layout */
+    .service-header {
+      padding: 8rem 0;
+      background-image: url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .hero-section {
-            background: linear-gradient(135deg, var(--bs-accent-color) 0%, var(--bs-theme-color) 100%);
-            padding: 100px 20px 80px;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
+    /* Gradient overlay for depth */
+    .service-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(134, 4, 125, 0.92) 0%,
+        rgba(90, 7, 84, 0.88) 50%,
+        rgba(58, 5, 54, 0.95) 100%
+      );
+      z-index: 1;
+    }
 
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="2" x="0" y="0" fill="rgba(255,255,255,0.1)"/></svg>');
-            opacity: 0.3;
-        }
+    /* Ensure content appears above overlay */
+    .service-header .container {
+      position: relative;
+      z-index: 2;
+    }
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    /* Left Side - Image Wrapper */
+    .header-image-wrapper {
+      position: relative;
+      padding: 2rem;
+    }
 
-        .hero-section h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
+    .floating-card {
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
 
-        .hero-section p {
-            font-size: 1.25rem;
-            opacity: 0.95;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+    .floating-card img {
+      border: 5px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      width: 100%;
+      height: auto;
+      border-radius: 1rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
+    .floating-card:hover img {
+      transform: scale(1.05) translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5) !important;
+    }
 
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 60px;
-            align-items: start;
-        }
+    /* Decorative circles */
+    .decoration-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 3px solid rgba(134, 4, 125, 0.4);
+      z-index: -1;
+    }
 
-        .contact-info {
-            background: white;
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-        }
+    .decoration-1 {
+      width: 200px;
+      height: 200px;
+      top: -50px;
+      right: -50px;
+      animation: pulse 4s ease-in-out infinite;
+    }
 
-        .contact-info h2 {
-            font-size: 2rem;
-            color: var(--bs-theme-color);
-            margin-bottom: 30px;
-            font-weight: 700;
-        }
+    .decoration-2 {
+      width: 150px;
+      height: 150px;
+      bottom: -30px;
+      left: -30px;
+      animation: pulse 4s ease-in-out infinite 2s;
+    }
 
-        .info-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: var(--bg-light);
-            border-radius: 12px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    /* Right Side - Content */
+    .header-content {
+      padding: 2rem;
+      color: #ffffff;
+    }
 
-        .info-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 5px 20px rgba(134, 4, 125, 0.15);
-        }
+    .badge-label {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
 
-        .info-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--bs-theme-color), var(--bs-accent-color));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.3rem;
-            margin-right: 20px;
-            flex-shrink: 0;
-        }
+    .header-content h1 {
+      font-family: "Lato", sans-serif;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+      letter-spacing: -1px;
+    }
 
-        .info-content h3 {
-            font-size: 1.1rem;
-            color: var(--bs-theme-color);
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 0%, #e0b3ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      display: inline-block;
+    }
 
-        .info-content p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
+    .gradient-text::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #86047d, #a855a8);
+      border-radius: 2px;
+    }
 
-        .contact-form {
-            background: white;
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-        }
+    .header-content .lead {
+      font-size: 1.4rem;
+      color: #f0f0f0;
+      font-weight: 300;
+      line-height: 1.6;
+    }
 
-        .contact-form h2 {
-            font-size: 2rem;
-            color: var(--bs-theme-color);
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
+    .description-text {
+      font-size: 1.1rem;
+      color: #d8d8d8;
+      line-height: 1.8;
+      font-weight: 300;
+    }
 
-        .form-subtitle {
-            color: var(--text-light);
-            margin-bottom: 40px;
-            font-size: 1rem;
-        }
+    /* CTA Buttons */
+    .cta-buttons .btn {
+      padding: 1rem 2.5rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 50px;
+      transition: all 0.4s ease;
+      font-size: 0.95rem;
+    }
 
-        .form-group {
-            margin-bottom: 30px;
-        }
+    .cta-buttons .btn-primary {
+      background: linear-gradient(135deg, #86047d, #a855a8);
+      border: none;
+      box-shadow: 0 10px 30px rgba(134, 4, 125, 0.4);
+    }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
+    .cta-buttons .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(134, 4, 125, 0.6);
+    }
 
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            background: var(--bg-light);
-        }
+    .cta-buttons .btn-outline-light {
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      color: #ffffff;
+      background: transparent;
+    }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--bs-theme-color);
-            background: white;
-            box-shadow: 0 0 0 4px rgba(134, 4, 125, 0.1);
-        }
+    .cta-buttons .btn-outline-light:hover {
+      background: #ffffff;
+      color: #86047d;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+    }
 
-        .form-group input.is-invalid,
-        .form-group textarea.is-invalid {
-            border-color: #dc3545;
-            background: #fff5f5;
-        }
+    /* Animations */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
 
-        .form-group input.is-valid,
-        .form-group textarea.is-valid {
-            border-color: #28a745;
-            background: #f0fff4;
-        }
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.6;
+      }
+    }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
+    /* Responsive Design */
+    @media (max-width: 991px) {
+      .service-header {
+        padding: 6rem 0;
+        min-height: auto;
+      }
 
-        .invalid-feedback {
-            display: block;
-            color: #dc3545;
-            font-size: 0.875rem;
-            margin-top: 8px;
-            font-weight: 500;
-        }
+      .header-image-wrapper {
+        margin-bottom: 3rem;
+      }
 
-        .submit-btn {
-            background: linear-gradient(135deg, var(--bs-theme-color), var(--bs-accent-color));
-            color: white;
-            padding: 18px 50px;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+      .header-content h1 {
+        font-size: 2.5rem;
+      }
 
-        .submit-btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(134, 4, 125, 0.4);
-        }
+      .cta-buttons .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+      }
 
-        .submit-btn:active {
-            transform: translateY(-1px);
-        }
+      .cta-buttons .btn:last-child {
+        margin-bottom: 0;
+      }
+    }
 
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
+    @media (max-width: 768px) {
+      .service-header {
+        padding: 4rem 0;
+      }
 
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 40px;
-        }
+      .header-content {
+        padding: 1rem;
+        text-align: center;
+      }
 
-        .social-link {
-            width: 45px;
-            height: 45px;
-            background: var(--bg-light);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--bs-theme-color);
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
+      .header-content h1 {
+        font-size: 2rem;
+      }
 
-        .social-link:hover {
-            background: var(--bs-theme-color);
-            color: white;
-            transform: translateY(-5px);
-        }
+      .header-content .lead {
+        font-size: 1.2rem;
+      }
 
-        .thank-you-message {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .thank-you-message i {
-            font-size: 4rem;
-            color: var(--bs-theme-color);
-            margin-bottom: 20px;
-        }
-
-        .thank-you-message h3 {
-            font-size: 2rem;
-            color: var(--bs-theme-color);
-            margin-bottom: 15px;
-        }
-
-        .thank-you-message p {
-            color: var(--text-light);
-            font-size: 1.1rem;
-        }
-
-        .d-none {
-            display: none !important;
-        }
-
-        @media (max-width: 968px) {
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .hero-section h1 {
-                font-size: 2.5rem;
-            }
-
-            .contact-info,
-            .contact-form {
-                padding: 35px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .hero-section {
-                padding: 60px 20px 50px;
-            }
-
-            .hero-section h1 {
-                font-size: 2rem;
-            }
-
-            .hero-section p {
-                font-size: 1rem;
-            }
-
-            .contact-info,
-            .contact-form {
-                padding: 25px;
-            }
-
-            .info-item {
-                padding: 15px;
-            }
-
-            .container {
-                padding: 50px 20px;
-            }
-        }
-    </style>
+      .decoration-circle {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="hero-section">
-        <div class="hero-content" data-aos="fade-down">
-            <h1>Get In Touch</h1>
-            <p>Have a question or want to work together? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
-        </div>
-    </div>
 
+  <div class="service-header">
     <div class="container">
-        <div class="contact-wrapper">
-            <div class="contact-info" data-aos="fade-right">
-                <h2>Contact Information</h2>
-                
-                <div class="info-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="info-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="info-content">
-                        <h3>Visit Us</h3>
-                        <p>123 Business Avenue<br>Corporate District, City 10001</p>
-                    </div>
-                </div>
-
-                <div class="info-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="info-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="info-content">
-                        <h3>Call Us</h3>
-                        <p>+1 (555) 123-4567<br>Mon-Fri 9am-6pm</p>
-                    </div>
-                </div>
-
-                <div class="info-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="info-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="info-content">
-                        <h3>Email Us</h3>
-                        <p>info@company.com<br>support@company.com</p>
-                    </div>
-                </div>
-
-                <div data-aos="fade-up" data-aos-delay="400">
-                    <h3 style="margin-top: 40px; margin-bottom: 15px; color: var(--bs-theme-color);">Follow Us</h3>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
+      <div class="row align-items-center g-5">
+        <!-- Left Side - Image/Visual -->
+        <div 
+          class="col-lg-6" 
+          data-aos="fade-right" 
+          data-aos-duration="1200"
+          data-aos-delay="100"
+        >
+          <div class="header-image-wrapper">
+            <div class="floating-card" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300">
+              <img 
+                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800" 
+                alt="Professional Services" 
+                class="img-fluid"
+              />
             </div>
-
-            <div class="contact-form" data-aos="fade-left">
-                <form id="contactForm">
-                    <h2>Send Us a Message</h2>
-                    <p class="form-subtitle">Fill out the form below and we'll get back to you shortly</p>
-                    
-                    <div class="form-group" data-aos="fade-up" data-aos-delay="100">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required placeholder="John Doe">
-                    </div>
-
-                    <div class="form-group" data-aos="fade-up" data-aos-delay="200">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required placeholder="john@example.com">
-                    </div>
-
-                    <div class="form-group" data-aos="fade-up" data-aos-delay="300">
-                        <label for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="1234567890">
-                    </div>
-
-                    <div class="form-group" data-aos="fade-up" data-aos-delay="400">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" required placeholder="Tell us about your project or inquiry..."></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn" data-aos="fade-up" data-aos-delay="500">
-                        Send Message
-                    </button>
-                </form>
-
-                <div id="thankYouMessage" class="thank-you-message d-none">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>Thank You!</h3>
-                    <p>Your message has been sent successfully. We'll get back to you soon!</p>
-                </div>
-            </div>
+            <!-- Decorative Elements -->
+            <div class="decoration-circle decoration-1" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400"></div>
+            <div class="decoration-circle decoration-2" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600"></div>
+          </div>
         </div>
+
+        <!-- Right Side - Content -->
+        <div 
+          class="col-lg-6" 
+          data-aos="fade-left" 
+          data-aos-duration="1200"
+          data-aos-delay="200"
+        >
+          <div class="header-content">
+            <span 
+              class="badge-label mb-3" 
+              data-aos="fade-down" 
+              data-aos-duration="800"
+              data-aos-delay="300"
+            >
+              WHAT WE OFFER
+            </span>
+            <h1 
+              class="display-2 fw-bold mb-4" 
+              data-aos="fade-up" 
+              data-aos-duration="1000"
+              data-aos-delay="400"
+            >
+              Our <span class="gradient-text">Services</span>
+            </h1>
+            <p 
+              class="lead mb-4" 
+              data-aos="fade-up" 
+              data-aos-duration="1000"
+              data-aos-delay="500"
+            >
+              Enabling success through specialized staffing and consulting solutions.
+            </p>
+            <p 
+              class="description-text mb-5" 
+              data-aos="fade-up" 
+              data-aos-duration="1000"
+              data-aos-delay="600"
+            >
+              We deliver tailored workforce solutions and strategic consulting services 
+              that empower organizations to achieve their goals with precision and excellence.
+            </p>
+            <div 
+              class="cta-buttons" 
+              data-aos="fade-up" 
+              data-aos-duration="1000"
+              data-aos-delay="700"
+            >
+              <a href="#services" class="btn btn-primary btn-lg me-3">
+                Explore Services
+              </a>
+              <a href="#contact" class="btn btn-outline-light btn-lg">
+                Get Started
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // ============================================
-        // 🔥 REPLACE WITH YOUR GOOGLE APPS SCRIPT URL
-        // ============================================
-        const SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- AOS Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  
+  <script>
+    // Initialize AOS
+    AOS.init({
+      once: true,
+      mirror: false
+    });
+  </script>
 
-        // ============================================
-        // FORM VALIDATION
-        // ============================================
-        const validationRules = {
-            name: {
-                pattern: /^[a-zA-Z\s]{2,50}$/,
-                message: "Name must be 2-50 characters and contain only letters and spaces"
-            },
-            email: {
-                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: "Please enter a valid email address"
-            },
-            phone: {
-                pattern: /^[0-9]{10}$/,
-                message: "Please enter a valid 10-digit phone number (e.g., 1234567890)"
-            }
-        };
-
-        // Show error message
-        function showError(inputElement, message) {
-            removeError(inputElement);
-            inputElement.classList.add("is-invalid");
-
-            const errorDiv = document.createElement("div");
-            errorDiv.className = "invalid-feedback";
-            errorDiv.textContent = message;
-            errorDiv.setAttribute("data-error-for", inputElement.id);
-
-            inputElement.parentElement.appendChild(errorDiv);
-        }
-
-        // Remove error message
-        function removeError(inputElement) {
-            inputElement.classList.remove("is-invalid");
-            inputElement.classList.add("is-valid");
-
-            const existingError = inputElement.parentElement.querySelector(
-                `[data-error-for="${inputElement.id}"]`
-            );
-            if (existingError) {
-                existingError.remove();
-            }
-        }
-
-        // Clear all validation states
-        function clearAllValidation() {
-            const inputs = document.querySelectorAll('#contactForm input, #contactForm textarea');
-            inputs.forEach((input) => {
-                input.classList.remove("is-invalid", "is-valid");
-                const error = input.parentElement.querySelector(
-                    `[data-error-for="${input.id}"]`
-                );
-                if (error) error.remove();
-            });
-        }
-
-        // Validate single field
-        function validateField(inputElement) {
-            const fieldName = inputElement.name;
-            const value = inputElement.value.trim();
-
-            if (!value) {
-                showError(inputElement, `${inputElement.labels[0].textContent.replace(' *', '')} is required`);
-                return false;
-            }
-
-            if (validationRules[fieldName]) {
-                const rule = validationRules[fieldName];
-                if (!rule.pattern.test(value)) {
-                    showError(inputElement, rule.message);
-                    return false;
-                }
-            }
-
-            removeError(inputElement);
-            return true;
-        }
-
-        // Validate all fields
-        function validateAllFields() {
-            const nameInput = document.getElementById("name");
-            const emailInput = document.getElementById("email");
-            const phoneInput = document.getElementById("phone");
-            const messageInput = document.getElementById("message");
-
-            const isNameValid = validateField(nameInput);
-            const isEmailValid = validateField(emailInput);
-            const isPhoneValid = validateField(phoneInput);
-            const isMessageValid = validateField(messageInput);
-
-            return isNameValid && isEmailValid && isPhoneValid && isMessageValid;
-        }
-
-        // Real-time validation on blur
-        function setupRealtimeValidation() {
-            const inputs = document.querySelectorAll('#contactForm input, #contactForm textarea');
-
-            inputs.forEach((input) => {
-                input.addEventListener("blur", function () {
-                    if (this.value.trim()) {
-                        validateField(this);
-                    }
-                });
-
-                input.addEventListener("input", function () {
-                    if (this.classList.contains("is-invalid")) {
-                        removeError(this);
-                    }
-                });
-            });
-        }
-
-        // Format phone number as user types (no dashes)
-        function setupPhoneFormatting() {
-            const phoneInput = document.getElementById("phone");
-
-            phoneInput.addEventListener("input", function (e) {
-                this.value = this.value.replace(/\D/g, "");
-            });
-        }
-
-        // Prevent spaces in email
-        function setupEmailValidation() {
-            const emailInput = document.getElementById("email");
-
-            emailInput.addEventListener("input", function () {
-                this.value = this.value.replace(/\s/g, "");
-            });
-        }
-
-        // Capitalize name automatically
-        function setupNameFormatting() {
-            const nameInput = document.getElementById("name");
-
-            nameInput.addEventListener("blur", function () {
-                const words = this.value.trim().split(" ");
-                const capitalized = words
-                    .map((word) => {
-                        if (word.length > 0) {
-                            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-                        }
-                        return word;
-                    })
-                    .join(" ");
-                this.value = capitalized;
-            });
-        }
-
-        // ============================================
-        // FORM SUBMISSION
-        // ============================================
-        const contactForm = document.getElementById("contactForm");
-        const thankYouMessage = document.getElementById("thankYouMessage");
-
-        contactForm.addEventListener("submit", async function (e) {
-            e.preventDefault();
-
-            // Validate all fields first
-            if (!validateAllFields()) {
-                const firstError = this.querySelector(".is-invalid");
-                if (firstError) {
-                    firstError.focus();
-                    firstError.scrollIntoView({ behavior: "smooth", block: "center" });
-                }
-                return;
-            }
-
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.textContent;
-            submitBtn.disabled = true;
-            submitBtn.textContent = "Sending...";
-
-            try {
-                // Prepare form data
-                const formData = {
-                    name: document.getElementById("name").value,
-                    email: document.getElementById("email").value,
-                    phone: document.getElementById("phone").value,
-                    message: document.getElementById("message").value
-                };
-
-                console.log("📤 Sending contact form data:", formData);
-
-                // Send to Google Apps Script
-                const response = await fetch(SCRIPT_URL, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded",
-                    },
-                    body: new URLSearchParams(formData),
-                });
-
-                console.log("✅ Message sent successfully!");
-
-                // Show thank you message
-                contactForm.classList.add("d-none");
-                thankYouMessage.classList.remove("d-none");
-
-                // Reset form after 3 seconds
-                setTimeout(() => {
-                    contactForm.reset();
-                    contactForm.classList.remove("d-none");
-                    thankYouMessage.classList.add("d-none");
-                    clearAllValidation();
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalBtnText;
-                }, 3000);
-
-            } catch (error) {
-                console.error("❌ Submission error:", error);
-                alert("An error occurred. Please try again later.");
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalBtnText;
-            }
-        });
-
-        // ============================================
-        // INITIALIZE
-        // ============================================
-        document.addEventListener("DOMContentLoaded", () => {
-            setupRealtimeValidation();
-            setupPhoneFormatting();
-            setupEmailValidation();
-            setupNameFormatting();
-
-            if (typeof AOS !== "undefined") {
-                AOS.init({
-                    duration: 1000,
-                    once: true,
-                });
-            }
-        });
-    </script>
 </body>
 </html>
