@@ -32,7 +32,7 @@ html {
   justify-content: center;
   overflow: hidden;
   padding-top: 70px; /* Pushed content down */
-  background-color: var(--bs-theme-color); /* Fallback */
+  /* background-color: var(--bs-theme-color); Fallback */
 }
 
 /* Blurred Background (Parallax Effect) */
@@ -227,6 +227,7 @@ html {
     var(--bs-theme-color),
     var(--bs-accent-color)
   );
+  text-align: center;
   color: white;
   padding: 18px 50px;
   border: none;
@@ -235,7 +236,7 @@ html {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 100%;
+  width: 50%;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-family: "Lato", sans-serif;
