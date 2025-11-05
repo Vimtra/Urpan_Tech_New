@@ -1,384 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professional Service Header</title>
-  
-  <!-- Bootstrap CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- AOS Animation Library -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typewriter Animation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Courier New', monospace;
+        }
 
-    body {
-      font-family: "Lato", sans-serif;
-      overflow-x: hidden;
-    }
+        .typewriter-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 60px 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+        }
 
-    /* Professional Service Header - Split Layout */
-    .service-header {
-      padding: 8rem 0;
-      background-image: url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600");
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      min-height: 85vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
+        .typewriter {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c3e50;
+            border-right: 3px solid #3498db;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: typing 4s steps(40) infinite, blink 0.75s step-end infinite;
+        }
 
-    /* Gradient overlay for depth */
-    .service-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(
-        135deg,
-        rgba(134, 4, 125, 0.92) 0%,
-        rgba(90, 7, 84, 0.88) 50%,
-        rgba(58, 5, 54, 0.95) 100%
-      );
-      z-index: 1;
-    }
+        @keyframes typing {
+            0% { width: 0; }
+            50% { width: 100%; }
+            100% { width: 0; }
+        }
 
-    /* Ensure content appears above overlay */
-    .service-header .container {
-      position: relative;
-      z-index: 2;
-    }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
 
-    /* Left Side - Image Wrapper */
-    .header-image-wrapper {
-      position: relative;
-      padding: 2rem;
-    }
+        .typewriter-2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c3e50;
+            border-right: 3px solid #e74c3c;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: typing-once 3s steps(30) forwards, blink-cursor 0.75s step-end infinite;
+        }
 
-    .floating-card {
-      position: relative;
-      animation: float 6s ease-in-out infinite;
-    }
+        @keyframes typing-once {
+            from { width: 0; }
+            to { width: 100%; }
+        }
 
-    .floating-card img {
-      border: 5px solid rgba(255, 255, 255, 0.1);
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-      width: 100%;
-      height: auto;
-      border-radius: 1rem;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-    }
+        @keyframes blink-cursor {
+            50% { border-color: transparent; }
+        }
 
-    .floating-card:hover img {
-      transform: scale(1.05) translateY(-10px);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5) !important;
-    }
-
-    /* Decorative circles */
-    .decoration-circle {
-      position: absolute;
-      border-radius: 50%;
-      border: 3px solid rgba(134, 4, 125, 0.4);
-      z-index: -1;
-    }
-
-    .decoration-1 {
-      width: 200px;
-      height: 200px;
-      top: -50px;
-      right: -50px;
-      animation: pulse 4s ease-in-out infinite;
-    }
-
-    .decoration-2 {
-      width: 150px;
-      height: 150px;
-      bottom: -30px;
-      left: -30px;
-      animation: pulse 4s ease-in-out infinite 2s;
-    }
-
-    /* Right Side - Content */
-    .header-content {
-      padding: 2rem;
-      color: #ffffff;
-    }
-
-    .badge-label {
-      display: inline-block;
-      padding: 0.5rem 1.5rem;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 30px;
-      color: #ffffff;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .header-content h1 {
-      font-family: "Lato", sans-serif;
-      font-weight: 700;
-      color: #ffffff;
-      line-height: 1.2;
-      letter-spacing: -1px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(135deg, #ffffff 0%, #e0b3ff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      position: relative;
-      display: inline-block;
-    }
-
-    .gradient-text::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, #86047d, #a855a8);
-      border-radius: 2px;
-    }
-
-    .header-content .lead {
-      font-size: 1.4rem;
-      color: #f0f0f0;
-      font-weight: 300;
-      line-height: 1.6;
-    }
-
-    .description-text {
-      font-size: 1.1rem;
-      color: #d8d8d8;
-      line-height: 1.8;
-      font-weight: 300;
-    }
-
-    /* CTA Buttons */
-    .cta-buttons .btn {
-      padding: 1rem 2.5rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      border-radius: 50px;
-      transition: all 0.4s ease;
-      font-size: 0.95rem;
-    }
-
-    .cta-buttons .btn-primary {
-      background: linear-gradient(135deg, #86047d, #a855a8);
-      border: none;
-      box-shadow: 0 10px 30px rgba(134, 4, 125, 0.4);
-    }
-
-    .cta-buttons .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(134, 4, 125, 0.6);
-    }
-
-    .cta-buttons .btn-outline-light {
-      border: 2px solid rgba(255, 255, 255, 0.8);
-      color: #ffffff;
-      background: transparent;
-    }
-
-    .cta-buttons .btn-outline-light:hover {
-      background: #ffffff;
-      color: #86047d;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
-    }
-
-    /* Animations */
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-20px);
-      }
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 0.3;
-      }
-      50% {
-        transform: scale(1.1);
-        opacity: 0.6;
-      }
-    }
-
-    /* Responsive Design */
-    @media (max-width: 991px) {
-      .service-header {
-        padding: 6rem 0;
-        min-height: auto;
-      }
-
-      .header-image-wrapper {
-        margin-bottom: 3rem;
-      }
-
-      .header-content h1 {
-        font-size: 2.5rem;
-      }
-
-      .cta-buttons .btn {
-        display: block;
-        width: 100%;
-        margin-bottom: 1rem;
-      }
-
-      .cta-buttons .btn:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .service-header {
-        padding: 4rem 0;
-      }
-
-      .header-content {
-        padding: 1rem;
-        text-align: center;
-      }
-
-      .header-content h1 {
-        font-size: 2rem;
-      }
-
-      .header-content .lead {
-        font-size: 1.2rem;
-      }
-
-      .decoration-circle {
-        display: none;
-      }
-    }
-  </style>
+        .info-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #ecf0f1;
+        }
+    </style>
 </head>
 <body>
-
-  <div class="service-header">
     <div class="container">
-      <div class="row align-items-center g-5">
-        <!-- Left Side - Image/Visual -->
-        <div 
-          class="col-lg-6" 
-          data-aos="fade-right" 
-          data-aos-duration="1200"
-          data-aos-delay="100"
-        >
-          <div class="header-image-wrapper">
-            <div class="floating-card" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300">
-              <img 
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800" 
-                alt="Professional Services" 
-                class="img-fluid"
-              />
+        <div class="typewriter-container">
+            <div class="text-center mb-5">
+                <h1 class="display-5 fw-bold text-primary mb-3">Typewriter Effect</h1>
+                <p class="text-muted">Classic typing animation with blinking cursor</p>
             </div>
-            <!-- Decorative Elements -->
-            <div class="decoration-circle decoration-1" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400"></div>
-            <div class="decoration-circle decoration-2" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600"></div>
-          </div>
-        </div>
 
-        <!-- Right Side - Content -->
-        <div 
-          class="col-lg-6" 
-          data-aos="fade-left" 
-          data-aos-duration="1200"
-          data-aos-delay="200"
-        >
-          <div class="header-content">
-            <span 
-              class="badge-label mb-3" 
-              data-aos="fade-down" 
-              data-aos-duration="800"
-              data-aos-delay="300"
-            >
-              WHAT WE OFFER
-            </span>
-            <h1 
-              class="display-2 fw-bold mb-4" 
-              data-aos="fade-up" 
-              data-aos-duration="1000"
-              data-aos-delay="400"
-            >
-              Our <span class="gradient-text">Services</span>
-            </h1>
-            <p 
-              class="lead mb-4" 
-              data-aos="fade-up" 
-              data-aos-duration="1000"
-              data-aos-delay="500"
-            >
-              Enabling success through specialized staffing and consulting solutions.
-            </p>
-            <p 
-              class="description-text mb-5" 
-              data-aos="fade-up" 
-              data-aos-duration="1000"
-              data-aos-delay="600"
-            >
-              We deliver tailored workforce solutions and strategic consulting services 
-              that empower organizations to achieve their goals with precision and excellence.
-            </p>
-            <div 
-              class="cta-buttons" 
-              data-aos="fade-up" 
-              data-aos-duration="1000"
-              data-aos-delay="700"
-            >
-              <a href="#services" class="btn btn-primary btn-lg me-3">
-                Explore Services
-              </a>
-              <a href="#contact" class="btn btn-outline-light btn-lg">
-                Get Started
-              </a>
+            <div class="mb-5 text-center">
+                <div class="typewriter">Hello, I'm typing text...</div>
             </div>
-          </div>
+
+            <div class="mb-5 text-center">
+                <div class="typewriter-2">This types once and stops.</div>
+            </div>
+
+            <div class="info-section">
+                <h5 class="mb-3">Features:</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">✓ Pure CSS animation - no JavaScript needed</li>
+                    <li class="mb-2">✓ Blinking cursor effect</li>
+                    <li class="mb-2">✓ Loop or single-run options</li>
+                    <li class="mb-2">✓ Customizable speed and colors</li>
+                </ul>
+
+                <h5 class="mt-4 mb-3">Customize:</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><strong>Speed:</strong> Change the <code>4s</code> in animation duration</li>
+                    <li class="mb-2"><strong>Cursor Color:</strong> Change <code>border-right</code> color</li>
+                    <li class="mb-2"><strong>Text Size:</strong> Adjust <code>font-size</code> property</li>
+                    <li class="mb-2"><strong>Steps:</strong> Modify <code>steps(40)</code> for smoothness</li>
+                </ul>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- AOS Animation Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  
-  <script>
-    // Initialize AOS
-    AOS.init({
-      once: true,
-      mirror: false
-    });
-  </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

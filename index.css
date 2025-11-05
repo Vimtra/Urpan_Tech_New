@@ -186,20 +186,22 @@ font-family: "Nunito Sans", sans-serif;
   text-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
 }
 
+
 .hero-heading .highlight {
   background: linear-gradient(90deg, #e52e71, #bb50bb);
   background-size: 200% 200%;
-  /* font-family: "Crimson Text", serif; */
-  /* font-family: "Roboto", sans-serif; */
   font-family: "Righteous", sans-serif;
   font-weight: 600;
-  /* font-style: italic; */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: textShine 7s linear infinite;
+  animation: textShine 7s linear infinite, typing 5s steps(30) infinite, blink 0.75s step-end infinite;
+  border-right: 3px solid #e52e71;
+  white-space: nowrap;
+  overflow: hidden;
   display: inline-block;
   position: relative;
+  max-width: fit-content;
 }
 
 @keyframes textShine {
@@ -208,6 +210,47 @@ font-family: "Nunito Sans", sans-serif;
   }
   100% {
     background-position: 200% 50%;
+  }
+}
+
+@keyframes typing {
+  0% { 
+    width: 0;
+  }
+  40% { 
+    width: 100%;
+  }
+  60% { 
+    width: 100%;
+  }
+  100% { 
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  50% { 
+    border-color: transparent;
+  }
+}
+
+/* Alternative: Single type effect (no erase) */
+.hero-heading .highlight.type-once {
+  animation: textShine 7s linear infinite, typing-once 2s steps(30) forwards, blink-cursor 0.75s step-end infinite;
+}
+
+@keyframes typing-once {
+  from { 
+    width: 0;
+  }
+  to { 
+    width: 100%;
+  }
+}
+
+@keyframes blink-cursor {
+  50% { 
+    border-color: transparent;
   }
 }
 
