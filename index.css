@@ -137,13 +137,16 @@ font-family: "Nunito Sans", sans-serif;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: url("./images/people-taking-part-business-event.webp")
-    no-repeat center center/cover;
+  background-color: #1e0036; /* fallback color while image loads */
+  background-image: url("./images/people-taking-part-business-event.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   color: #fff;
-  
   overflow: hidden;
   padding: 100px 0 60px;
 }
+
 
 .hero-section .overlay {
   position: absolute;
