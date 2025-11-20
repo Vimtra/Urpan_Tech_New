@@ -830,10 +830,15 @@ body {
 
 /* Certifications Section Mobile Fix: Adjusting image size on phone UI for better visibility */
 @media (max-width: 576px) {
+  .certification-card{
+    padding: 20px;
+  }
   .certification-card img {
     /* Set a larger size that fills the card better on small screens */
-    width: 100px !important;
-    height: 100px !important;
+    width: 180px !important;
+    height: 130px !important;
+      box-shadow: 0 10px 30px rgba(255, 105, 235, 0.4);
+
   }
 }
 
