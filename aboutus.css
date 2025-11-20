@@ -29,7 +29,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: url("./images/logo_make_11_06_2023_388.jpg") no-repeat
+  background: url("./images/business-partners-handshake-global-corporate-with-technology-concept.jpg") no-repeat
     center bottom/cover;
   overflow: hidden;
   background-attachment: fixed;
@@ -249,7 +249,7 @@ body {
 
 .urpan-timeline-item {
   position: relative;
-  margin-bottom: 60px;
+  margin-bottom: -80px;
   width: 100%;
 }
 
@@ -343,7 +343,7 @@ body {
   text-align: justify;
   line-height: 1.8;
   color: #555;
-  font-weight: 300;
+  font-weight: 400;
   margin: 0;
 }
 
@@ -590,7 +590,7 @@ body {
 
 .feature-subtitle {
   font-family: "Lato", sans-serif;
-  font-size: 1rem; 
+  font-size: 1.3rem; 
   color: #666;
   text-align: center;
   line-height: 1.6;
@@ -612,7 +612,7 @@ body {
 }
 
 
-/* ðŸ›‘ REMOVING FLOATING BACKGROUND CIRCLES ðŸ›‘ */
+/*  REMOVING FLOATING BACKGROUND CIRCLES ðŸ›‘ */
 .floating-bg {
   display: none;
 }
@@ -680,27 +680,28 @@ body {
 }
 
 .sectors-list li {
-  text-align: center;
+  /* text-align: center; */
   /* background: linear-gradient(
     135deg,
     rgba(134, 4, 125, 0.15),
     rgba(38, 2, 34, 0.25)
   ); */
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(134, 4, 125, 0.3);
-  border-radius: 15px;
+  /* border: 2px solid rgba(134, 4, 125, 0.3); */
+  /* border-radius: 15px; */
   padding: 20px 25px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+  margin-left: 110px;
   font-size: 1.5rem;
   color: rgba(49, 3, 29, 0.95);
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  cursor: pointer;
+  /* cursor: pointer; */
   position: relative;
-  opacity: 0;
+  /* opacity: 0;   */
   transform: translateY(30px);
 }
 
-.sectors-list li.animate-in {
+/* .sectors-list li.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
@@ -714,7 +715,7 @@ body {
     rgba(134, 4, 125, 0.3),
     rgba(35, 4, 32, 0.4)
   );
-}
+} */
 
 .bi-check-circle-fill {
   color: #3c0535;
@@ -727,6 +728,13 @@ body {
 @media (max-width: 768px) {
   .lead {
     font-size: 1.2rem;
+    padding: 15px 20px;
+  }
+}
+@media (max-width: 576px) {
+  .sectors-list li {
+    margin-left: 20px;
+    font-size: 1.1rem;
     padding: 15px 20px;
   }
 }
@@ -945,8 +953,8 @@ body {
 
 .image-wrapper img {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  width: 500px;
-  height: 250px;
+  width: 900px;
+  height: auto;
   display: block;
 }
 

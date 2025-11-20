@@ -786,16 +786,16 @@ font-family: "Nunito Sans", sans-serif;
   display: inline-block;
   padding: 4px 0;
   font-weight: 500;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
   font-size: 1.1rem;
   line-height: 1.6;
   font-family: "Lato", sans-serif;
 }
 
 .footer-link:hover {
-  font-size: larger;
+  font-size: 1.2rem;
   color: #000000;
-  transform: scale(1.05);
+  /* transform: scale(1.1); */
 }
 
 .contact-list i {

@@ -569,12 +569,7 @@
               counter.innerText = Math.ceil(count + increment);
               setTimeout(updateCount, 20);
             } else {
-              // Check if the counter is NOT "Years Experience" to append the '+' symbol
-              if (counterText !== "Years Experience") {
-                counter.innerText = target + "+";
-              } else {
-                counter.innerText = target;
-              }
+              counter.innerText = target + "+";
             }
           };
           updateCount();
