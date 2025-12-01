@@ -39,11 +39,8 @@ html {
     rgba(0, 0, 0, 0.22) 0px 15px 12px; */
   position: relative; /* ✅ Re-enable to keep overlay inside the header */
   overflow: hidden;
-    /* background: rgba(  134, 4, 125, 0.2); */
-
+  /* background: rgba(  134, 4, 125, 0.2); */
 }
-
-
 
 .service-header h1 {
   margin-top: 100px;
@@ -178,7 +175,6 @@ html {
   .service-card {
     padding: 1rem;
     margin: 15px 0;
-      
   }
 
   .service-card h2 {
@@ -188,7 +184,7 @@ html {
 
   .service-card p {
     font-size: 0.95rem;
-    text-align:justify;
+    text-align: justify;
   }
 
   .service-img {
@@ -204,10 +200,9 @@ html {
   }
 }
 @media (max-width: 490px) {
-.service-header{
+  .service-header {
     height: 30vh;
-  margin-top: 0;
-  padding:2rem 1rem;
-}
-
+    margin-top: 0;
+    padding: 2rem 1rem;
+  }
 }

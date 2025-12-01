@@ -29,8 +29,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: url("./images/About.jpg") no-repeat
-    center bottom/cover;
+  background: url("./images/About.jpg") no-repeat center bottom/cover;
   overflow: hidden;
   background-attachment: fixed;
   /* padding-top is now handled in the mobile media query for precision. */
@@ -83,7 +82,7 @@ body {
   /* text-transform: uppercase; */
   display: inline-block;
   position: relative;
-  color:#ffffff;
+  color: #ffffff;
 }
 .hero-content h1:hover {
   background: linear-gradient(120deg, #ffffff 0%, #db30a2 50%, #ffffff 100%);
@@ -96,7 +95,7 @@ body {
   font-family: "Lato", sans-serif;
   font-size: 3.2rem;
   line-height: 1.7;
-  color:#ffffff;
+  color: #ffffff;
 }
 
 /* Responsive */
@@ -119,7 +118,7 @@ body {
   .about-hero {
     margin-top: 16px;
     height: 25vh;
-    align-items:center;
+    align-items: center;
   }
 
   .hero-content {
@@ -531,16 +530,15 @@ body {
   transform: rotateY(180deg);
 }
 
-
 /* Combined Front and Back Face Styles into a single Card style */
 .module-face {
   position: absolute; /* RESTORED ABSOLUTE */
   width: 100%;
   height: 100%; /* RESTORED 100% HEIGHT */
-  backface-visibility: hidden; 
-  border-radius: 15px; 
+  backface-visibility: hidden;
+  border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08); 
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
   background: #ffffff;
   display: flex;
   flex-direction: column;
@@ -549,7 +547,6 @@ body {
   padding: 40px;
   border: 1px solid #e5e7eb;
 }
-
 
 .face-front {
   /* No special transforms needed for front face */
@@ -562,7 +559,7 @@ body {
 }
 
 .icon-container {
-  width: 100px; 
+  width: 100px;
   height: 100px;
   margin-bottom: 20px;
   position: relative;
@@ -580,8 +577,8 @@ body {
 
 .feature-title {
   font-family: "Lato", sans-serif;
-  font-size: 1.8rem; 
-  font-weight: 600; 
+  font-size: 1.8rem;
+  font-weight: 600;
   color: #1a1a1a;
   text-align: center;
   margin-bottom: 12px;
@@ -590,7 +587,7 @@ body {
 
 .feature-subtitle {
   font-family: "Lato", sans-serif;
-  font-size: 1.3rem; 
+  font-size: 1.3rem;
   color: #666;
   text-align: center;
   line-height: 1.6;
@@ -611,7 +608,6 @@ body {
   line-height: 1.6;
 }
 
-
 /*  REMOVING FLOATING BACKGROUND CIRCLES ðŸ›‘ */
 .floating-bg {
   display: none;
@@ -625,7 +621,6 @@ body {
   /* Removed keyframe animation */
 }
 /* ðŸ›‘ END REMOVAL ðŸ›‘ */
-
 
 .scroll-indicator {
   display: none;
@@ -816,7 +811,7 @@ body {
   /* object-fit: cover; */
   border-radius: 20px;
   transition: all 0.5s ease;
-    box-shadow: rgba(56, 1, 49, 0.4) 0px 22px 70px 4px;
+  box-shadow: rgba(56, 1, 49, 0.4) 0px 22px 70px 4px;
 
   filter: brightness(0.9);
 }
@@ -830,15 +825,14 @@ body {
 
 /* Certifications Section Mobile Fix: Adjusting image size on phone UI for better visibility */
 @media (max-width: 576px) {
-  .certification-card{
+  .certification-card {
     padding: 20px;
   }
   .certification-card img {
     /* Set a larger size that fills the card better on small screens */
     width: 180px !important;
     height: 130px !important;
-      box-shadow: 0 10px 30px rgba(255, 105, 235, 0.4);
-
+    box-shadow: 0 10px 30px rgba(255, 105, 235, 0.4);
   }
 }
 
@@ -959,7 +953,9 @@ body {
 }
 
 .image-wrapper img {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   width: 900px;
   height: auto;
   display: block;

@@ -43,7 +43,7 @@ body {
 
 .modern-navbar .nav-link {
   color: #333 !important;
-font-family: "Nunito Sans", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   font-weight: 600;
   padding: 8px 16px !important;
   margin: 4px 3px;
@@ -125,7 +125,7 @@ font-family: "Nunito Sans", sans-serif;
     display: block;
     text-align: center;
   }
-  
+
   .modern-navbar .nav-item.cta-item .btn-contact {
     display: inline-flex;
   }
@@ -146,7 +146,6 @@ font-family: "Nunito Sans", sans-serif;
   overflow: hidden;
   padding: 100px 0 60px;
 }
-
 
 .hero-section .overlay {
   position: absolute;
@@ -189,7 +188,6 @@ font-family: "Nunito Sans", sans-serif;
   text-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
 }
 
-
 .hero-heading .highlight {
   background: linear-gradient(90deg, #e52e71, #bb50bb);
   background-size: 200% 200%;
@@ -198,7 +196,8 @@ font-family: "Nunito Sans", sans-serif;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: textShine 7s linear infinite, typing 5s steps(30) infinite, blink 0.75s step-end infinite;
+  animation: textShine 7s linear infinite, typing 5s steps(30) infinite,
+    blink 0.75s step-end infinite;
   border-right: 3px solid #e52e71;
   white-space: nowrap;
   overflow: hidden;
@@ -217,42 +216,43 @@ font-family: "Nunito Sans", sans-serif;
 }
 
 @keyframes typing {
-  0% { 
+  0% {
     width: 0;
   }
-  40% { 
+  40% {
     width: 100%;
   }
-  60% { 
+  60% {
     width: 100%;
   }
-  100% { 
+  100% {
     width: 0;
   }
 }
 
 @keyframes blink {
-  50% { 
+  50% {
     border-color: transparent;
   }
 }
 
 /* Alternative: Single type effect (no erase) */
 .hero-heading .highlight.type-once {
-  animation: textShine 7s linear infinite, typing-once 2s steps(30) forwards, blink-cursor 0.75s step-end infinite;
+  animation: textShine 7s linear infinite, typing-once 2s steps(30) forwards,
+    blink-cursor 0.75s step-end infinite;
 }
 
 @keyframes typing-once {
-  from { 
+  from {
     width: 0;
   }
-  to { 
+  to {
     width: 100%;
   }
 }
 
 @keyframes blink-cursor {
-  50% { 
+  50% {
     border-color: transparent;
   }
 }
@@ -435,7 +435,6 @@ font-family: "Nunito Sans", sans-serif;
   transition: opacity 0.4s ease;
 }
 
-
 .btn-outline:hover {
   background: rgba(255, 255, 255, 0.2);
   border-color: white;
@@ -444,9 +443,8 @@ font-family: "Nunito Sans", sans-serif;
     0 0 40px rgba(255, 255, 255, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1);
   color: white;
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-} */
-
-.btn-outline:active {
+}
+*/ .btn-outline:active {
   transform: translateY(-2px) scale(1);
 }
 
@@ -912,9 +910,9 @@ font-family: "Nunito Sans", sans-serif;
 @media (max-width: 767.98px) {
   /* Hero Section Mobile */
   .hero-section {
-      padding: 100px 0 50px;
-      /* FIX: Removed margin-top: -10.5vh; */
-      min-height: 100vh;
+    padding: 100px 0 50px;
+    /* FIX: Removed margin-top: -10.5vh; */
+    min-height: 100vh;
   }
 
   .hero-section .row {

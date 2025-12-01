@@ -37,7 +37,9 @@
     />
   </head>
   <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top modern-navbar shadow-sm">
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-light fixed-top modern-navbar shadow-sm"
+    >
       <div class="container">
         <a class="navbar-brand" href="./index.html">
           <img
@@ -181,7 +183,7 @@
           </article>
 
           <article
-            class="   urpan-timeline-item"
+            class="urpan-timeline-item"
             data-aos="fade-right"
             data-aos-delay="200"
           >
@@ -916,20 +918,23 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Enable Bootstrap's collapse functionality
-        var navbarToggler = document.querySelector('.navbar-toggler');
-        var navbarCollapse = document.querySelector('.navbar-collapse');
-        
+        var navbarToggler = document.querySelector(".navbar-toggler");
+        var navbarCollapse = document.querySelector(".navbar-collapse");
+
         // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-          if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
-            navbarCollapse.classList.remove('show');
+        document.addEventListener("click", function (e) {
+          if (
+            !navbarCollapse.contains(e.target) &&
+            !navbarToggler.contains(e.target)
+          ) {
+            navbarCollapse.classList.remove("show");
           }
         });
 
         // Close mobile menu when clicking a nav link
-        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-          link.addEventListener('click', () => {
-            navbarCollapse.classList.remove('show');
+        document.querySelectorAll(".navbar-nav .nav-link").forEach((link) => {
+          link.addEventListener("click", () => {
+            navbarCollapse.classList.remove("show");
           });
         });
       });
