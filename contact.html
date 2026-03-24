@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -181,7 +181,7 @@
                         id="name"
                         name="name"
                         required
-                        placeholder="John Doe"
+                        placeholder="Your Full Name"
                       />
                     </div>
 
@@ -199,7 +199,7 @@
                         id="email"
                         name="email"
                         required
-                        placeholder="john@example.com"
+                        placeholder="Your Email Address"
                       />
                     </div>
                   </div>
@@ -212,7 +212,7 @@
                       id="phone"
                       name="phone"
                       required
-                      placeholder="1234567890"
+                      placeholder="Your Phone Number"
                     />
                   </div>
 
@@ -411,8 +411,7 @@
       // 🔥 REPLACE WITH YOUR GOOGLE APPS SCRIPT URL
       // ============================================
       const SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycby2C_4XlD8iVRsJuGOQu8U6b7ZUI3eMNVh724CSWhh6x9c0wf4zNoxijdQqgR0DkCZN/exec";
-
+        "https://script.google.com/macros/s/AKfycbw2edTmOS4g0PEik_qltxhoZ9IMsltk9q1rK9aemC70amgx2wszo3Xx33ukcPrq_ThF/exec";
       // ============================================
       // FORM VALIDATION
       // ============================================
@@ -452,7 +451,7 @@
         inputElement.classList.add("is-valid");
 
         const existingError = inputElement.parentElement.querySelector(
-          `[data-error-for="${inputElement.id}"]`
+          `[data-error-for="${inputElement.id}"]`,
         );
         if (existingError) {
           existingError.remove();
@@ -462,12 +461,12 @@
       // Clear all validation states
       function clearAllValidation() {
         const inputs = document.querySelectorAll(
-          "#contactForm input, #contactForm textarea"
+          "#contactForm input, #contactForm textarea",
         );
         inputs.forEach((input) => {
           input.classList.remove("is-invalid", "is-valid");
           const error = input.parentElement.querySelector(
-            `[data-error-for="${input.id}"]`
+            `[data-error-for="${input.id}"]`,
           );
           if (error) error.remove();
         });
@@ -483,8 +482,8 @@
             inputElement,
             `${inputElement.labels[0].textContent.replace(
               " *",
-              ""
-            )} is required`
+              "",
+            )} is required`,
           );
           return false;
         }
@@ -519,7 +518,7 @@
       // Real-time validation on blur
       function setupRealtimeValidation() {
         const inputs = document.querySelectorAll(
-          "#contactForm input, #contactForm textarea"
+          "#contactForm input, #contactForm textarea",
         );
 
         inputs.forEach((input) => {

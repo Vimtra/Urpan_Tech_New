@@ -1,10 +1,12 @@
 // === CONFIGURATION (UPDATE THESE VALUES) ===
-const SPREADSHEET_ID = "10ropCOcxpY27t3NZCbZ5sshGHOegRSA74AWB2Bz4rHo";
-const DRIVE_FOLDER_ID = "1WGj2FyMetqSvA8KfN_BmLyX0c12XLMSU";
+const SPREADSHEET_ID = "10jZFnYqczVfBhxgKiIoL_NzBCeTEQJAdQJxPLgATTvw";
+const DRIVE_FOLDER_ID = "1EJN34iU3DRjwPPhvCkyVKFh6vwNLaR5o";
 const RECIPIENT_EMAIL = "hr@urpantech.com";
 const RECIPIENT_EMAIL_CONTACT = "info@urpantech.com";
+const RECIPIENT_EMAIL_REFERRAL = "hr@urpantech.com";
 const CAREER_SHEET_NAME = "Sheet1";
-const CONTACT_SHEET_NAME = "Sheet2";  
+const CONTACT_SHEET_NAME = "Sheet2";
+const REFERRAL_SHEET_NAME = "Sheet3";
 
 /**
  * Handle GET requests - Test endpoint
@@ -12,7 +14,7 @@ const CONTACT_SHEET_NAME = "Sheet2";
 function doGet() {
   return ContentService.createTextOutput(JSON.stringify({
     status: "online",
-    message: "Career & Contact Form API is running",
+    message: "Career, Contact & Referral Form API is running",
     timestamp: new Date().toISOString()
   })).setMimeType(ContentService.MimeType.JSON);
 }
@@ -32,6 +34,9 @@ function doPost(e) {
     if (formData.job_applied_for && formData.fileData) {
       // Career Application (has job_applied_for and resume file)
       return handleCareerApplication(e);
+    } else if (formData.referral_name && formData.referral_email) {
+      // Referral Form (has referral fields)
+      return handleReferralForm(e);
     } else if (formData.message && !formData.job_applied_for) {
       // Contact Form (has message field, no job)
       return handleContactForm(e);
@@ -62,7 +67,6 @@ function handleCareerApplication(e) {
     const formData = e.parameter || {};
     Logger.log("Form data: " + JSON.stringify(formData));
 
-    // Parse applicant data
     const applicantName = (formData.name || "").trim();
     const applicantEmail = (formData.email || "").trim();
     const applicantPhone = (formData.phone || "").trim();
@@ -71,19 +75,16 @@ function handleCareerApplication(e) {
     const fileName = formData.fileName || "resume.pdf";
     const mimeType = formData.mimeType || "application/pdf";
 
-    // Validate required fields
     if (!applicantName) throw new Error("Missing required field: name");
     if (!applicantEmail) throw new Error("Missing required field: email");
     if (!jobAppliedFor) throw new Error("Missing required field: job_applied_for");
     if (!fileData) throw new Error("Resume file is required");
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(applicantEmail)) throw new Error("Invalid email format");
 
     Logger.log(`📎 File received: ${fileName}`);
 
-    // Handle file upload
     let fileUrl = "N/A";
     try {
       const fileBytes = Utilities.base64Decode(fileData);
@@ -106,7 +107,6 @@ function handleCareerApplication(e) {
       throw new Error("Failed to upload resume file: " + fileError.message);
     }
 
-    // Save to spreadsheet
     const doc = SpreadsheetApp.openById(SPREADSHEET_ID);
     const sheet = doc.getSheetByName(CAREER_SHEET_NAME);
     
@@ -139,7 +139,6 @@ function handleCareerApplication(e) {
     SpreadsheetApp.flush();
     Logger.log("✅ Career application saved to Sheet1");
 
-    // Send notification
     sendCareerNotificationEmail(newRowData);
 
     return ContentService.createTextOutput(
@@ -168,37 +167,30 @@ function handleContactForm(e) {
     const formData = e.parameter || {};
     Logger.log("Form data: " + JSON.stringify(formData));
 
-    // Parse contact data
     const contactName = (formData.name || "").trim();
     const contactEmail = (formData.email || "").trim();
     const contactPhone = (formData.phone || "").trim();
     const contactMessage = (formData.message || "").trim();
 
-    // Validate required fields
     if (!contactName) throw new Error("Missing required field: name");
     if (!contactEmail) throw new Error("Missing required field: email");
     if (!contactPhone) throw new Error("Missing required field: phone");
     if (!contactMessage) throw new Error("Missing required field: message");
 
-    // Validate email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(contactEmail)) throw new Error("Invalid email format");
 
-    // Validate phone (10 digits)
     const phoneRegex = /^[0-9]{10}$/;
     if (!phoneRegex.test(contactPhone)) throw new Error("Invalid phone format");
 
-    // Save to spreadsheet - Sheet2
     const doc = SpreadsheetApp.openById(SPREADSHEET_ID);
     let sheet = doc.getSheetByName(CONTACT_SHEET_NAME);
     
-    // If Sheet2 doesn't exist, create it
     if (!sheet) {
       sheet = doc.insertSheet(CONTACT_SHEET_NAME);
       Logger.log("✅ Created new sheet: " + CONTACT_SHEET_NAME);
     }
 
-    // Add headers if this is a new sheet
     if (sheet.getLastRow() === 0) {
       const headers = ["Timestamp", "Full Name", "Email", "Phone", "Message"];
       sheet.appendRow(headers);
@@ -207,12 +199,11 @@ function handleContactForm(e) {
       headerRange.setBackground("#86047d");
       headerRange.setFontColor("#FFFFFF");
       
-      // Set column widths
-      sheet.setColumnWidth(1, 150); // Timestamp
-      sheet.setColumnWidth(2, 150); // Name
-      sheet.setColumnWidth(3, 200); // Email
-      sheet.setColumnWidth(4, 120); // Phone
-      sheet.setColumnWidth(5, 400); // Message
+      sheet.setColumnWidth(1, 150);
+      sheet.setColumnWidth(2, 150);
+      sheet.setColumnWidth(3, 200);
+      sheet.setColumnWidth(4, 120);
+      sheet.setColumnWidth(5, 400);
       
       Logger.log("✅ Headers created in Sheet2");
     }
@@ -236,7 +227,6 @@ function handleContactForm(e) {
     SpreadsheetApp.flush();
     Logger.log("✅ Contact form saved to Sheet2");
 
-    // Send notification
     sendContactNotificationEmail(newRowData);
 
     return ContentService.createTextOutput(
@@ -250,6 +240,108 @@ function handleContactForm(e) {
   } catch (err) {
     Logger.log("❌ Contact Form Error: " + err.message);
     sendContactErrorEmail(e.parameter);
+    throw err;
+  }
+}
+
+/**
+ * Handle Referral Form Submission
+ */
+function handleReferralForm(e) {
+  try {
+    Logger.log("📨 ========== NEW REFERRAL SUBMISSION ==========");
+    
+    const formData = e.parameter || {};
+    Logger.log("Form data: " + JSON.stringify(formData));
+
+    const referrerName = (formData.referrer_name || "").trim();
+    const referrerEmail = (formData.referrer_email || "").trim();
+    const referrerPhone = (formData.referrer_phone || "").trim();
+    const referralName = (formData.referral_name || "").trim();
+    const referralEmail = (formData.referral_email || "").trim();
+    const referralPhone = (formData.referral_phone || "").trim();
+    const position = (formData.position || "").trim();
+    const relationship = (formData.relationship || "").trim();
+
+    if (!referrerName) throw new Error("Missing required field: referrer_name");
+    if (!referrerEmail) throw new Error("Missing required field: referrer_email");
+    if (!referralName) throw new Error("Missing required field: referral_name");
+    if (!referralEmail) throw new Error("Missing required field: referral_email");
+    if (!position) throw new Error("Missing required field: position");
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(referrerEmail)) throw new Error("Invalid referrer email format");
+    if (!emailRegex.test(referralEmail)) throw new Error("Invalid referral email format");
+
+    const doc = SpreadsheetApp.openById(SPREADSHEET_ID);
+    let sheet = doc.getSheetByName(REFERRAL_SHEET_NAME);
+    
+    if (!sheet) {
+      sheet = doc.insertSheet(REFERRAL_SHEET_NAME);
+      Logger.log("✅ Created new sheet: " + REFERRAL_SHEET_NAME);
+    }
+
+    if (sheet.getLastRow() === 0) {
+      const headers = ["Timestamp", "Referrer Name", "Referrer Email", "Referrer Phone", "Referral Name", "Referral Email", "Referral Phone", "Position", "Relationship"];
+      sheet.appendRow(headers);
+      const headerRange = sheet.getRange(1, 1, 1, headers.length);
+      headerRange.setFontWeight("bold");
+      headerRange.setBackground("#86047d");
+      headerRange.setFontColor("#FFFFFF");
+      
+      sheet.setColumnWidth(1, 150);
+      sheet.setColumnWidth(2, 150);
+      sheet.setColumnWidth(3, 200);
+      sheet.setColumnWidth(4, 120);
+      sheet.setColumnWidth(5, 150);
+      sheet.setColumnWidth(6, 200);
+      sheet.setColumnWidth(7, 120);
+      sheet.setColumnWidth(8, 200);
+      sheet.setColumnWidth(9, 200);
+      
+      Logger.log("✅ Headers created in Sheet3");
+    }
+
+    const newRowData = {
+      Timestamp: Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "MM/dd/yyyy HH:mm:ss"),
+      ReferrerName: referrerName,
+      ReferrerEmail: referrerEmail,
+      ReferrerPhone: referrerPhone || "N/A",
+      ReferralName: referralName,
+      ReferralEmail: referralEmail,
+      ReferralPhone: referralPhone || "N/A",
+      Position: position,
+      Relationship: relationship || "N/A"
+    };
+
+    sheet.appendRow([
+      newRowData.Timestamp,
+      newRowData.ReferrerName,
+      newRowData.ReferrerEmail,
+      newRowData.ReferrerPhone,
+      newRowData.ReferralName,
+      newRowData.ReferralEmail,
+      newRowData.ReferralPhone,
+      newRowData.Position,
+      newRowData.Relationship
+    ]);
+
+    SpreadsheetApp.flush();
+    Logger.log("✅ Referral form saved to Sheet3");
+
+    sendReferralNotificationEmail(newRowData);
+
+    return ContentService.createTextOutput(
+      JSON.stringify({
+        status: "success",
+        message: "Referral submitted successfully",
+        referrer: referrerName
+      })
+    ).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    Logger.log("❌ Referral Form Error: " + err.message);
+    sendReferralErrorEmail(e.parameter);
     throw err;
   }
 }
@@ -362,7 +454,72 @@ function sendContactNotificationEmail(data) {
 }
 
 /**
- * Send Career Error Notification
+ * Send Referral Notification
+ */
+function sendReferralNotificationEmail(data) {
+  try {
+    const subject = `New Employee Referral: ${data.ReferralName} for ${data.Position}`;
+    const htmlBody = `
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body style="margin: 0; padding: 0; background-color: #f4f7fa; font-family: Arial, sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f4f7fa; padding: 40px 20px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+          <tr>
+            <td style="background: linear-gradient(135deg, #86047d, #ff66ff); padding: 32px 40px; text-align: center;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 24px;">🤝 New Employee Referral</h1>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 32px 40px;">
+              <h3 style="margin: 0 0 20px 0; color: #86047d;">Referred Candidate</h3>
+              <p><strong>Name:</strong> ${data.ReferralName}</p>
+              <p><strong>Email:</strong> <a href="mailto:${data.ReferralEmail}">${data.ReferralEmail}</a></p>
+              <p><strong>Phone:</strong> ${data.ReferralPhone}</p>
+              <p><strong>Position:</strong> ${data.Position}</p>
+              
+              <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 24px 0;">
+              
+              <h3 style="margin: 0 0 20px 0; color: #86047d;">Referred By</h3>
+              <p><strong>Name:</strong> ${data.ReferrerName}</p>
+              <p><strong>Email:</strong> <a href="mailto:${data.ReferrerEmail}">${data.ReferrerEmail}</a></p>
+              <p><strong>Phone:</strong> ${data.ReferrerPhone}</p>
+              <p><strong>Relationship:</strong> ${data.Relationship}</p>
+              
+              <div style="margin-top: 24px;">
+                <a href="mailto:${data.ReferralEmail}" style="display: inline-block; background: #86047d; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px; margin-right: 10px;">Contact Candidate</a>
+                <a href="mailto:${data.ReferrerEmail}" style="display: inline-block; background: #45073c; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px;">Contact Referrer</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #f8fafc; padding: 20px 40px; text-align: center;">
+              <p style="margin: 0; color: #94a3b8; font-size: 12px;">Submitted: ${data.Timestamp}</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+
+    MailApp.sendEmail({
+      to: RECIPIENT_EMAIL_REFERRAL,
+      subject: subject,
+      htmlBody: htmlBody
+    });
+    Logger.log("✅ Referral notification sent");
+  } catch (err) {
+    Logger.log("⚠️ Failed to send referral notification: " + err.message);
+  }
+}
+
+/**
+ * Error Email Functions
  */
 function sendCareerErrorEmail(data) {
   try {
@@ -376,9 +533,6 @@ function sendCareerErrorEmail(data) {
   }
 }
 
-/**
- * Send Contact Error Notification
- */
 function sendContactErrorEmail(data) {
   try {
     MailApp.sendEmail({
@@ -388,6 +542,18 @@ function sendContactErrorEmail(data) {
     });
   } catch (err) {
     Logger.log("⚠️ Failed to send contact error email");
+  }
+}
+
+function sendReferralErrorEmail(data) {
+  try {
+    MailApp.sendEmail({
+      to: RECIPIENT_EMAIL_REFERRAL,
+      subject: `❌ Referral Form Error`,
+      body: `Error processing referral form for ${data.referrer_name || "Unknown"}`
+    });
+  } catch (err) {
+    Logger.log("⚠️ Failed to send referral error email");
   }
 }
 
@@ -407,12 +573,20 @@ function testConfiguration() {
       Logger.log(`✅ Created ${CONTACT_SHEET_NAME}`);
     }
     
+    let referralSheet = doc.getSheetByName(REFERRAL_SHEET_NAME);
+    if (!referralSheet) {
+      referralSheet = doc.insertSheet(REFERRAL_SHEET_NAME);
+      Logger.log(`✅ Created ${REFERRAL_SHEET_NAME}`);
+    }
+    
     Logger.log(`✅ Spreadsheet: ${doc.getName()}`);
     Logger.log(`✅ Career Sheet: ${careerSheet.getName()}`);
     Logger.log(`✅ Contact Sheet: ${contactSheet.getName()}`);
+    Logger.log(`✅ Referral Sheet: ${referralSheet.getName()}`);
     Logger.log(`✅ Folder: ${folder.getName()}`);
-    Logger.log(`✅ Email: ${RECIPIENT_EMAIL}`);
-    Logger.log(`✅ Email: ${RECIPIENT_EMAIL_CONTACT}`);
+    Logger.log(`✅ Email HR: ${RECIPIENT_EMAIL}`);
+    Logger.log(`✅ Email Contact: ${RECIPIENT_EMAIL_CONTACT}`);
+    Logger.log(`✅ Email Referral: ${RECIPIENT_EMAIL_REFERRAL}`);
     Logger.log("🎉 Configuration test passed!");
     return true;
   } catch (err) {
