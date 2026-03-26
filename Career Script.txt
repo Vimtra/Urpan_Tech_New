@@ -2,8 +2,8 @@
 const SPREADSHEET_ID = "10jZFnYqczVfBhxgKiIoL_NzBCeTEQJAdQJxPLgATTvw";
 const DRIVE_FOLDER_ID = "1EJN34iU3DRjwPPhvCkyVKFh6vwNLaR5o";
 const RECIPIENT_EMAIL = "info@urpantech.com";
-const RECIPIENT_EMAIL_CONTACT = "info@urpantech.com";
-const RECIPIENT_EMAIL_REFERRAL = "hr@urpantech.com";
+const RECIPIENT_EMAIL_CONTACT = "info@urpantech.com;
+const RECIPIENT_EMAIL_REFERRAL = "info@urpantech.com";
 const CAREER_SHEET_NAME = "Sheet1";
 const CONTACT_SHEET_NAME = "Sheet2";
 const REFERRAL_SHEET_NAME = "Sheet3";
@@ -62,7 +62,7 @@ function doPost(e) {
  */
 function handleCareerApplication(e) {
   try {
-    Logger.log("📨 ========== NEW CAREER APPLICATION ==========");
+    Logger.log("========== NEW CAREER APPLICATION ==========");
     
     const formData = e.parameter || {};
     Logger.log("Form data: " + JSON.stringify(formData));
@@ -83,7 +83,7 @@ function handleCareerApplication(e) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(applicantEmail)) throw new Error("Invalid email format");
 
-    Logger.log(`📎 File received: ${fileName}`);
+    Logger.log(`File received: ${fileName}`);
 
     let fileUrl = "N/A";
     try {
@@ -102,7 +102,7 @@ function handleCareerApplication(e) {
       newFile.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
 
       fileUrl = newFile.getUrl();
-      Logger.log(`✅ File uploaded: ${newFileName}`);
+      Logger.log(`File uploaded: ${newFileName}`);
     } catch (fileError) {
       throw new Error("Failed to upload resume file: " + fileError.message);
     }
@@ -137,7 +137,7 @@ function handleCareerApplication(e) {
     ]);
 
     SpreadsheetApp.flush();
-    Logger.log("✅ Career application saved to Sheet1");
+    Logger.log("Career application saved to Sheet1");
 
     sendCareerNotificationEmail(newRowData);
 
@@ -151,7 +151,7 @@ function handleCareerApplication(e) {
     ).setMimeType(ContentService.MimeType.JSON);
 
   } catch (err) {
-    Logger.log("❌ Career Application Error: " + err.message);
+    Logger.log("Career Application Error: " + err.message);
     sendCareerErrorEmail(e.parameter);
     throw err;
   }
@@ -162,7 +162,7 @@ function handleCareerApplication(e) {
  */
 function handleContactForm(e) {
   try {
-    Logger.log("📨 ========== NEW CONTACT SUBMISSION ==========");
+    Logger.log("========== NEW CONTACT SUBMISSION ==========");
     
     const formData = e.parameter || {};
     Logger.log("Form data: " + JSON.stringify(formData));
@@ -188,7 +188,7 @@ function handleContactForm(e) {
     
     if (!sheet) {
       sheet = doc.insertSheet(CONTACT_SHEET_NAME);
-      Logger.log("✅ Created new sheet: " + CONTACT_SHEET_NAME);
+      Logger.log("Created new sheet: " + CONTACT_SHEET_NAME);
     }
 
     if (sheet.getLastRow() === 0) {
@@ -205,7 +205,7 @@ function handleContactForm(e) {
       sheet.setColumnWidth(4, 120);
       sheet.setColumnWidth(5, 400);
       
-      Logger.log("✅ Headers created in Sheet2");
+      Logger.log("Headers created in Sheet2");
     }
 
     const newRowData = {
@@ -225,7 +225,7 @@ function handleContactForm(e) {
     ]);
 
     SpreadsheetApp.flush();
-    Logger.log("✅ Contact form saved to Sheet2");
+    Logger.log("Contact form saved to Sheet2");
 
     sendContactNotificationEmail(newRowData);
 
@@ -238,7 +238,7 @@ function handleContactForm(e) {
     ).setMimeType(ContentService.MimeType.JSON);
 
   } catch (err) {
-    Logger.log("❌ Contact Form Error: " + err.message);
+    Logger.log("Contact Form Error: " + err.message);
     sendContactErrorEmail(e.parameter);
     throw err;
   }
@@ -249,7 +249,7 @@ function handleContactForm(e) {
  */
 function handleReferralForm(e) {
   try {
-    Logger.log("📨 ========== NEW REFERRAL SUBMISSION ==========");
+    Logger.log("========== NEW REFERRAL SUBMISSION ==========");
     
     const formData = e.parameter || {};
     Logger.log("Form data: " + JSON.stringify(formData));
@@ -278,7 +278,7 @@ function handleReferralForm(e) {
     
     if (!sheet) {
       sheet = doc.insertSheet(REFERRAL_SHEET_NAME);
-      Logger.log("✅ Created new sheet: " + REFERRAL_SHEET_NAME);
+      Logger.log("Created new sheet: " + REFERRAL_SHEET_NAME);
     }
 
     if (sheet.getLastRow() === 0) {
@@ -299,7 +299,7 @@ function handleReferralForm(e) {
       sheet.setColumnWidth(8, 200);
       sheet.setColumnWidth(9, 200);
       
-      Logger.log("✅ Headers created in Sheet3");
+      Logger.log("Headers created in Sheet3");
     }
 
     const newRowData = {
@@ -327,7 +327,7 @@ function handleReferralForm(e) {
     ]);
 
     SpreadsheetApp.flush();
-    Logger.log("✅ Referral form saved to Sheet3");
+    Logger.log("Referral form saved to Sheet3");
 
     sendReferralNotificationEmail(newRowData);
 
@@ -340,7 +340,7 @@ function handleReferralForm(e) {
     ).setMimeType(ContentService.MimeType.JSON);
 
   } catch (err) {
-    Logger.log("❌ Referral Form Error: " + err.message);
+    Logger.log("Referral Form Error: " + err.message);
     sendReferralErrorEmail(e.parameter);
     throw err;
   }
@@ -392,9 +392,9 @@ function sendCareerNotificationEmail(data) {
       subject: subject,
       htmlBody: htmlBody
     });
-    Logger.log("✅ Career notification sent");
+    Logger.log("Career notification sent");
   } catch (err) {
-    Logger.log("⚠️ Failed to send career notification: " + err.message);
+    Logger.log("Failed to send career notification: " + err.message);
   }
 }
 
@@ -415,7 +415,7 @@ function sendContactNotificationEmail(data) {
         <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
           <tr>
             <td style="background: linear-gradient(135deg, #86047d, #45073c); padding: 32px 40px; text-align: center;">
-              <h1 style="margin: 0; color: #ffffff; font-size: 24px;">📩 New Contact Message</h1>
+              <h1 style="margin: 0; color: #ffffff; font-size: 24px;">New Contact Message</h1>
             </td>
           </tr>
           <tr>
@@ -447,9 +447,9 @@ function sendContactNotificationEmail(data) {
       subject: subject,
       htmlBody: htmlBody
     });
-    Logger.log("✅ Contact notification sent");
+    Logger.log("Contact notification sent");
   } catch (err) {
-    Logger.log("⚠️ Failed to send contact notification: " + err.message);
+    Logger.log("Failed to send contact notification: " + err.message);
   }
 }
 
@@ -470,7 +470,7 @@ function sendReferralNotificationEmail(data) {
         <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
           <tr>
             <td style="background: linear-gradient(135deg, #86047d, #ff66ff); padding: 32px 40px; text-align: center;">
-              <h1 style="margin: 0; color: #ffffff; font-size: 24px;">🤝 New Employee Referral</h1>
+              <h1 style="margin: 0; color: #ffffff; font-size: 24px;">New Employee Referral</h1>
             </td>
           </tr>
           <tr>
@@ -512,9 +512,9 @@ function sendReferralNotificationEmail(data) {
       subject: subject,
       htmlBody: htmlBody
     });
-    Logger.log("✅ Referral notification sent");
+    Logger.log("Referral notification sent");
   } catch (err) {
-    Logger.log("⚠️ Failed to send referral notification: " + err.message);
+    Logger.log("Failed to send referral notification: " + err.message);
   }
 }
 
@@ -525,11 +525,11 @@ function sendCareerErrorEmail(data) {
   try {
     MailApp.sendEmail({
       to: RECIPIENT_EMAIL,
-      subject: `❌ Career Application Error`,
+      subject: `Career Application Error`,
       body: `Error processing career application for ${data.name || "Unknown"}`
     });
   } catch (err) {
-    Logger.log("⚠️ Failed to send career error email");
+    Logger.log("Failed to send career error email");
   }
 }
 
@@ -537,11 +537,11 @@ function sendContactErrorEmail(data) {
   try {
     MailApp.sendEmail({
       to: RECIPIENT_EMAIL_CONTACT,
-      subject: `❌ Contact Form Error`,
+      subject: `Contact Form Error`,
       body: `Error processing contact form for ${data.name || "Unknown"}`
     });
   } catch (err) {
-    Logger.log("⚠️ Failed to send contact error email");
+    Logger.log("Failed to send contact error email");
   }
 }
 
@@ -549,11 +549,11 @@ function sendReferralErrorEmail(data) {
   try {
     MailApp.sendEmail({
       to: RECIPIENT_EMAIL_REFERRAL,
-      subject: `❌ Referral Form Error`,
+      subject: `Referral Form Error`,
       body: `Error processing referral form for ${data.referrer_name || "Unknown"}`
     });
   } catch (err) {
-    Logger.log("⚠️ Failed to send referral error email");
+    Logger.log("Failed to send referral error email");
   }
 }
 
@@ -562,7 +562,7 @@ function sendReferralErrorEmail(data) {
  */
 function testConfiguration() {
   try {
-    Logger.log("🧪 Testing configuration...");
+    Logger.log("Testing configuration...");
     const doc = SpreadsheetApp.openById(SPREADSHEET_ID);
     const careerSheet = doc.getSheetByName(CAREER_SHEET_NAME);
     const folder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
@@ -570,27 +570,27 @@ function testConfiguration() {
     let contactSheet = doc.getSheetByName(CONTACT_SHEET_NAME);
     if (!contactSheet) {
       contactSheet = doc.insertSheet(CONTACT_SHEET_NAME);
-      Logger.log(`✅ Created ${CONTACT_SHEET_NAME}`);
+      Logger.log(`Created ${CONTACT_SHEET_NAME}`);
     }
     
     let referralSheet = doc.getSheetByName(REFERRAL_SHEET_NAME);
     if (!referralSheet) {
       referralSheet = doc.insertSheet(REFERRAL_SHEET_NAME);
-      Logger.log(`✅ Created ${REFERRAL_SHEET_NAME}`);
+      Logger.log(`Created ${REFERRAL_SHEET_NAME}`);
     }
     
-    Logger.log(`✅ Spreadsheet: ${doc.getName()}`);
-    Logger.log(`✅ Career Sheet: ${careerSheet.getName()}`);
-    Logger.log(`✅ Contact Sheet: ${contactSheet.getName()}`);
-    Logger.log(`✅ Referral Sheet: ${referralSheet.getName()}`);
-    Logger.log(`✅ Folder: ${folder.getName()}`);
-    Logger.log(`✅ Email HR: ${RECIPIENT_EMAIL}`);
-    Logger.log(`✅ Email Contact: ${RECIPIENT_EMAIL_CONTACT}`);
-    Logger.log(`✅ Email Referral: ${RECIPIENT_EMAIL_REFERRAL}`);
-    Logger.log("🎉 Configuration test passed!");
+    Logger.log(`Spreadsheet: ${doc.getName()}`);
+    Logger.log(`Career Sheet: ${careerSheet.getName()}`);
+    Logger.log(`Contact Sheet: ${contactSheet.getName()}`);
+    Logger.log(`Referral Sheet: ${referralSheet.getName()}`);
+    Logger.log(`Folder: ${folder.getName()}`);
+    Logger.log(`Email HR: ${RECIPIENT_EMAIL}`);
+    Logger.log(`Email Contact: ${RECIPIENT_EMAIL_CONTACT}`);
+    Logger.log(`Email Referral: ${RECIPIENT_EMAIL_REFERRAL}`);
+    Logger.log("Configuration test passed!");
     return true;
   } catch (err) {
-    Logger.log(`❌ Configuration test failed: ${err.message}`);
+    Logger.log(`Configuration test failed: ${err.message}`);
     return false;
   }
 }
