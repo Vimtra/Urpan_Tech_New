@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -102,13 +102,13 @@
                 <p>Your Step towards a great Career is just a Click Away...</p>
               </div>
               <div class="cta-buttons">
-                <a
+                 <a
                   href="./careerForm.html"
                   class="btn btn-primary"
                   id="primaryBtn"
                 >
                   <span>Get Started</span>
-                </a>
+                </a> 
                 <a
                   href="./aboutus.html"
                   class="btn btn-outline"
@@ -588,7 +588,7 @@
               }
             });
           },
-          { threshold: 0.5 },
+          { threshold: 0.5 }
         );
 
         const section = document.querySelector("#whychooseus");
@@ -601,6 +601,22 @@
       AOS.init({
         duration: 2000,
         once: false,
+      });
+    </script>
+        <script>
+      // Close mobile navbar on click outside
+      document.addEventListener('click', function (event) {
+        var navbarCollapse = document.getElementById('navbarNav');
+        var navbarToggler = document.querySelector('.navbar-toggler');
+        if (
+          navbarCollapse && 
+          navbarCollapse.classList.contains('show') &&
+          !navbarCollapse.contains(event.target) &&
+          !navbarToggler.contains(event.target)
+        ) {
+          var bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
+          bsCollapse.hide();
+        }
       });
     </script>
   </body>

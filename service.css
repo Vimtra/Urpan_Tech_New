@@ -29,7 +29,8 @@ html {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  height: 40vh;
+  min-height: 40vh;
+  height: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -123,7 +124,7 @@ html {
 
 .service-img {
   /* color: beige; */
-  max-width: 50%;
+  max-width: 40%;
   height: auto;
   border-radius: 8px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -159,21 +160,34 @@ html {
 }
 
 /* Responsive */
+@media (max-width: 991.98px) {
+  .service-card {
+    padding: 2rem 1.5rem;
+    margin: 15px 10px;
+  }
+  .service-card h2 {
+    font-size: 1.8rem;
+  }
+  .service-img {
+    max-width: 60%;
+  }
+}
+
 @media (max-width: 767.98px) {
   .service-header {
     padding: 6rem 1.5rem 3rem;
     text-align: center;
   }
   .service-header h1 {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
   }
 
   .service-header p {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 
   .service-card {
-    padding: 1rem;
+    padding: 1.5rem 1rem;
     margin: 15px 0;
   }
 
@@ -188,7 +202,7 @@ html {
   }
 
   .service-img {
-    max-width: 100%;
+    max-width: 80%;
   }
 
   .service-content-block {
@@ -201,7 +215,8 @@ html {
 }
 @media (max-width: 490px) {
   .service-header {
-    height: 30vh;
+    min-height: 30vh;
+    height: auto;
     margin-top: 0;
     padding: 2rem 1rem;
   }

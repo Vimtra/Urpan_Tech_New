@@ -1,7 +1,7 @@
 // === CONFIGURATION (UPDATE THESE VALUES) ===
 const SPREADSHEET_ID = "10jZFnYqczVfBhxgKiIoL_NzBCeTEQJAdQJxPLgATTvw";
 const DRIVE_FOLDER_ID = "1EJN34iU3DRjwPPhvCkyVKFh6vwNLaR5o";
-const RECIPIENT_EMAIL = "hr@urpantech.com";
+const RECIPIENT_EMAIL = "info@urpantech.com";
 const RECIPIENT_EMAIL_CONTACT = "info@urpantech.com";
 const RECIPIENT_EMAIL_REFERRAL = "hr@urpantech.com";
 const CAREER_SHEET_NAME = "Sheet1";
