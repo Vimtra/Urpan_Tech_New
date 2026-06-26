@@ -62,11 +62,12 @@
 
   <header class="career-hero" data-aos="fade-in-up" data-aos-duration="800" data-aos-delay="200">
     <div class="section-header">
-      <h2 id="careerHeading">Career Opportunities</h2>
+      <h2 id="careerHeading">Careers</h2>
     </div>
   </header>
 
-  <section class="career-section">
+
+  <!-- <section class="career-section">
     <main class="container career">
       <div class="row gx-4 gy-4 align-items-start">
         <aside class="col-lg-4 col-md-5">
@@ -84,10 +85,10 @@
 
             <h4>
               JOB: <span id="jobTitle">Application Security Engineer</span>
-            </h4>
+            </h4> -->
             <!-- <h6 id="jobSubTitle"></h6> -->
 
-            <div class="meta-row mb-3">
+            <!-- <div class="meta-row mb-3">
               <div class="meta-item">
                 <span class="label-strong">Posted Date</span>
                 <div id="postedDate">09/03/2024</div>
@@ -155,7 +156,7 @@
         </section>
       </div>
     </main>
-  </section>
+  </section> -->
 
   <!-- Career Application Modal -->
   <div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel"
@@ -231,12 +232,12 @@
   <section class="career-section" style="padding-top: 10px; padding-bottom: 60px">
     <div class="container">
       <div class="section-header text-center mb-5" data-aos="fade-up">
-        <h2 style="font-weight: 700">Employee Referral Program</h2>
+        <h2 style="font-weight: 500; margin:20px">Employee Referral Program</h2>
         <p style="
               color: var(--muted);
               max-width: 700px;
               margin: 0 auto;
-              font-size: 1rem;
+              font-size: 1.5rem;
             ">
           Know someone who would be perfect for our team? Refer them and help
           us grow together!
@@ -438,7 +439,7 @@
               If the new employee, who was hired through employee referral
               program, stays with the company for at least 365 days or more,
               then the referring employee receives a special bonus in the
-              amount of $500. There is no limit to the number of referrals an
+              amount of $2000. There is no limit to the number of referrals an
               employee can make or the number of referrals bonuses an employee
               may receive.
             </p>
@@ -470,7 +471,7 @@
             <i class="fas fa-info-circle me-2" style="color: var(--accent)"></i>
             <strong>Note:</strong> Current Job Postings and Openings can be
             obtained by contacting HR directly or by visiting our
-            <a href="http://www.urpantech.com/careerForm.html" target="_blank" rel="noopener noreferrer"
+            <a href="http://www.urpantech.com/careers.html" target="_blank" rel="noopener noreferrer"
               class="text-decoration-none" style="color: var(--accent); font-weight: 700">Careers Section</a>.
           </p>
           <div class="mt-3 text-muted" style="font-size: 0.85rem; font-style: italic">
@@ -1345,22 +1346,6 @@
     setupReferralValidation();
     renderJobList();
   </script>
-      <script>
-      // Close mobile navbar on click outside
-      document.addEventListener('click', function (event) {
-        var navbarCollapse = document.getElementById('navbarNav');
-        var navbarToggler = document.querySelector('.navbar-toggler');
-        if (
-          navbarCollapse && 
-          navbarCollapse.classList.contains('show') &&
-          !navbarCollapse.contains(event.target) &&
-          !navbarToggler.contains(event.target)
-        ) {
-          var bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
-          bsCollapse.hide();
-        }
-      });
-    </script>
 </body>
 
 </html>
