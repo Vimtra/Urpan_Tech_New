@@ -799,21 +799,37 @@ body {
 
 /* Accenture-Symbol.png is just the ">" mark — scale up to match wordmarks. */
 .marquee__track img[src*="Accenture"] {
-  height: 80px;
-  max-width: 110px;
+  height: 100px;
+  max-width: 130px;
+}
+
+/* Bank_of_America_.png — increased height */
+.marquee__track img[src*="Bank_of_America"] {
+  height: 110px;
+  max-width: 220px;
 }
 
 @media (max-width: 767.98px) {
   .marquee__track img[src*="Accenture"] {
-    height: 58px;
-    max-width: 80px;
+    height: 70px;
+    max-width: 90px;
+  }
+
+  .marquee__track img[src*="Bank_of_America"] {
+    height: 75px;
+    max-width: 160px;
   }
 }
 
 @media (max-width: 480px) {
   .marquee__track img[src*="Accenture"] {
-    height: 50px;
-    max-width: 70px;
+    height: 60px;
+    max-width: 80px;
+  }
+
+  .marquee__track img[src*="Bank_of_America"] {
+    height: 65px;
+    max-width: 140px;
   }
 }
 
