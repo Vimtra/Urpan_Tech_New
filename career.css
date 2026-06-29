@@ -27,7 +27,7 @@ body {
   overflow: hidden;
   padding: 140px 0 120px;
   background-color: #2a0240; /* fallback if the image fails to load */
-  background-image: url("images/Hero2.png");
+  background-image: url("./images/Hero2.png?v=2");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -606,63 +606,270 @@ body {
   margin: 40px
 } */
 
-/* ===== POLICY SECTION STYLES ===== */
-.policy-section {
+/* ===== EMPLOYEE REFERRAL OVERVIEW (2-column) ===== */
+.referral-overview-section {
+  padding: 100px 0 70px;
+  background: #ffffff;
+}
+
+.referral-intro {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.referral-eyebrow {
+  display: inline-block;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.referral-paragraph {
+  font-family: "Lato", sans-serif;
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+
+.referral-paragraph:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Details container — always visible (accordion shown by default) */
+.referral-details {
+  margin-top: 32px;
+}
+
+/* Accordion */
+.referral-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.referral-accordion-item {
+  background: #fcfaff;
+  border: 1px solid rgba(134, 4, 125, 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.6s ease, box-shadow 0.6s ease, background-color 0.6s ease;
+}
+
+.referral-accordion-trigger {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 18px 22px;
+  background: transparent;
+  border: none;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.referral-accordion-trigger:hover,
+.referral-accordion-trigger:focus-visible {
+  color: var(--accent);
+  outline: none;
+}
+
+.referral-accordion-trigger[aria-expanded="true"] {
+  color: var(--accent);
+}
+
+.referral-accordion-item:has(.referral-accordion-trigger[aria-expanded="true"]) {
+  background-color: #fffafd;
+  border-color: rgba(134, 4, 125, 0.30);
+  box-shadow: 0 12px 32px rgba(134, 4, 125, 0.10);
+}
+
+.referral-accordion-icon {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+}
+
+.referral-accordion-title {
+  flex-grow: 1;
+}
+
+.referral-accordion-chevron {
+  font-size: 1rem;
+  color: var(--accent);
+  transition: transform 0.6s ease;
+}
+
+.referral-accordion-trigger[aria-expanded="true"] .referral-accordion-chevron {
+  transform: rotate(180deg);
+}
+
+.referral-accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.referral-accordion-trigger[aria-expanded="true"] + .referral-accordion-panel {
+  max-height: 600px;
+}
+
+.referral-accordion-content {
+  padding: 0 22px 22px 74px;
+}
+
+.referral-accordion-content p {
+  font-family: "Lato", sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* CTA card (right column) */
+.referral-cta-card {
   position: relative;
+  background: linear-gradient(160deg, #ffffff 0%, #fcfaff 100%);
+  border: 1px solid rgba(134, 4, 125, 0.10);
+  border-radius: 22px;
+  padding: 56px 50px;
+  box-shadow: 0 20px 55px rgba(16, 16, 16, 0.07);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   overflow: hidden;
 }
 
-.policy-card {
-  background: white;
-  border-radius: 15px;
-  padding: 2.5rem 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(134, 4, 125, 0.05);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  text-align: center;
-  position: relative;
+.referral-cta-card::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(192, 33, 182, 0.16), transparent 70%);
+  pointer-events: none;
 }
 
-.policy-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(134, 4, 125, 0.1);
-  border-color: var(--accent);
-}
-
-.policy-icon {
-  width: 70px;
-  height: 70px;
+.referral-cta-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 20px;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: white;
-  font-size: 1.8rem;
-  display: flex;
+  color: #ffffff;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  margin: 0 auto 1.5rem;
-  box-shadow: 0 8px 15px rgba(134, 4, 125, 0.2);
-  transition: all 0.4s ease;
+  font-size: 1.7rem;
+  box-shadow: 0 14px 30px rgba(134, 4, 125, 0.25);
+  margin-bottom: 28px;
 }
 
-.policy-card:hover .policy-icon {
-  transform: rotateY(360deg);
-  box-shadow: 0 12px 20px rgba(134, 4, 125, 0.3);
-}
-
-.policy-title {
-  font-family: "Nunito Sans", sans-serif;
+.referral-cta-heading {
+  font-family: "Lato", sans-serif;
+  font-size: 1.9rem;
   font-weight: 800;
   color: var(--text-dark);
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
+  margin: 0 0 18px;
+  letter-spacing: -0.3px;
 }
 
-.policy-text {
+.referral-cta-description {
+  font-family: "Lato", sans-serif;
+  font-size: 1.08rem;
+  line-height: 1.75;
   color: var(--muted);
-  line-height: 1.7;
-  font-size: 0.95rem;
+  margin: 0 0 36px;
+  max-width: 480px;
 }
 
-.policy-section .section-header h2::after {
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+.referral-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #ffffff;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-family: "Lato", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  box-shadow: 0 14px 32px rgba(134, 4, 125, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, gap 0.25s ease;
+}
+
+.referral-cta-button:hover,
+.referral-cta-button:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 42px rgba(134, 4, 125, 0.32);
+  gap: 16px;
+  outline: none;
+}
+
+.referral-cta-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.referral-cta-note i {
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+@media (max-width: 991.98px) {
+  .referral-overview-section {
+    padding: 70px 0 50px;
+  }
+  .referral-cta-card {
+    padding: 40px 36px;
+  }
+  .referral-cta-heading {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .referral-overview-section {
+    padding: 56px 0 30px;
+  }
+  .referral-paragraph {
+    font-size: 1rem;
+  }
+  .referral-cta-card {
+    padding: 32px 26px;
+    border-radius: 18px;
+  }
+  .referral-cta-button {
+    width: 100%;
+    justify-content: center;
+  }
+  .referral-accordion-content {
+    padding-left: 22px;
+  }
 }
