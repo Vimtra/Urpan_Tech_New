@@ -564,7 +564,33 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-10">
-            <div class="glass-card">
+            <div class="glass-card" style="position: relative;">
+              <!-- Close button -->
+              <button
+                type="button"
+                id="closeReferralForm"
+                aria-label="Close referral form"
+                title="Close"
+                style="
+                  position: absolute;
+                  top: 14px;
+                  right: 16px;
+                  background: transparent;
+                  border: none;
+                  cursor: pointer;
+                  color: var(--accent, #8c1b8e);
+                  font-size: 1.4rem;
+                  line-height: 1;
+                  padding: 4px 6px;
+                  border-radius: 50%;
+                  transition: background 0.2s, color 0.2s;
+                  z-index: 10;
+                "
+                onmouseover="this.style.background='rgba(140,27,142,0.12)';"
+                onmouseout="this.style.background='transparent';"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
               <form id="referralForm" method="POST">
                 <div class="row">
                   <!-- Your Information Section -->
@@ -1767,6 +1793,23 @@
             var first = form.querySelector("input, select, textarea");
             if (first) first.focus({ preventScroll: true });
           }, 800);
+        });
+      })();
+
+      // Close referral form — hide section and scroll back to CTA card
+      (function () {
+        var closeBtn = document.getElementById("closeReferralForm");
+        if (!closeBtn) return;
+        closeBtn.addEventListener("click", function () {
+          var section = document.getElementById("referralFormSection");
+          var cta = document.querySelector(".referral-cta-card");
+          if (section) section.hidden = true;
+          if (cta) {
+            var navbar = document.querySelector(".modern-navbar");
+            var navHeight = navbar ? navbar.getBoundingClientRect().height + 16 : 90;
+            var top = cta.getBoundingClientRect().top + window.pageYOffset - navHeight;
+            window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+          }
         });
       })();
     </script>
