@@ -1,0 +1,544 @@
+// === CONFIGURATION (UPDATE THESE VALUES) ===
+const SPREADSHEET_ID = "10ropCOcxpY27t3NZCbZ5sshGHOegRSA74AWB2Bz4rHo";
+const DRIVE_FOLDER_ID = "1WGj2FyMetqSvA8KfN_BmLyX0c12XLMSU";
+const RECIPIENT_EMAIL = "hr@vimtra.com";
+const RECIPIENT_EMAIL_CONTACT = "info@urpantech.com";
+const CAREER_SHEET_NAME = "Sheet1";
+const CONTACT_SHEET_NAME = "Sheet2";  
+
+/**
+ * Handle GET requests - Test endpoint
+ */
+function doGet() {
+  return ContentService.createTextOutput(JSON.stringify({
+    status: "online",
+    message: "Career & Contact Form API is running",
+    timestamp: new Date().toISOString()
+  })).setMimeType(ContentService.MimeType.JSON);
+}
+
+/**
+ * Handle POST requests - Route to appropriate handler
+ */
+function doPost(e) {
+  const lock = LockService.getScriptLock();
+
+  try {
+    lock.tryLock(10000);
+    
+    const formData = (e && e.parameter) ? e.parameter : {};
+    
+    // Detect which form was submitted
+    if (formData.job_applied_for && formData.fileData) {
+      // Career Application (has job_applied_for and resume file)
+      return handleCareerApplication(e);
+    } else if (formData.message && !formData.job_applied_for) {
+      // Contact Form (has message field, no job)
+      return handleContactForm(e);
+    } else {
+      throw new Error("Unable to determine form type");
+    }
+
+  } catch (err) {
+    Logger.log("❌ Error: " + err.message);
+    return ContentService.createTextOutput(
+      JSON.stringify({
+        status: "error",
+        message: err.message
+      })
+    ).setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    if (lock.hasLock()) lock.releaseLock();
+  }
+}
+
+/**
+ * Handle Career Application Submission
+ */
+function handleCareerApplication(e) {
+  try {
+    Logger.log("📨 ========== NEW CAREER APPLICATION ==========");
+    
+    // Fallback mock data for manual execution in Apps Script Editor
+    if (!e || !e.parameter) {
+      Logger.log("⚠️ Running in manual test mode. Using mock data.");
+      e = {
+        parameter: {
+          name: "Test User",
+          email: "test@example.com",
+          phone: "1234567890",
+          job_applied_for: "Software Engineer",
+          fileData: Utilities.base64Encode("Test file content"),
+          fileName: "test_resume.pdf",
+          mimeType: "text/plain"
+        }
+      };
+    }
+    
+    const formData = e.parameter || {};
+    Logger.log("Form data: " + JSON.stringify(formData));
+
+    // Parse applicant data
+    const applicantName = (formData.name || "").trim();
+    const applicantEmail = (formData.email || "").trim();
+    const applicantPhone = (formData.phone || "").trim();
+    const jobAppliedFor = (formData.job_applied_for || "").trim();
+    const fileData = formData.fileData || "";
+    const fileName = formData.fileName || "resume.pdf";
+    const mimeType = formData.mimeType || "application/pdf";
+
+    // Validate required fields
+    if (!applicantName) throw new Error("Missing required field: name");
+    if (!applicantEmail) throw new Error("Missing required field: email");
+    if (!jobAppliedFor) throw new Error("Missing required field: job_applied_for");
+    if (!fileData) throw new Error("Resume file is required");
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(applicantEmail)) throw new Error("Invalid email format");
+
+    Logger.log(`📎 File received: ${fileName}`);
+
+    // Handle file upload
+    let fileUrl = "N/A";
+    try {
+      const fileBytes = Utilities.base64Decode(fileData);
+      const fileBlob = Utilities.newBlob(fileBytes, mimeType, fileName);
+
+      const folder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
+      const safeName = applicantName.replace(/[^a-zA-Z0-9]/g, "_");
+      const safeJob = jobAppliedFor.replace(/[^a-zA-Z0-9]/g, "_").substring(0, 30);
+      const timestamp = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyyMMdd_HHmmss");
+      const fileExtension = fileName.split('.').pop();
+      const newFileName = `${safeJob}_${safeName}_${timestamp}.${fileExtension}`;
+
+      const newFile = folder.createFile(fileBlob);
+      newFile.setName(newFileName);
+      newFile.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+
+      fileUrl = newFile.getUrl();
+      Logger.log(`✅ File uploaded: ${newFileName}`);
+    } catch (fileError) {
+      throw new Error("Failed to upload resume file: " + fileError.message);
+    }
+
+    // Save to spreadsheet
+    const doc = SpreadsheetApp.openById(SPREADSHEET_ID);
+    const sheet = doc.getSheetByName(CAREER_SHEET_NAME);
+    
+    if (!sheet) throw new Error(`Sheet "${CAREER_SHEET_NAME}" not found`);
+
+    if (sheet.getLastRow() === 0) {
+      const headers = ["Timestamp", "Position", "Full Name", "Email", "Phone", "Resume Link"];
+      sheet.appendRow(headers);
+      sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold");
+    }
+
+    const newRowData = {
+      Timestamp: Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "MM/dd/yyyy HH:mm:ss"),
+      ApplyingFor: jobAppliedFor,
+      FullName: applicantName,
+      Email: applicantEmail,
+      Phone: applicantPhone || "N/A",
+      ResumeLink: fileUrl
+    };
+
+    sheet.appendRow([
+      newRowData.Timestamp,
+      newRowData.ApplyingFor,
+      newRowData.FullName,
+      newRowData.Email,
+      newRowData.Phone,
+      newRowData.ResumeLink
+    ]);
+
+    SpreadsheetApp.flush();
+    Logger.log("✅ Career application saved to Sheet1");
+
+    // Send notification
+    sendCareerNotificationEmail(newRowData);
+
+    return ContentService.createTextOutput(
+      JSON.stringify({
+        status: "success",
+        message: "Application submitted successfully",
+        applicant: applicantName,
+        fileUrl: fileUrl
+      })
+    ).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    Logger.log("❌ Career Application Error: " + err.message);
+    sendCareerErrorEmail(e ? e.parameter : null);
+    throw err;
+  }
+}
+
+/**
+ * Handle Contact Form Submission
+ */
+function handleContactForm(e) {
+  try {
+    Logger.log("📨 ========== NEW CONTACT SUBMISSION ==========");
+    
+    // Fallback mock data for manual execution in Apps Script Editor
+    if (!e || !e.parameter) {
+      Logger.log("⚠️ Running in manual test mode. Using mock data.");
+      e = {
+        parameter: {
+          name: "Test Contact",
+          email: "contact@example.com",
+          phone: "0987654321",
+          message: "This is a test message from the Apps Script editor."
+        }
+      };
+    }
+
+    const formData = e.parameter || {};
+    Logger.log("Form data: " + JSON.stringify(formData));
+
+    // Parse contact data
+    const contactName = (formData.name || "").trim();
+    const contactEmail = (formData.email || "").trim();
+    const contactPhone = (formData.phone || "").trim();
+    const contactMessage = (formData.message || "").trim();
+
+    // Validate required fields
+    if (!contactName) throw new Error("Missing required field: name");
+    if (!contactEmail) throw new Error("Missing required field: email");
+    if (!contactPhone) throw new Error("Missing required field: phone");
+    if (!contactMessage) throw new Error("Missing required field: message");
+
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(contactEmail)) throw new Error("Invalid email format");
+
+    // Validate phone (10 digits)
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phoneRegex.test(contactPhone)) throw new Error("Invalid phone format");
+
+    // Save to spreadsheet - Sheet2
+    const doc = SpreadsheetApp.openById(SPREADSHEET_ID);
+    let sheet = doc.getSheetByName(CONTACT_SHEET_NAME);
+    
+    // If Sheet2 doesn't exist, create it
+    if (!sheet) {
+      sheet = doc.insertSheet(CONTACT_SHEET_NAME);
+      Logger.log("✅ Created new sheet: " + CONTACT_SHEET_NAME);
+    }
+
+    // Add headers if this is a new sheet
+    if (sheet.getLastRow() === 0) {
+      const headers = ["Timestamp", "Full Name", "Email", "Phone", "Message"];
+      sheet.appendRow(headers);
+      const headerRange = sheet.getRange(1, 1, 1, headers.length);
+      headerRange.setFontWeight("bold");
+      headerRange.setBackground("#86047d");
+      headerRange.setFontColor("#FFFFFF");
+      
+      // Set column widths
+      sheet.setColumnWidth(1, 150); // Timestamp
+      sheet.setColumnWidth(2, 150); // Name
+      sheet.setColumnWidth(3, 200); // Email
+      sheet.setColumnWidth(4, 120); // Phone
+      sheet.setColumnWidth(5, 400); // Message
+      
+      Logger.log("✅ Headers created in Sheet2");
+    }
+
+    const newRowData = {
+      Timestamp: Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "MM/dd/yyyy HH:mm:ss"),
+      FullName: contactName,
+      Email: contactEmail,
+      Phone: contactPhone,
+      Message: contactMessage
+    };
+
+    sheet.appendRow([
+      newRowData.Timestamp,
+      newRowData.FullName,
+      newRowData.Email,
+      newRowData.Phone,
+      newRowData.Message
+    ]);
+
+    SpreadsheetApp.flush();
+    Logger.log("✅ Contact form saved to Sheet2");
+
+    // Send notification
+    sendContactNotificationEmail(newRowData);
+
+    return ContentService.createTextOutput(
+      JSON.stringify({
+        status: "success",
+        message: "Contact form submitted successfully",
+        contact: contactName
+      })
+    ).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    Logger.log("❌ Contact Form Error: " + err.message);
+    sendContactErrorEmail(e ? e.parameter : null);
+    throw err;
+  }
+}
+
+/**
+ * Send Career Application Notification
+ */
+function sendCareerNotificationEmail(data) {
+  try {
+    // Fallback mock data for manual execution in Apps Script Editor
+    if (!data) {
+      data = {
+        ApplyingFor: "Test Position",
+        FullName: "Test User",
+        Email: "test@example.com",
+        Phone: "1234567890",
+        ResumeLink: "https://example.com/resume",
+        Timestamp: new Date().toLocaleString()
+      };
+    }
+    const subject = `New Job Application: ${data.ApplyingFor} - ${data.FullName}`;
+    const htmlBody = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .wrapper { width: 100%; table-layout: fixed; background-color: #f8fafc; padding-bottom: 60px; }
+    .main { background-color: #ffffff; margin: 40px auto; width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); overflow: hidden; }
+    .header { background: linear-gradient(135deg, #86047d 0%, #aa069e 100%); padding: 32px 40px; text-align: center; }
+    .header h1 { color: #ffffff; margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+    .content { padding: 40px; }
+    .position-title { color: #0f172a; margin: 0 0 24px 0; font-size: 20px; font-weight: 600; border-bottom: 2px solid #f1f5f9; padding-bottom: 16px; }
+    .info-grid { width: 100%; border-collapse: separate; border-spacing: 0 16px; margin-bottom: 24px; }
+    .info-label { color: #64748b; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; width: 35%; align-items: flex-start; }
+    .info-value { color: #1e293b; font-size: 15px; font-weight: 500; }
+    .info-value a { color: #86047d; text-decoration: none; }
+    .info-value a:hover { text-decoration: underline; }
+    .action-container { text-align: center; margin-top: 32px; padding-top: 32px; border-top: 1px solid #f1f5f9; }
+    .btn { display: inline-block; background-color: #86047d; color: #ffffff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 15px; transition: background-color 0.2s; box-shadow: 0 2px 4px rgba(134, 4, 125, 0.2); }
+    .footer { background-color: #f8fafc; padding: 24px 40px; text-align: center; }
+    .footer p { color: #94a3b8; font-size: 13px; margin: 0; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <table class="main" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+      <tr>
+        <td class="header">
+          <h1>New Career Application</h1>
+        </td>
+      </tr>
+      <tr>
+        <td class="content">
+          <h2 class="position-title">Position: ${data.ApplyingFor}</h2>
+          <table class="info-grid" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+            <tr>
+              <td class="info-label">Applicant Name</td>
+              <td class="info-value">${data.FullName}</td>
+            </tr>
+            <tr>
+              <td class="info-label">Email Address</td>
+              <td class="info-value"><a href="mailto:${data.Email}">${data.Email}</a></td>
+            </tr>
+            <tr>
+              <td class="info-label">Phone Number</td>
+              <td class="info-value"><a href="tel:${data.Phone}">${data.Phone}</a></td>
+            </tr>
+          </table>
+          
+          <div class="action-container">
+            <a href="${data.ResumeLink}" class="btn">View Applicant Resume</a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="footer">
+          <p>This application was submitted securely via Urpan Technologies website.</p>
+          <p style="margin-top: 8px;">Received on ${data.Timestamp}</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>`;
+
+    MailApp.sendEmail({
+      to: RECIPIENT_EMAIL,
+      subject: subject,
+      htmlBody: htmlBody
+    });
+    Logger.log("✅ Career notification sent");
+  } catch (err) {
+    Logger.log("⚠️ Failed to send career notification: " + err.message);
+  }
+}
+
+/**
+ * Send Contact Form Notification
+ */
+function sendContactNotificationEmail(data) {
+  try {
+    // Fallback mock data for manual execution in Apps Script Editor
+    if (!data) {
+      data = {
+        FullName: "Test Contact",
+        Email: "contact@example.com",
+        Phone: "0987654321",
+        Message: "This is a test message from the Apps Script editor.",
+        Timestamp: new Date().toLocaleString()
+      };
+    }
+    const subject = `New Contact Form: ${data.FullName}`;
+    const htmlBody = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .wrapper { width: 100%; table-layout: fixed; background-color: #f8fafc; padding-bottom: 60px; }
+    .main { background-color: #ffffff; margin: 40px auto; width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); overflow: hidden; }
+    .header { background: linear-gradient(135deg, #62025b 0%, #450140 100%); padding: 32px 40px; text-align: center; }
+    .header h1 { color: #ffffff; margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+    .content { padding: 40px; }
+    .info-grid { width: 100%; border-collapse: separate; border-spacing: 0 16px; margin-bottom: 24px; }
+    .info-label { color: #64748b; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; width: 35%; align-items: flex-start; }
+    .info-value { color: #1e293b; font-size: 15px; font-weight: 500; }
+    .info-value a { color: #86047d; text-decoration: none; }
+    .info-value a:hover { text-decoration: underline; }
+    .message-box { background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px; margin-top: 8px; border-left: 4px solid #86047d; }
+    .message-box h3 { margin: 0 0 12px 0; color: #0f172a; font-size: 16px; font-weight: 600; }
+    .message-box p { margin: 0; color: #334155; font-size: 15px; line-height: 1.6; white-space: pre-wrap; }
+    .action-container { text-align: center; margin-top: 32px; padding-top: 32px; border-top: 1px solid #f1f5f9; }
+    .btn { display: inline-block; background-color: #62025b; color: #ffffff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 15px; transition: background-color 0.2s; box-shadow: 0 2px 4px rgba(98, 2, 91, 0.2); }
+    .btn:hover { background-color: #86047d; }
+    .footer { background-color: #f8fafc; padding: 24px 40px; text-align: center; }
+    .footer p { color: #94a3b8; font-size: 13px; margin: 0; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <table class="main" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+      <tr>
+        <td class="header">
+          <h1>New Contact Inquiry</h1>
+        </td>
+      </tr>
+      <tr>
+        <td class="content">
+          <table class="info-grid" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+            <tr>
+              <td class="info-label">Contact Name</td>
+              <td class="info-value">${data.FullName}</td>
+            </tr>
+            <tr>
+              <td class="info-label">Email Address</td>
+              <td class="info-value"><a href="mailto:${data.Email}">${data.Email}</a></td>
+            </tr>
+            <tr>
+              <td class="info-label">Phone Number</td>
+              <td class="info-value"><a href="tel:${data.Phone}">${data.Phone}</a></td>
+            </tr>
+          </table>
+          
+          <div class="message-box">
+            <h3>Message Content</h3>
+            <p>${data.Message}</p>
+          </div>
+          
+          <div class="action-container">
+            <a href="mailto:${data.Email}?subject=Re: Your Contact Inquiry" class="btn">Reply to Contact</a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="footer">
+          <p>This message was sent securely via Urpan Technologies website.</p>
+          <p style="margin-top: 8px;">Received on ${data.Timestamp}</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>`;
+
+    MailApp.sendEmail({
+      to: RECIPIENT_EMAIL_CONTACT,
+      subject: subject,
+      htmlBody: htmlBody
+    });
+    Logger.log("✅ Contact notification sent");
+  } catch (err) {
+    Logger.log("⚠️ Failed to send contact notification: " + err.message);
+  }
+}
+
+/**
+ * Send Career Error Notification
+ */
+function sendCareerErrorEmail(data) {
+  try {
+    const errorData = data || {};
+    MailApp.sendEmail({
+      to: RECIPIENT_EMAIL,
+      subject: `❌ Career Application Error`,
+      body: `Error processing career application for ${errorData.name || "Unknown"}`
+    });
+  } catch (err) {
+    Logger.log("⚠️ Failed to send career error email");
+  }
+}
+
+/**
+ * Send Contact Error Notification
+ */
+function sendContactErrorEmail(data) {
+  try {
+    const errorData = data || {};
+    MailApp.sendEmail({
+      to: RECIPIENT_EMAIL_CONTACT,
+      subject: `❌ Contact Form Error`,
+      body: `Error processing contact form for ${errorData.name || "Unknown"}`
+    });
+  } catch (err) {
+    Logger.log("⚠️ Failed to send contact error email");
+  }
+}
+
+/**
+ * Test configuration
+ */
+function testConfiguration() {
+  try {
+    Logger.log("🧪 Testing configuration...");
+    const doc = SpreadsheetApp.openById(SPREADSHEET_ID);
+    const careerSheet = doc.getSheetByName(CAREER_SHEET_NAME);
+    const folder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
+    
+    let contactSheet = doc.getSheetByName(CONTACT_SHEET_NAME);
+    if (!contactSheet) {
+      contactSheet = doc.insertSheet(CONTACT_SHEET_NAME);
+      Logger.log(`✅ Created ${CONTACT_SHEET_NAME}`);
+    }
+    
+    Logger.log(`✅ Spreadsheet: ${doc.getName()}`);
+    Logger.log(`✅ Career Sheet: ${careerSheet.getName()}`);
+    Logger.log(`✅ Contact Sheet: ${contactSheet.getName()}`);
+    Logger.log(`✅ Folder: ${folder.getName()}`);
+    Logger.log(`✅ Email: ${RECIPIENT_EMAIL}`);
+    Logger.log(`✅ Email: ${RECIPIENT_EMAIL_CONTACT}`);
+    Logger.log("🎉 Configuration test passed!");
+    return true;
+  } catch (err) {
+    Logger.log(`❌ Configuration test failed: ${err.message}`);
+    return false;
+  }
+}
