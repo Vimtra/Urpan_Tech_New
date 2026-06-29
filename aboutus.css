@@ -795,7 +795,7 @@ body {
   /* object-fit: cover; */
   border-radius: 20px;
   transition: all 0.5s ease;
-  box-shadow: rgba(56, 1, 49, 0.4) 0px 22px 70px 4px;
+  box-shadow: rgba(56, 1, 49, 0.15) 0px 6px 20px 0px;
 
   filter: brightness(0.9);
 }
@@ -804,7 +804,7 @@ body {
   transform: scale(1.1) rotateZ(5deg);
   filter: brightness(1.1);
   border-color: rgba(255, 105, 235, 0.8);
-  box-shadow: 0 10px 30px rgba(255, 105, 235, 0.4);
+  box-shadow: 0 6px 15px rgba(255, 105, 235, 0.25);
 }
 
 /* Certifications Section Mobile Fix: Adjusting image size on phone UI for better visibility */
