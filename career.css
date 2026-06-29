@@ -58,18 +58,7 @@ body {
 }
 
 .career-hero-shape.shape-circle {
-  bottom: 18%;
-  left: 12%;
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 30% 30%,
-    rgba(192, 33, 182, 0.55),
-    rgba(74, 4, 85, 0.1)
-  );
-  filter: blur(2px);
-  opacity: 0.55;
+  display: none;
 }
 
 .career-hero-shape.shape-curve {
