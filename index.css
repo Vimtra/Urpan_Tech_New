@@ -911,7 +911,7 @@ body {
 
 /* ===== FOOTER STYLES ===== */
 .footer-main {
-  /* background: radial-gradient(ellipse at bottom, #8C1B8E); */
+  background-color: #FAF5F9;
   /* padding-top: 50px; */
   padding: 25px 25px 15px;
   color: #000000;
@@ -924,7 +924,7 @@ body {
   position: absolute;
   inset: 0;
   backdrop-filter: blur(12px);
-  background: rgba(133, 8, 97, 0.05);
+  background: transparent;
   z-index: 0;
   pointer-events: none;
 }
