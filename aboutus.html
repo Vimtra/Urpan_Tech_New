@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -109,7 +109,8 @@
             <p class="who-we-are-section text-block">
               Urpan Technologies, headquartered in the Bay Area, is a trusted
               leader in talent acquisition, executive search, IT consulting, and
-              business process outsourcing for over 25 years. With a dedicated
+              business process outsourcing for over
+              <span class="experience-years">25</span> years. With a dedicated
               team of 500+ IT professionals across the nation, we specialize in
               delivering customized recruiting solutions, leadership hiring, and
               contingent staffing tailored to each client's unique needs. Our
@@ -258,7 +259,6 @@
         </div>
       </div>
     </section>
-    <hr />
     <section class="value-proposition-section">
       <div class="floating-bg">
         <div class="floating-circle circle-1"></div>
@@ -268,7 +268,7 @@
 
       <div class="proposition-container">
         <div class="section-header">
-          <h2>Why Choose UrpanTech</h2>
+          <h2>Why Choose UrpanTechnologies</h2>
           <p>Excellence Through Innovation and Dedication</p>
         </div>
 
@@ -280,7 +280,10 @@
                   <img
                     src="images/HIGH CUSTOMER SATISFACTION.png"
                     alt="High Customer Satisfaction"
-                    onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%2280%22 fill=%22%234A90E2%22/%3E%3Cpath d=%22M70 90 L90 110 L130 70%22 stroke=%22white%22 stroke-width=%228%22 fill=%22none%22/%3E%3C/svg%3E'"
+                    onerror="
+                      this.src =
+                        'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%2280%22 fill=%22%234A90E2%22/%3E%3Cpath d=%22M70 90 L90 110 L130 70%22 stroke=%22white%22 stroke-width=%228%22 fill=%22none%22/%3E%3C/svg%3E'
+                    "
                   />
                 </div>
                 <h3 class="feature-title">High Customer Satisfaction</h3>
@@ -305,7 +308,10 @@
                   <img
                     src="images/RESOURCEFUL TEAM.png"
                     alt="Resourceful Team"
-                    onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Cpolygon points=%22100,30 130,90 190,90 140,130 160,190 100,150 40,190 60,130 10,90 70,90%22 fill=%22%23FFD700%22/%3E%3C/svg%3E'"
+                    onerror="
+                      this.src =
+                        'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Cpolygon points=%22100,30 130,90 190,90 140,130 160,190 100,150 40,190 60,130 10,90 70,90%22 fill=%22%23FFD700%22/%3E%3C/svg%3E'
+                    "
                   />
                 </div>
                 <h3 class="feature-title">Resourceful Team</h3>
@@ -330,7 +336,10 @@
                   <img
                     src="images/TOP NOTCH SKILLSET TALENT.png"
                     alt="Top Notch Skillset Talent"
-                    onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Cpolygon points=%22100,30 130,90 190,90 140,130 160,190 100,150 40,190 60,130 10,90 70,90%22 fill=%22%23FFD700%22/%3E%3C/svg%3E'"
+                    onerror="
+                      this.src =
+                        'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Cpolygon points=%22100,30 130,90 190,90 140,130 160,190 100,150 40,190 60,130 10,90 70,90%22 fill=%22%23FFD700%22/%3E%3C/svg%3E'
+                    "
                   />
                 </div>
                 <h3 class="feature-title">Top Notch Skillset Talent</h3>
@@ -539,7 +548,7 @@
 
           <div class="stat-card" data-scroll data-delay="200">
             <div class="stat-icon"><i class="fa-solid fa-face-smile"></i></div>
-            <div class="stat-number">200</div>
+            <div class="stat-number">200+</div>
             <div class="stat-label">Happy Clients</div>
           </div>
 
@@ -555,7 +564,9 @@
             <div class="stat-icon">
               <i class="fa-solid fa-clock-rotate-left"></i>
             </div>
-            <div class="stat-number">25+</div>
+            <div class="stat-number">
+              <span class="experience-years">25</span>+
+            </div>
             <div class="stat-label">Years Experience</div>
           </div>
         </div>
@@ -610,9 +621,9 @@
               <li>
                 <a href="./service.html" class="footer-link">Services</a>
               </li>
-              <!-- <li>
+              <li>
                 <a href="./careerForm.html" class="footer-link">Careers</a>
-              </li> -->
+              </li>
               <li>
                 <a href="./contact.html" class="footer-link">Contact</a>
               </li>
@@ -654,7 +665,8 @@
         <div class="row align-items-center justify-content-between pt-2">
           <div class="col-md-6 text-md-start mb-2">
             <p class="copyright-text mb-0">
-              © 2025 Urpan Technologies. All Rights Reserved.
+              © <span id="currentYear"></span> Urpan Technologies. All Rights
+              Reserved.
             </p>
           </div>
 
@@ -919,6 +931,15 @@
     <!-- Initialize Bootstrap -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        const currentYear = new Date().getFullYear();
+        const experienceYears = currentYear - 2000;
+
+        const copyrightEl = document.getElementById("currentYear");
+        if (copyrightEl) copyrightEl.textContent = currentYear;
+
+        const expTextEls = document.querySelectorAll(".experience-years");
+        expTextEls.forEach((el) => (el.textContent = experienceYears));
+
         // Enable Bootstrap's collapse functionality
         var navbarToggler = document.querySelector(".navbar-toggler");
         var navbarCollapse = document.querySelector(".navbar-collapse");
@@ -941,18 +962,20 @@
         });
       });
     </script>
-        <script>
+    <script>
       // Close mobile navbar on click outside
-      document.addEventListener('click', function (event) {
-        var navbarCollapse = document.getElementById('navbarNav');
-        var navbarToggler = document.querySelector('.navbar-toggler');
+      document.addEventListener("click", function (event) {
+        var navbarCollapse = document.getElementById("navbarNav");
+        var navbarToggler = document.querySelector(".navbar-toggler");
         if (
-          navbarCollapse && 
-          navbarCollapse.classList.contains('show') &&
+          navbarCollapse &&
+          navbarCollapse.classList.contains("show") &&
           !navbarCollapse.contains(event.target) &&
           !navbarToggler.contains(event.target)
         ) {
-          var bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
+          var bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+            toggle: false,
+          });
           bsCollapse.hide();
         }
       });

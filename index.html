@@ -230,7 +230,7 @@
         <div class="container">
           <h2 class="section-title mb-4">Why Choose Us?</h2>
           <p class="section-subtitle mb-5">
-            With over 25 years of experience, we lead the industry in IT
+            With over <span class="experience-years">25</span> years of experience, we lead the industry in IT
             consulting and implementation.
           </p>
 
@@ -424,7 +424,7 @@
         <div class="row align-items-center justify-content-between pt-2">
           <div class="col-md-6 text-md-start mb-2">
             <p class="copyright-text mb-0">
-              © 2025 Urpan Technologies. All Rights Reserved.
+              © <span id="currentYear"></span> Urpan Technologies. All Rights Reserved.
             </p>
           </div>
 
@@ -486,6 +486,20 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        const currentYear = new Date().getFullYear();
+        const experienceYears = currentYear - 2000;
+
+        const copyrightEl = document.getElementById("currentYear");
+        if (copyrightEl) copyrightEl.textContent = currentYear;
+
+        const expTextEls = document.querySelectorAll(".experience-years");
+        expTextEls.forEach(el => el.textContent = experienceYears);
+
+        const expCounter = document.querySelector('[data-text="Years Experience"]');
+        if (expCounter) {
+          expCounter.setAttribute("data-target", experienceYears);
+        }
+
         const counters = document.querySelectorAll(".stat-number");
         const speed = 150;
 
