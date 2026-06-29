@@ -37,10 +37,12 @@ body {
 .about-hero .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, #70094e, #d275ca, #64005d, #c22d90);
-  background-size: 300% 300%;
-  animation: gradientShift 5s ease infinite;
-  opacity: 0.2;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.24) 0%,
+    rgba(0, 0, 0, 0.12) 45%,
+    rgba(0, 0, 0, 0.38) 100%
+  );
   z-index: 1;
 }
 
@@ -56,16 +58,7 @@ body {
 
 /* Gradient overlay with purple theme (#9d50bb) */
 .about-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.7;
-  background: linear-gradient(
-    180deg,
-    rgba(62, 31, 75, 0.7),
-    rgba(65, 8, 58, 0.9)
-  );
-  z-index: 1;
+  content: none;
 }
 
 .hero-content {
@@ -84,13 +77,6 @@ body {
   position: relative;
   color: #ffffff;
 }
-.hero-content h1:hover {
-  background: linear-gradient(120deg, #ffffff 0%, #db30a2 50%, #ffffff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 .hero-content p {
   font-family: "Lato", sans-serif;
   font-size: 3.2rem;

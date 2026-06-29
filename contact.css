@@ -72,11 +72,11 @@ html {
   content: "";
   position: absolute;
   inset: 0;
-  /* Lighter gradient than before */
   background: linear-gradient(
-    135deg,
-    rgba(134, 4, 125, 0.85) 0%,   /* Reduced opacity */
-    rgba(74, 4, 85, 0.6) 100%     /* Reduced opacity */
+    180deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.06) 45%,
+    rgba(255, 255, 255, 0.14) 100%
   );
   z-index: 1;
 }
@@ -86,7 +86,7 @@ html {
   position: relative;
   z-index: 2;
   text-align: center;
-  color: var(--white);
+  color: var(--primary-color);
   padding: 0 20px;
   animation: fadeInUp 0.8s ease-out;
 }
@@ -97,7 +97,7 @@ html {
   font-weight: 400;
   margin-bottom: 1rem;
   letter-spacing: 1px;
-  text-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  text-shadow: 0 4px 10px rgba(255, 255, 255, 0.35);
 }
 
 .hero-content p {
@@ -107,6 +107,7 @@ html {
   opacity: 0.95;
   max-width: 600px;
   margin: 0 auto;
+  color: var(--primary-color);
 }
 
 /* =========================================
