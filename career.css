@@ -167,8 +167,10 @@ body {
 
 .job-notice-body {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 16px;
+  text-align: center;
 }
 
 .job-notice-icon {
@@ -190,6 +192,7 @@ body {
   font-size: 1.05rem;
   line-height: 1.65;
   color: var(--text-dark);
+  text-align: center;
 }
 
 .job-notice-link {
@@ -757,7 +760,8 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   overflow: hidden;
 }
 
@@ -778,24 +782,23 @@ body {
 }
 
 .referral-cta-icon {
-  width: 68px;
-  height: 68px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #ffffff;
+  width: auto;
+  height: auto;
+  background: none;
+  color: var(--text-dark);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.7rem;
-  box-shadow: 0 14px 30px rgba(134, 4, 125, 0.25);
-  margin-bottom: 28px;
+  font-size: 2.6rem;
+  box-shadow: none;
+  margin: 0 auto 20px;
 }
 
 .referral-cta-heading {
   font-family: "Lato", sans-serif;
   font-size: 1.9rem;
   font-weight: 800;
-  color: var(--text-dark);
+  color: var(--accent);
   margin: 0 0 18px;
   letter-spacing: -0.3px;
 }
@@ -805,14 +808,16 @@ body {
   font-size: 1.08rem;
   line-height: 1.75;
   color: var(--muted);
-  margin: 0 0 36px;
+  margin: 0 auto 36px;
   max-width: 480px;
 }
 
 .referral-cta-button {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
+  width: 100%;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   color: #ffffff;
   border: none;
@@ -841,8 +846,9 @@ body {
 .referral-cta-note {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  margin-top: 28px;
+  margin: 28px auto 0;
   font-size: 0.88rem;
   color: var(--muted);
 }
